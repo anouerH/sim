@@ -129,6 +129,243 @@
 					</select>
 				</div>
 			</div>
+
+
+			<div class="form-group has-error">
+				<label for="facing_south_glazing" class="col-sm-2 control-label">Grande surface vitrée au sud</label>
+				<div class="col-sm-5">
+					<label class="radio-inline">
+					  <input type="radio" name="facing_south_glazing" id="facing_south_glazing" value="true"> Oui 
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="facing_south_glazing" id="facing_south_glazing" value="false"> Nom
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group has-error">
+				<label for="wall_insulation" class="col-sm-2 control-label">Surface de mur</label>
+				<div class="col-sm-5">
+					In progress
+				</div>
+			</div>
+
+			<div class="form-group has-error">
+				<label for="wall_material" class="col-sm-2 control-label">Type de mur</label>
+				<div class="col-sm-5">
+					<?php foreach ($w_types as $type ) {?>
+						<label class="radio-inline">
+						  <input type="radio" name="wall_material" id="wall_material" value="<?php echo $type['code'] ?>"> <?php echo $type['label'] ?>
+						</label>
+					<?php } ?>
+				</div>
+			</div>
+
+
+			<div class="form-group has-error">
+				<label for="wall_insulation" class="col-sm-2 control-label">Isolation du mur</label>
+				<div class="col-sm-5">
+					In progress
+				</div>
+			</div>
+
+			<div class="form-group has-error">
+				<label for="wall_insulation" class="col-sm-2 control-label">Surface de toiture</label>
+				<div class="col-sm-5">
+					In progress
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="roof_composition" class="col-sm-2 control-label">Composition de la toiture</label>
+				<div class="col-sm-5">
+					<label class="radio-inline">
+					  <input type="radio" name="roof_composition" id="roof_composition" value="false"> inconnu 
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="roof_composition" id="roof_composition" value="typologie"> typologie
+					</label>
+				</div>
+			</div>
+
+
+			<div class="form-group has-error">
+				<label for="roof_insulation" class="col-sm-2 control-label">Isolation de la toiture</label>
+				<div class="col-sm-5">
+					In porgress
+				</div>
+			</div>
+
+			<div class="form-group has-error">
+				<label for="basement_area" class="col-sm-2 control-label">Surface de plancher bas</label>
+				<div class="col-sm-5">
+					In porgress
+				</div>
+			</div>
+			
+
+			<div class="form-group">
+				<label for="window_area" class="col-sm-2 control-label">Surface des fenêtres</label>
+				<div class="col-sm-2 input-group">
+					<input  class="form-control" name="window_area" id="window_area" placeholder="Surface des fenêtres">
+					<span class="input-group-addon">m<sup>2</sup></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="glazing_type" class="col-sm-2 control-label">Type de vitrage</label>
+				<div class="col-sm-2">
+					<select class="form-control" id="glazing_type" name="glazing_type">
+						<option>- Préciser -</option>
+						<?php foreach ($g_types as $type ) {?>
+							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+
+			
+			<div class="form-group">
+				<label for="with_argon" class="col-sm-2 control-label">Présence d’argon</label>
+				<div class="col-sm-5">
+					<label class="radio-inline">
+					  <input type="radio" name="with_argon" id="with_argon" value="true"> Oui  
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="with_argon" id="with_argon" value="false"> Non
+					</label>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="carpentry_type" class="col-sm-2 control-label">Type de menuiserie</label>
+				<div class="col-sm-2">
+					<select class="form-control" id="carpentry_type" name="carpentry_type">
+						<option>- Préciser -</option>
+						<?php foreach ($car_types as $type ) {?>
+							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="with_argon" class="col-sm-2 control-label">Présence de volets</label>
+				<div class="col-sm-5">
+					<label class="radio-inline">
+					  <input type="radio" name="with_argon" id="with_argon" value="true"> Oui  
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="with_argon" id="with_argon" value="false"> Non
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="window_area" class="col-sm-2 control-label">Surface de portes extérieures</label>
+				<div class="col-sm-2 input-group">
+					<input  class="form-control" name="window_area" id="window_area" placeholder="Surface de portes extérieures">
+					<span class="input-group-addon">m<sup>2</sup></span>
+				</div>
+			</div>
+
+			<div class="form-group has-warning">
+				<label for="glazing_type" class="col-sm-2 control-label">Type de porte</label>
+				<div class="col-sm-2">
+					<select class="form-control" id="glazing_type" name="glazing_type">
+						<option>- Préciser -</option>
+						<?php foreach ($g_types as $type ) {?>
+							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group has-warning">
+				<label for="glazing_type" class="col-sm-2 control-label">Système de chauffage</label>
+				<div class="col-sm-2">
+					<select class="form-control" id="glazing_type" name="glazing_type">
+						<option>- Préciser -</option>
+						<?php foreach ($g_types as $type ) {?>
+							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="with_argon" class="col-sm-2 control-label">Chauffage eau chaude</label>
+				<div class="col-sm-5">
+					<label class="radio-inline">
+					  <input type="radio" name="with_argon" id="with_argon" value="true"> Oui  
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="with_argon" id="with_argon" value="false"> Non
+					</label>
+				</div>
+			</div>
+
+
+			<div class="form-group has-warning">
+				<label for="transmitter_type" class="col-sm-2 control-label">Type émetteur</label>
+				<div class="col-sm-2">
+					<select class="form-control" id="transmitter_type" name="transmitter_type">
+						<option>- Préciser -</option>
+						<option>radiateur</option>
+						<option>plancher chauffant</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group has-warning">
+				<label for="with_argon" class="col-sm-2 control-label">Présence de robinet thermostatique sur les radiateur</label>
+				<div class="col-sm-5">
+					<label class="radio-inline">
+					  <input type="radio" name="with_argon" id="with_argon" value="true"> Oui  
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="with_argon" id="with_argon" value="false"> Non
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="with_programmer" class="col-sm-2 control-label">Présence d’un programmateur</label>
+				<div class="col-sm-5">
+					<label class="radio-inline">
+					  <input type="radio" name="with_programmer" id="with_programmer" value="true"> Oui  
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="with_programmer" id="with_programmer" value="false"> Non
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group has-warning">
+				<label for="glazing_type" class="col-sm-2 control-label">Système d’ECS</label>
+				<div class="col-sm-2">
+					<select class="form-control" id="glazing_type" name="glazing_type">
+						<option>- Préciser -</option>
+						<?php foreach ($g_types as $type ) {?>
+							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+			
+
+			<div class="form-group has-warning">
+				<label for="glazing_type" class="col-sm-2 control-label">Système de ventilation</label>
+				<div class="col-sm-2">
+					<select class="form-control" id="glazing_type" name="glazing_type">
+						<option>- Préciser -</option>
+						<?php foreach ($g_types as $type ) {?>
+							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+			
 			
 			
   <!--<div class="form-group">
