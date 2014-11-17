@@ -5,10 +5,14 @@
       <p>Calcul des consommations de chauffage.</p>
       <p>Calcul des consommations d’ECS</p>
       <p>Calcul des consommations de refroidissement</p>
+	  <?php echo validation_errors(); ?>
 	  
-	  
-		<form class="form-horizontal" role="form">
+
+	 <?php echo form_open('index.php/simulateur/result',array('class' => 'form-horizontal', 'role'=>'form')) ?>
+
 		
+
+	  
 			<div class="form-group">
 				<label for="surface" class="col-sm-2 control-label">Surface habitable</label>
 				<div class="col-sm-2 input-group">
@@ -112,7 +116,7 @@
 					<select class="form-control" id="mitoyennete" name="mitoyennete">
 						<option>- Préciser -</option>
 						<?php foreach ($mitoyennetes as $mitoyennete ) {?>
-							<option value="<?php echo $mitoyennete['code'] ?>"><?php echo $mitoyennete['label'] ?></option>
+							<option value="<?php echo $mitoyennete['mit'] ?>"><?php echo $mitoyennete['label'] ?></option>
 						<?php } ?>
 					</select>
 				</div>
@@ -195,6 +199,9 @@
 					In porgress
 				</div>
 			</div>
+			
+			
+			
 
 			<div class="form-group has-error">
 				<label for="basement_area" class="col-sm-2 control-label">Surface de plancher bas</label>
@@ -203,7 +210,27 @@
 				</div>
 			</div>
 			
-
+			
+			<div class="form-group">
+				<label for="roof_composition" class="col-sm-2 control-label">Composition du plancher bas</label>
+				<div class="col-sm-5">
+					<label class="radio-inline">
+					  <input type="radio" name="roof_composition" id="roof_composition" value="false"> inconnu 
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="roof_composition" id="roof_composition" value="typologie"> typologie
+					</label>
+				</div>
+			</div>
+			
+			<div class="form-group has-error">
+				<label for="roof_insulation" class="col-sm-2 control-label">Isolation du plancher bas</label>
+				<div class="col-sm-5">
+					In porgress
+				</div>
+			</div>
+			
+			
 			<div class="form-group">
 				<label for="window_area" class="col-sm-2 control-label">Surface des fenêtres</label>
 				<div class="col-sm-2 input-group">
@@ -269,25 +296,25 @@
 				</div>
 			</div>
 
-			<div class="form-group has-warning">
+			<div class="form-group">
 				<label for="glazing_type" class="col-sm-2 control-label">Type de porte</label>
 				<div class="col-sm-2">
 					<select class="form-control" id="glazing_type" name="glazing_type">
 						<option>- Préciser -</option>
-						<?php foreach ($g_types as $type ) {?>
-							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+						<?php foreach ($d_types as $type ) {?>
+							<option value="<?php echo $type['id'] ?>"><?php echo $type['label'] ?></option>
 						<?php } ?>
 					</select>
 				</div>
 			</div>
 
-			<div class="form-group has-warning">
-				<label for="glazing_type" class="col-sm-2 control-label">Système de chauffage</label>
+			<div class="form-group">
+				<label for="ich" class="col-sm-2 control-label">Système de chauffage</label>
 				<div class="col-sm-2">
-					<select class="form-control" id="glazing_type" name="glazing_type">
+					<select class="form-control" id="ich" name="ich">
 						<option>- Préciser -</option>
-						<?php foreach ($g_types as $type ) {?>
-							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+						<?php foreach ($ichs as $ich ) {?>
+							<option value="<?php echo $ich['id'] ?>"><?php echo $ich['label'] ?></option>
 						<?php } ?>
 					</select>
 				</div>
@@ -306,7 +333,7 @@
 			</div>
 
 
-			<div class="form-group has-warning">
+			<div class="form-group">
 				<label for="transmitter_type" class="col-sm-2 control-label">Type émetteur</label>
 				<div class="col-sm-2">
 					<select class="form-control" id="transmitter_type" name="transmitter_type">
@@ -317,7 +344,7 @@
 				</div>
 			</div>
 
-			<div class="form-group has-warning">
+			<div class="form-group">
 				<label for="with_argon" class="col-sm-2 control-label">Présence de robinet thermostatique sur les radiateur</label>
 				<div class="col-sm-5">
 					<label class="radio-inline">
@@ -354,13 +381,13 @@
 			</div>
 			
 
-			<div class="form-group has-warning">
+			<div class="form-group">
 				<label for="glazing_type" class="col-sm-2 control-label">Système de ventilation</label>
 				<div class="col-sm-2">
-					<select class="form-control" id="glazing_type" name="glazing_type">
+					<select class="form-control" id="ventilation" name="ventilation">
 						<option>- Préciser -</option>
-						<?php foreach ($g_types as $type ) {?>
-							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+						<?php foreach ($ventilations as $ventilation ) {?>
+							<option value="<?php echo $ventilation['ara'] ?>"><?php echo $ventilation['label'] ?></option>
 						<?php } ?>
 					</select>
 				</div>
@@ -368,11 +395,11 @@
 			
 			
 			
-  <!--<div class="form-group">
+<div class="form-group">
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
+      <button type="submit" class="btn btn-default">Envoyer ... </button>
     </div>
   </div>
 </form>

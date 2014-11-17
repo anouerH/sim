@@ -15,15 +15,23 @@ class Simulateur extends CI_Controller {
 		$this->load->model('glazingtype_model');
 		$this->load->model('carpentrytype_model');
 		$this->load->model('doortype_model');
+		$this->load->model('ich_model');
+		$this->load->model('ventilation_model');
+		
+		
 		
 	}
 
 	public function index()
 	{
-		//$data['news'] = $this->next(array)ws_model->get_news();
-		
-		//$data['news'] = $this->news_model->get_news();
-		
+		$data = $this->loadData();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('simulateur/index', $data);
+		$this->load->view('templates/footer');
+	}
+	
+	public function loadData(){
 		$data['c_years'] = $this->constructionyear_model->getConstructionYears();
 		$data['r_types'] = $this->rooftype_model->getRoofTyes();
 		$data['b_types'] = $this->basementtype_model->getBasementType();
@@ -34,13 +42,67 @@ class Simulateur extends CI_Controller {
 		$data['g_types'] = $this->glazingtype_model->getGlazingTypes();
 		$data['car_types'] = $this->carpentrytype_model->getCarpentryTypes();
 		$data['d_types'] = $this->doortype_model->getDoorTypes();
-		
+		$data['ichs'] = $this->ich_model->getIchs();
+		$data['ventilations'] = $this->ventilation_model->getVentilations();
 		
 		$data['title'] = 'Simulateur !!!';
-		$this->load->view('templates/header', $data);
-		$this->load->view('simulateur/index', $data);
-		$this->load->view('templates/footer');
+		
+		return $data;
+	}
 	
+	public function calculation(){
+		
+			//A - Maison individuelle 
+				//1. Calcul des consommations de chauffage
+													/*********************************************************/
+													//Cch PCI = Cch PCS / α pcsi // AVEC : Cch PCS = Bch x Ich
+													/*********************************************************/
+					//1.1.Calcul de Bch 
+													/*********************************************************/
+													// Bch = SH x ENV x METEO x INT
+													/*********************************************************/
+						// 1.1.1. Calcul de ENV
+						
+													/*********************************************************/
+													// ENV = (DPmurs + DPplafond + DPplancher + DPfenêtres + DPportes + DPvéranda + PT) / 2 . 5 x Sh   + aRA
+													/*********************************************************/
+						
+						
+						
+		// Form is submitted	
+		if ($_POST)
+		{
+				
+			// Is Valid Form 
+			$this->load->library('form_validation');
+			$config = array(
+               array(
+                     'field'   => 'surface', 
+                     'label'   => 'surface', 
+                     'rules'   => 'required'
+                  ),
+               array(
+                     'field'   => 'ventilation', 
+                     'label'   => 'ventilation', 
+                     'rules'   => 'required'
+                  )
+            );
+            $this->form_validation->set_rules($config);
+				
+			if ($this->form_validation->run() == FALSE){
+				//$this->load->view('simulateur/index');
+				
+				die('is NOY valid ... ');
+			}else{
+				die("is valid");
+			}
+				
+		} 
+					
+			$aRA = $this->input->post('ventilation');	
+			var_dump($this->input->post('ventilation'));
+			print "<h1>test detetetet</h1>";
+			die();
 	}
 	
 }
