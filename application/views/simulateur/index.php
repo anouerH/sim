@@ -5,10 +5,10 @@
       <p>Calcul des consommations de chauffage.</p>
       <p>Calcul des consommations d’ECS</p>
       <p>Calcul des consommations de refroidissement</p>
-	  <?php echo validation_errors(); ?>
+	  <div class="text-danger"><?php echo validation_errors(); ?></div>
 	  
 
-	 <?php echo form_open('index.php/simulateur/result',array('class' => 'form-horizontal', 'role'=>'form')) ?>
+	 <?php echo form_open('',array('class' => 'form-horizontal', 'role'=>'form')) ?>
 
 		
 
@@ -16,7 +16,7 @@
 			<div class="form-group">
 				<label for="surface" class="col-sm-2 control-label">Surface habitable</label>
 				<div class="col-sm-2 input-group">
-					<input type="number" class="form-control" name="surface" id="surface" placeholder="Surface habitable">
+					<input type="number" class="form-control" name="surface" id="surface" placeholder="Surface habitable" value="<?php echo set_value('surface'); ?>">
 					<span class="input-group-addon">m<sup>2</sup></span>
 				</div>
 			</div>
@@ -105,7 +105,7 @@
 			<div class="form-group">
 				<label for="ceiling_height" class="col-sm-2 control-label">Hauteur moyenne sous plafond</label>
 				<div class="col-sm-2 input-group">
-					<input type="float" class="form-control" id="ceiling_height" name="ceiling_height" placeholder="Hauteur moyenne sous plafond">
+					<input type="float" class="form-control" id="ceiling_height" name="ceiling_height"  value="<?php echo set_value('ceiling_height'); ?>" placeholder="Hauteur moyenne sous plafond">
 					<span class="input-group-addon">m</span>
 				</div>
 			</div>
@@ -385,7 +385,7 @@
 				<label for="glazing_type" class="col-sm-2 control-label">Système de ventilation</label>
 				<div class="col-sm-2">
 					<select class="form-control" id="ventilation" name="ventilation">
-						<option>- Préciser -</option>
+						<option value="">- Préciser -</option>
 						<?php foreach ($ventilations as $ventilation ) {?>
 							<option value="<?php echo $ventilation['ara'] ?>"><?php echo $ventilation['label'] ?></option>
 						<?php } ?>

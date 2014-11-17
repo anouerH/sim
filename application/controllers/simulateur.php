@@ -25,10 +25,53 @@ class Simulateur extends CI_Controller {
 	public function index()
 	{
 		$data = $this->loadData();
-
-		$this->load->view('templates/header', $data);
-		$this->load->view('simulateur/index', $data);
-		$this->load->view('templates/footer');
+		$this->load->library('form_validation');
+		// Form is submitted	
+		if ($_POST)
+		{
+			
+			
+			// Is Valid Form 
+			$config = array(
+				array(
+                     'field'   => 'surface', 
+                     'label'   => 'surface', 
+                     'rules'   => 'required'
+                  ),
+				array(
+                     'field'   => 'ventilation', 
+                     'label'   => 'ventilation', 
+                     'rules'   => 'required'
+                  ),
+				array(
+                     'field'   => 'ceiling_height', 
+                     'label'   => 'ceiling_height', 
+                     'rules'   => 'required'
+                  )
+            );
+			
+			
+            $this->form_validation->set_rules($config);
+				
+			if ($this->form_validation->run() == FALSE){
+				
+				$this->load->view('templates/header', $data);
+				$this->load->view('simulateur/index', $data);
+				$this->load->view('templates/footer');
+				
+			}else{
+				// launch calculation
+				$this->calculation($_POST);
+			}
+				
+		}else{
+			$this->load->view('templates/header', $data);
+			$this->load->view('simulateur/index', $data);
+			$this->load->view('templates/footer');
+		}
+			
+		
+		
 	}
 	
 	public function loadData(){
@@ -50,8 +93,8 @@ class Simulateur extends CI_Controller {
 		return $data;
 	}
 	
-	public function calculation(){
-		
+	public function calculation($data){
+			
 			//A - Maison individuelle 
 				//1. Calcul des consommations de chauffage
 													/*********************************************************/
@@ -68,7 +111,11 @@ class Simulateur extends CI_Controller {
 													/*********************************************************/
 						
 						
-						
+		$sh 			= $data['surface'];  		// SH 	: surface habitable de la maison (m2)
+		$aRA 			= $data['ventilation'];		// aRA 	: deperditions par renouvellement d’air 
+		$hsp  			= $data['ceiling_height'];	// HSP	: hauteur sous plafond (m)
+		$corh  			= $hsp/2.5					// CORH : coefficient de correction de la hauteur sous plafond
+			
 		// Form is submitted	
 		if ($_POST)
 		{

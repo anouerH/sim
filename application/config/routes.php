@@ -46,6 +46,7 @@ $route['news'] = 'news';
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 $route['default_controller'] = 'simulateur';
+$route['simulateur/result'] = 'simulateur/calculation';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
