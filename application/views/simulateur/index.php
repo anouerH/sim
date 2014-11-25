@@ -5,10 +5,11 @@
       <p>Calcul des consommations de chauffage.</p>
       <p>Calcul des consommations d’ECS</p>
       <p>Calcul des consommations de refroidissement</p>
+	  
 	  <div class="text-danger"><?php echo validation_errors(); ?></div>
 	  
 
-	 <?php echo form_open('',array('class' => 'form-horizontal', 'role'=>'form')) ?>
+	 <?php echo form_open('index.php/simulateur/result',array('class' => 'form-horizontal', 'role'=>'form')) ?>
 
 		
 
@@ -71,9 +72,9 @@
 				<label for="basement_type" class="col-sm-2 control-label">Type de plancher bas</label>
 				<div class="col-sm-2">
 					<select class="form-control" id="basement_type" name="basement_type">
-						<option>- Préciser -</option>
+						<option value="">- Préciser -</option>
 						<?php foreach ($b_types as $type ) {?>
-							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+							<option value="<?php echo $type['cor_sol'] ?>"><?php echo $type['label'] ?></option>
 						<?php } ?>
 					</select>
 				</div>

@@ -32,10 +32,15 @@ class Simulateur extends CI_Controller {
 			
 			
 			// Is Valid Form 
-			$config = array(
+			/*$config = array(
 				array(
                      'field'   => 'surface', 
                      'label'   => 'surface', 
+                     'rules'   => 'required'
+                  ),
+				array(
+                     'field'   => 'basement_type', 
+                     'label'   => 'basement_type', 
                      'rules'   => 'required'
                   ),
 				array(
@@ -48,11 +53,17 @@ class Simulateur extends CI_Controller {
                      'label'   => 'ceiling_height', 
                      'rules'   => 'required'
                   )
-            );
+            );*/
 			
-			
+			$config = array(array(
+                     'field'   => 'surface', 
+                     'label'   => 'surface', 
+                     'rules'   => 'required'
+                  ));
             $this->form_validation->set_rules($config);
-				
+			
+            // var_dump($this->form_validation->run());
+            // die();
 			if ($this->form_validation->run() == FALSE){
 				
 				$this->load->view('templates/header', $data);
@@ -73,6 +84,14 @@ class Simulateur extends CI_Controller {
 		
 		
 	}
+    
+    public function result(){
+        // var_dump($_POST);
+        $data = $this->loadData();
+        $this->load->view('templates/header', $data);
+		$this->load->view('simulateur/result', $data);
+				$this->load->view('templates/footer');
+    }
 	
 	public function loadData(){
 		$data['c_years'] = $this->constructionyear_model->getConstructionYears();
@@ -95,6 +114,7 @@ class Simulateur extends CI_Controller {
 	
 	public function calculation($data){
 			
+			
 			//A - Maison individuelle 
 				//1. Calcul des consommations de chauffage
 													/*********************************************************/
@@ -114,7 +134,7 @@ class Simulateur extends CI_Controller {
 		$sh 			= $data['surface'];  		// SH 	: surface habitable de la maison (m2)
 		$aRA 			= $data['ventilation'];		// aRA 	: deperditions par renouvellement d’air 
 		$hsp  			= $data['ceiling_height'];	// HSP	: hauteur sous plafond (m)
-		$corh  			= $hsp/2.5					// CORH : coefficient de correction de la hauteur sous plafond
+		$corh  			= $hsp/2.5;					// CORH : coefficient de correction de la hauteur sous plafond
 			
 		// Form is submitted	
 		if ($_POST)
@@ -141,15 +161,25 @@ class Simulateur extends CI_Controller {
 				
 				die('is NOY valid ... ');
 			}else{
-				die("is valid");
+				//die("is valid");
 			}
 				
 		} 
 					
 			$aRA = $this->input->post('ventilation');	
-			var_dump($this->input->post('ventilation'));
+			// var_dump($this->input->post('ventilation'));
+			
+			print "<pre>";
 			print "<h1>test detetetet</h1>";
+			print "</pre>";
 			die();
+	}
+	
+	public function cch_bch_env(){
+		
+	}
+	public function cch_bch_env_smurs(){
+		
 	}
 	
 }
