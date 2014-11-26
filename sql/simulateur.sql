@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 17, 2014 at 05:20 PM
+-- Generation Time: Nov 26, 2014 at 04:45 PM
 -- Server version: 5.5.37-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2.6
 
@@ -28,19 +28,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `basement_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `cor_sol` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Type de plancher bas' AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Type de plancher bas' AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `basement_type`
 --
 
-INSERT INTO `basement_type` (`id`, `code`, `label`) VALUES
-(1, 'terre-plein', 'Terre-plein'),
-(2, 'vide-sanitaire', 'Vide-sanitaire'),
-(3, 'local-non-chauffe', 'Local non chauffé');
+INSERT INTO `basement_type` (`id`, `label`, `cor_sol`) VALUES
+(1, 'Terre-plein', 1),
+(2, 'Vide-sanitaire', 0.85),
+(3, 'Local non chauffé', 0.9),
+(4, 'extérieur', 1);
 
 -- --------------------------------------------------------
 

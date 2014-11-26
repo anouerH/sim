@@ -86,8 +86,30 @@ class Simulateur extends CI_Controller {
 	}
     
     public function result(){
-        // var_dump($_POST);
+        
         $data = $this->loadData();
+        
+        
+        $data['sh'] =  $sh = (isset($_POST['sh'])) ? $_POST['sh'] : 0 ;
+        $data['aRA'] = $aRA = (isset($_POST['aRA'])) ? $_POST['aRA'] : 0 ;
+        $data['hsp'] = $hsp = (isset($_POST['hsp'])) ? $_POST['hsp'] : 0 ;
+        // CORH = HSP / 2.5
+        $data['CORH'] = $CORH = ($hsp) ? $hsp/2.5 : 0 ;
+        
+        $data['CORsol'] = $CORsol = (isset($_POST['CORsol'])) ? $_POST['CORsol'] : 0 ;
+        
+        $data['Sfenetres'] =  $Sfenetres = (isset($_POST['Sfenetres'])) ? $_POST['Sfenetres'] : 0 ;
+        $data['Sfenetrestoit'] =  $Sfenetrestoit = (isset($_POST['Sfenetrestoit'])) ? $_POST['Sfenetrestoit'] : 0 ;
+        $data['Sportes'] =  $Sportes = 2 ; 
+        
+        // Type toiture
+        $data['roof_type'] =  $roof_type = (isset($_POST['roof_type'])) ? $_POST['roof_type'] : false ;
+        $isHabitableAttics = false; //type toiture : Combles habités
+        if($roof_type && $roof_type === 'habitable_attics')
+            $isHabitableAttics = true;
+        $data['isHabitableAttics'] =   $isHabitableAttics ;
+        
+        
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
 				$this->load->view('templates/footer');

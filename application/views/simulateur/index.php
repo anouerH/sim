@@ -15,9 +15,9 @@
 
 	  
 			<div class="form-group">
-				<label for="surface" class="col-sm-2 control-label">Surface habitable</label>
+				<label for="sh" class="col-sm-2 control-label">Surface habitable</label>
 				<div class="col-sm-2 input-group">
-					<input type="number" class="form-control" name="surface" id="surface" placeholder="Surface habitable" value="<?php echo set_value('surface'); ?>">
+					<input type="number" class="form-control" name="sh" id="sh" placeholder="Surface habitable" value="<?php echo set_value('sh'); ?>">
 					<span class="input-group-addon">m<sup>2</sup></span>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 				<label for="roof_type" class="col-sm-2 control-label">Type de toiture</label>
 				<div class="col-sm-2">
 					<select class="form-control" id="roof_type" name="roof_type">
-						<option>- Préciser -</option>
+                                            <option value="">- Préciser -</option>
 						<?php foreach ($r_types as $type ) {?>
 							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
 						<?php } ?>
@@ -69,9 +69,9 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="basement_type" class="col-sm-2 control-label">Type de plancher bas</label>
+				<label for="cor_sol" class="col-sm-2 control-label">Type de plancher bas</label>
 				<div class="col-sm-2">
-					<select class="form-control" id="basement_type" name="basement_type">
+					<select class="form-control" id="CORsol" name="CORsol">
 						<option value="">- Préciser -</option>
 						<?php foreach ($b_types as $type ) {?>
 							<option value="<?php echo $type['cor_sol'] ?>"><?php echo $type['label'] ?></option>
@@ -104,9 +104,9 @@
 			
 			
 			<div class="form-group">
-				<label for="ceiling_height" class="col-sm-2 control-label">Hauteur moyenne sous plafond</label>
+				<label for="hsp" class="col-sm-2 control-label">Hauteur moyenne sous plafond</label>
 				<div class="col-sm-2 input-group">
-					<input type="float" class="form-control" id="ceiling_height" name="ceiling_height"  value="<?php echo set_value('ceiling_height'); ?>" placeholder="Hauteur moyenne sous plafond">
+					<input type="float" class="form-control" id="hsp" name="hsp"  value="<?php echo set_value('hsp'); ?>" placeholder="Hauteur moyenne sous plafond">
 					<span class="input-group-addon">m</span>
 				</div>
 			</div>
@@ -232,13 +232,24 @@
 			</div>
 			
 			
-			<div class="form-group">
-				<label for="window_area" class="col-sm-2 control-label">Surface des fenêtres</label>
+			
+          
+                        <div class="form-group">
+				<label for="Sfenetres" class="col-sm-2 control-label">Surface des fenêtres</label>
 				<div class="col-sm-2 input-group">
-					<input  class="form-control" name="window_area" id="window_area" placeholder="Surface des fenêtres">
+					<input  class="form-control" name="Sfenetres" id="Sfenetres" placeholder="Surface des fenêtres">
 					<span class="input-group-addon">m<sup>2</sup></span>
 				</div>
 			</div>
+                        
+                        <div class="form-group">
+				<label for="Sfenetres" class="col-sm-2 control-label">Surface des fenêtres de toit</label>
+				<div class="col-sm-2 input-group">
+					<input  class="form-control" name="Sfenetrestoit" id="Sfenetrestoit" placeholder="Surface des fenêtres de toit">
+					<span class="input-group-addon">m<sup>2</sup></span>
+				</div>
+			</div>
+          
 
 			<div class="form-group">
 				<label for="glazing_type" class="col-sm-2 control-label">Type de vitrage</label>
@@ -383,9 +394,9 @@
 			
 
 			<div class="form-group">
-				<label for="glazing_type" class="col-sm-2 control-label">Système de ventilation</label>
+				<label for="aRA" class="col-sm-2 control-label">Système de ventilation</label>
 				<div class="col-sm-2">
-					<select class="form-control" id="ventilation" name="ventilation">
+					<select class="form-control" id="aRA" name="aRA">
 						<option value="">- Préciser -</option>
 						<?php foreach ($ventilations as $ventilation ) {?>
 							<option value="<?php echo $ventilation['ara'] ?>"><?php echo $ventilation['label'] ?></option>
