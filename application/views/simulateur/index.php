@@ -84,20 +84,20 @@
 				<label for="levels" class="col-sm-2 control-label">Nombre de niveaux</label>
 				<div class="col-sm-5">
 					<label class="radio-inline">
-					  <input type="radio" name="levels" id="levels" value="option1"> 1
+					  <input type="radio" name="levels" id="levels" value="1"> 1
 					</label>
 					<label class="radio-inline">
-					  <input type="radio" name="levels" id="levels" value="option1"> 1.5
+					  <input type="radio" name="levels" id="levels" value="1.5"> 1.5
 					</label>
 					<label class="radio-inline">
-					  <input type="radio" name="levels" id="levels" value="option1"> 2
+					  <input type="radio" name="levels" id="levels" value="2"> 2
 					</label>
 					
 					<label class="radio-inline">
-					  <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="option1"> 2.5
+					  <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="2.5"> 2.5
 					</label>
 					<label class="radio-inline">
-					  <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="option1"> 3
+					  <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="3"> 3
 					</label>
 				</div>
 			</div>
@@ -115,7 +115,7 @@
 				<label for="mitoyennete" class="col-sm-2 control-label">Mitoyenneté</label>
 				<div class="col-sm-2">
 					<select class="form-control" id="mitoyennete" name="mitoyennete">
-						<option>- Préciser -</option>
+						<option value="">- Préciser -</option>
 						<?php foreach ($mitoyennetes as $mitoyennete ) {?>
 							<option value="<?php echo $mitoyennete['mit'] ?>"><?php echo $mitoyennete['label'] ?></option>
 						<?php } ?>

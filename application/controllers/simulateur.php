@@ -102,13 +102,25 @@ class Simulateur extends CI_Controller {
         $data['Sfenetrestoit'] =  $Sfenetrestoit = (isset($_POST['Sfenetrestoit'])) ? $_POST['Sfenetrestoit'] : 0 ;
         $data['Sportes'] =  $Sportes = 2 ; 
         
+        $data['MIT'] =  $MIT  = (isset($_POST['mitoyennete'])) ? $_POST['mitoyennete'] : 0 ;
+        $data['NIV'] =  $NIV  = (isset($_POST['nbre_niveaux'])) ? $_POST['nbre_niveaux'] : 0 ; 
+        
+        $data['FOR'] =  $FOR  = 4.12 ; // configuration a  FOR = 4.12 
+        
         // Type toiture
         $data['roof_type'] =  $roof_type = (isset($_POST['roof_type'])) ? $_POST['roof_type'] : false ;
         $isHabitableAttics = false; //type toiture : Combles habités
-        if($roof_type && $roof_type === 'habitable_attics')
+        if($roof_type && $roof_type === 'habitable_attics'){
             $isHabitableAttics = true;
+            $NIV = $NIV * 0.8 ;
+        }
         $data['isHabitableAttics'] =   $isHabitableAttics ;
         
+        // CALCUL Smur  :  Smur = (MIT x FOR x RACINE(SH/NIV) x NIV x HSP ) – Sfenêtres – Sportes  
+        $Smur = ($MIT * $FOR * sqrt($sh / $data['NIV']) * $NIV * $hsp) - $Sfenetres -$Sportes;
+        $data['Smur'] = $Smur;
+        
+        var_dump($Smur);
         
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);

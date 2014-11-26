@@ -30,6 +30,9 @@
     <h5>Sur. fenêtres toit <kbd class="bg-primary">Sfenetrestoit = <?php echo $Sfenetrestoit?></kbd></h5>
     <h5>Sur. portes <kbd class="bg-primary">Sportes = <?php echo $Sportes?></kbd></h5>
     <h5>type toiture <kbd class="bg-primary">roof_type = <?php echo $roof_type?></kbd></h5>
+    <h5>Mitoyenneté <kbd class="bg-primary">MIT = <?php echo $MIT?></kbd></h5>
+    <h5>nbre de niveau  <kbd class="bg-primary">NIV = <?php echo $NIV ?></kbd></h5>
+    <h5>FOR <kbd class="bg-primary">FOR = <?php echo $FOR ?></kbd></h5>
     <h5>Combles habités ? <kbd class="bg-primary">isHabitableAttics = <?php  ($isHabitableAttics) ? print "Oui" : print "Non" ?></kbd> donc 
         <?php 
             if($isHabitableAttics){
@@ -43,5 +46,5 @@
             } 
         ?>
     </h5>
-    
+    <p class="bg-success"><strong> Smur = <?php echo $Smur?></strong></p>
 </div>
