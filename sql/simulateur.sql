@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 26 Novembre 2014 à 23:18
+-- Généré le :  Jeu 27 Novembre 2014 à 22:17
 -- Version du serveur :  5.5.39
 -- Version de PHP :  5.4.31
 
@@ -171,6 +171,36 @@ INSERT INTO `glazing_type` (`id`, `code`, `label`) VALUES
 (3, 'double_glazing', 'Double vitrage'),
 (4, 'double_glazing_vir', 'double vitrage VIR'),
 (5, 'double_windows', 'Doubles fenêtres');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `hsp`
+--
+
+CREATE TABLE IF NOT EXISTS `hsp` (
+`id` int(11) NOT NULL,
+  `hsp` double NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
+
+--
+-- Contenu de la table `hsp`
+--
+
+INSERT INTO `hsp` (`id`, `hsp`) VALUES
+(1, 2),
+(2, 2.25),
+(3, 2.5),
+(4, 2.75),
+(5, 3),
+(6, 3.25),
+(7, 3.5),
+(8, 3.75),
+(9, 4),
+(10, 4.25),
+(11, 4.5),
+(12, 4.75),
+(13, 5);
 
 -- --------------------------------------------------------
 
@@ -417,6 +447,12 @@ ALTER TABLE `glazing_type`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `hsp`
+--
+ALTER TABLE `hsp`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `ich`
 --
 ALTER TABLE `ich`
@@ -492,6 +528,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 ALTER TABLE `glazing_type`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT pour la table `hsp`
+--
+ALTER TABLE `hsp`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `ich`
 --

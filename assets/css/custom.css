@@ -142,7 +142,7 @@
     background: #eee;
     display: block;
     margin: 0.5em;
-    min-height: 35em;
+    min-height: 90em;
     overflow: hidden;
     position: relative;
     width: auto;
@@ -198,6 +198,13 @@
 }
 
 .wizard > .content > .body input.error
+{
+    background: rgb(251, 227, 228);
+    border: 1px solid #fbc2c4;
+    color: #8a1f11;
+}
+
+.wizard > .content > .body select.error
 {
     background: rgb(251, 227, 228);
     border: 1px solid #fbc2c4;
@@ -379,4 +386,8 @@
 .tabcontrol > .content > .body ul > li
 {
     display: list-item;
+}
+div.form-group{
+  width: 50%;
+  float: left;
 }

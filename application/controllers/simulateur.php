@@ -17,6 +17,7 @@ class Simulateur extends CI_Controller {
 		$this->load->model('doortype_model');
 		$this->load->model('ich_model');
 		$this->load->model('ventilation_model');
+        $this->load->model('hsp_model');
 		
 		
 		
@@ -140,6 +141,9 @@ class Simulateur extends CI_Controller {
         $data['d_types'] = $this->doortype_model->getDoorTypes();
         $data['ichs'] = $this->ich_model->getIchs();
         $data['ventilations'] = $this->ventilation_model->getVentilations();
+        $data['hsps'] = $this->hsp_model->getHsps();
+        
+        // var_dump($data['hsps']);
 
         $data['title'] = 'Simulateur !!!';
 

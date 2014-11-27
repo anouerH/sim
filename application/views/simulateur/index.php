@@ -12,18 +12,48 @@
 		
             <h3>Maison</h3>
             <fieldset>
-                <legend>Structure</legend>
-                <div class="form-group">
-                    <label for="sh" class="col-sm-2 control-label">Surface habitable</label>
-                    <div class="col-sm-2 input-group">
-                            <input  class="form-control required number" name="sh" id="sh" placeholder="Surface habitable" value="<?php echo set_value('sh'); ?>">
-                            <span class="input-group-addon">m<sup>2</sup></span>
+                <legend>Situation générale</legend>
+                
+                <div class="form-group" style="width: 100%">
+                    <label for="levels" class="col-sm-2 control-label">Type d'habitation</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="levels" id="levels" value="1"> Maison
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="levels" id="levels" value="1.5"> Immeuble
+                        </label>
                     </div>
                 </div>
-
+                <hr>
+                
                 <div class="form-group">
-                    <label for="departement" class="col-sm-2 control-label">Département</label>
-                    <div class="col-sm-2">
+                    <label for="shape" class="col-sm-4 control-label">Forme</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="shape" name="shape">
+                            <option>- Préciser -</option>
+                            <?php foreach ($shapes as $shape ) {?>
+                                <option value="<?php echo $shape['code'] ?>"><?php echo $shape['label'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mitoyennete" class="col-sm-4 control-label">Mitoyenneté</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="mitoyennete" name="mitoyennete">
+                            <option value="">- Préciser -</option>
+                            <?php foreach ($mitoyennetes as $mitoyennete ) {?>
+                                <option value="<?php echo $mitoyennete['mit'] ?>"><?php echo $mitoyennete['label'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="departement" class="col-sm-4 control-label">Département</label>
+                    <div class="col-sm-4">
                         <select class="form-control required" id="departement" name="departement">
                             <option>1</option>
                             <option>2</option>
@@ -33,106 +63,120 @@
                         </select>
                     </div>
                 </div>
+                
+                
+                <div class="form-group">
+                    <label for="year_of_construction" class="col-sm-4 control-label">Année de construction</label>
+                    <div class="col-sm-4">
+                        <select class="form-control required" id="year_of_construction" name="year_of_construction">
+                                                <option value="">- Préciser -</option>
+                            <?php foreach ($c_years as $year ) {?>
+                                <option value="<?php echo $year['code'] ?>"><?php echo $year['label'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                <legend>Structure</legend>
+                <div class="form-group">
+                    <label for="sh" class="col-sm-4 control-label">Surface habitable</label>
+                    <div class="col-sm-4 input-group">
+                            <input  class="form-control required number" name="sh" id="sh" placeholder="Surface habitable" value="<?php echo set_value('sh'); ?>">
+                            <span class="input-group-addon">m<sup>2</sup></span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="altitude" class="col-sm-4 control-label">Altitude</label>
+                    <div class="col-sm-4 input-group">
+                        <input type="number" class="form-control" id="altitude" name="altitude" placeholder="Altitude">
+                        <span class="input-group-addon">m<sup>2</sup></span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roof_type" class="col-sm-4 control-label">Type de toiture</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="roof_type" name="roof_type">
+                                                <option value="">- Préciser -</option>
+                            <?php foreach ($r_types as $type ) {?>
+                                <option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+                            <?php } ?>
+
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="levels" class="col-sm-4 control-label">Nombre de niveaux</label>
+                    <div class="col-sm-8">
+                        <label class="radio-inline">
+                            <input type="radio" name="levels" id="levels" value="1"> 1
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="levels" id="levels" value="1.5"> 1.5
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="levels" id="levels" value="2"> 2
+                        </label>
+
+                        <label class="radio-inline">
+                            <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="2.5"> 2.5
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="3"> 3
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hsp" class="col-sm-4 control-label">Hauteur moyenne sous plafond</label>
+                    <div class="col-sm-4 input-group">
+                        <select class="form-control required" id="hsp" name="hsp">
+                            <option value="">- Préciser -</option>
+                            <option value="0">- Inconnue -</option>
+                            <?php foreach ($hsps as $item ) {?>
+                                <option value="<?php echo $item['hsp'] ?>"><?php echo $item['hsp'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cor_sol" class="col-sm-4 control-label">Type de plancher bas</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="CORsol" name="CORsol">
+                            <option value="">- Préciser -</option>
+                            <?php foreach ($b_types as $type ) {?>
+                                <option value="<?php echo $type['cor_sol'] ?>"><?php echo $type['label'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
             
-			<div class="form-group">
-				<label for="altitude" class="col-sm-2 control-label">Altitude</label>
-				<div class="col-sm-2 input-group">
-					<input type="number" class="form-control" id="altitude" name="altitude" placeholder="Altitude">
-					<span class="input-group-addon">m<sup>2</sup></span>
-				</div>
-			</div>
 			
-			<div class="form-group">
-				<label for="year_of_construction" class="col-sm-2 control-label">Année de construction</label>
-				<div class="col-sm-2">
-					<select class="form-control required" id="year_of_construction" name="year_of_construction">
-                                            <option value="">- Préciser -</option>
-						<?php foreach ($c_years as $year ) {?>
-							<option value="<?php echo $year['code'] ?>"><?php echo $year['label'] ?></option>
-						<?php } ?>
-					</select>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="roof_type" class="col-sm-2 control-label">Type de toiture</label>
-				<div class="col-sm-2">
-					<select class="form-control" id="roof_type" name="roof_type">
-                                            <option value="">- Préciser -</option>
-						<?php foreach ($r_types as $type ) {?>
-							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
-						<?php } ?>
-						
-					</select>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="cor_sol" class="col-sm-2 control-label">Type de plancher bas</label>
-				<div class="col-sm-2">
-					<select class="form-control" id="CORsol" name="CORsol">
-						<option value="">- Préciser -</option>
-						<?php foreach ($b_types as $type ) {?>
-							<option value="<?php echo $type['cor_sol'] ?>"><?php echo $type['label'] ?></option>
-						<?php } ?>
-					</select>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="levels" class="col-sm-2 control-label">Nombre de niveaux</label>
-				<div class="col-sm-5">
-					<label class="radio-inline">
-					  <input type="radio" name="levels" id="levels" value="1"> 1
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="levels" id="levels" value="1.5"> 1.5
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="levels" id="levels" value="2"> 2
-					</label>
-					
-					<label class="radio-inline">
-					  <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="2.5"> 2.5
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="3"> 3
-					</label>
-				</div>
-			</div>
+            
+            
 			
 			
-			<div class="form-group">
-				<label for="hsp" class="col-sm-2 control-label">Hauteur moyenne sous plafond</label>
-				<div class="col-sm-2 input-group">
-					<input type="float" class="form-control" id="hsp" name="hsp"  value="<?php echo set_value('hsp'); ?>" placeholder="Hauteur moyenne sous plafond">
-					<span class="input-group-addon">m</span>
-				</div>
-			</div>
 			
-			<div class="form-group">
-				<label for="mitoyennete" class="col-sm-2 control-label">Mitoyenneté</label>
-				<div class="col-sm-2">
-					<select class="form-control" id="mitoyennete" name="mitoyennete">
-						<option value="">- Préciser -</option>
-						<?php foreach ($mitoyennetes as $mitoyennete ) {?>
-							<option value="<?php echo $mitoyennete['mit'] ?>"><?php echo $mitoyennete['label'] ?></option>
-						<?php } ?>
-					</select>
-				</div>
-			</div>
 			
-			<div class="form-group">
-				<label for="shape" class="col-sm-2 control-label">Forme</label>
-				<div class="col-sm-2">
-					<select class="form-control" id="shape" name="shape">
-						<option>- Préciser -</option>
-						<?php foreach ($shapes as $shape ) {?>
-							<option value="<?php echo $shape['code'] ?>"><?php echo $shape['label'] ?></option>
-						<?php } ?>
-					</select>
-				</div>
-			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 
 
 			<div class="form-group has-error">
