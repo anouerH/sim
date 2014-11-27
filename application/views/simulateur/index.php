@@ -1,40 +1,39 @@
 
 <div class="container">
 
-      <h1>Maison individuelle</h1>
-      <p>Calcul des consommations de chauffage.</p>
+      <h1>simulateur énergétique</h1>
+      <!--<p>Calcul des consommations de chauffage.</p>
       <p>Calcul des consommations d’ECS</p>
-      <p>Calcul des consommations de refroidissement</p>
-	  
-	  <div class="text-danger"><?php echo validation_errors(); ?></div>
-	  
+      <p>Calcul des consommations de refroidissement</p>-->
+	
 
-	 <?php echo form_open('index.php/simulateur/result',array('class' => 'form-horizontal', 'role'=>'form')) ?>
-
+	 <?php echo form_open('index.php/simulateur/result',array('id'=>'example-advanced-form','class' => 'form-horizontal', 'role'=>'form')) ?>
+            
 		
+            <h3>Maison</h3>
+            <fieldset>
+                <legend>Structure</legend>
+                <div class="form-group">
+                    <label for="sh" class="col-sm-2 control-label">Surface habitable</label>
+                    <div class="col-sm-2 input-group">
+                            <input  class="form-control required number" name="sh" id="sh" placeholder="Surface habitable" value="<?php echo set_value('sh'); ?>">
+                            <span class="input-group-addon">m<sup>2</sup></span>
+                    </div>
+                </div>
 
-	  
-			<div class="form-group">
-				<label for="sh" class="col-sm-2 control-label">Surface habitable</label>
-				<div class="col-sm-2 input-group">
-					<input type="number" class="form-control" name="sh" id="sh" placeholder="Surface habitable" value="<?php echo set_value('sh'); ?>">
-					<span class="input-group-addon">m<sup>2</sup></span>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="departement" class="col-sm-2 control-label">Département</label>
-				<div class="col-sm-2">
-					<select class="form-control" id="departement" name="departement">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select>
-				</div>
-			</div>
-			
+                <div class="form-group">
+                    <label for="departement" class="col-sm-2 control-label">Département</label>
+                    <div class="col-sm-2">
+                        <select class="form-control required" id="departement" name="departement">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+            
 			<div class="form-group">
 				<label for="altitude" class="col-sm-2 control-label">Altitude</label>
 				<div class="col-sm-2 input-group">
@@ -46,8 +45,8 @@
 			<div class="form-group">
 				<label for="year_of_construction" class="col-sm-2 control-label">Année de construction</label>
 				<div class="col-sm-2">
-					<select class="form-control" id="year_of_construction" name="year_of_construction">
-						<option>- Préciser -</option>
+					<select class="form-control required" id="year_of_construction" name="year_of_construction">
+                                            <option value="">- Préciser -</option>
 						<?php foreach ($c_years as $year ) {?>
 							<option value="<?php echo $year['code'] ?>"><?php echo $year['label'] ?></option>
 						<?php } ?>
@@ -210,9 +209,12 @@
 					In porgress
 				</div>
 			</div>
+            </fieldset>
 			
-			
-			<div class="form-group">
+            <h3>Equipements</h3>
+            <fieldset>
+                <legend>Composotion</legend>
+                        <div class="form-group">
 				<label for="roof_composition" class="col-sm-2 control-label">Composition du plancher bas</label>
 				<div class="col-sm-5">
 					<label class="radio-inline">
@@ -407,13 +409,29 @@
 			
 			
 			
-<div class="form-group">
+                        
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Envoyer ... </button>
-    </div>
-  </div>
+                        <!--<div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-default">Envoyer ... </button>
+                            </div>
+                        </div>-->
+    
+                </fieldset>
+            
+            <h3>Warning</h3>
+    <fieldset>
+        <legend>You are to young</legend>
+ 
+        <p>Please go away ;-)</p>
+    </fieldset>
+ 
+    <h3>Finish</h3>
+    <fieldset>
+        <legend>Terms and Conditions</legend>
+ 
+        <input id="acceptTerms-2" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
+    </fieldset>
 </form>
 
 

@@ -127,24 +127,24 @@ class Simulateur extends CI_Controller {
 				$this->load->view('templates/footer');
     }
 	
-	public function loadData(){
-		$data['c_years'] = $this->constructionyear_model->getConstructionYears();
-		$data['r_types'] = $this->rooftype_model->getRoofTyes();
-		$data['b_types'] = $this->basementtype_model->getBasementType();
-		$data['mitoyennetes'] = $this->mitoyennete_model->getMitoyennetes();
-		$data['shapes'] = $this->shape_model->getShapes();
-		$data['shapes'] = $this->shape_model->getShapes();
-		$data['w_types'] = $this->walltype_model->getWallTypes();
-		$data['g_types'] = $this->glazingtype_model->getGlazingTypes();
-		$data['car_types'] = $this->carpentrytype_model->getCarpentryTypes();
-		$data['d_types'] = $this->doortype_model->getDoorTypes();
-		$data['ichs'] = $this->ich_model->getIchs();
-		$data['ventilations'] = $this->ventilation_model->getVentilations();
-		
-		$data['title'] = 'Simulateur !!!';
-		
-		return $data;
-	}
+    public function loadData(){
+        $data['c_years'] = $this->constructionyear_model->getConstructionYears();
+        $data['r_types'] = $this->rooftype_model->getRoofTyes();
+        $data['b_types'] = $this->basementtype_model->getBasementType();
+        $data['mitoyennetes'] = $this->mitoyennete_model->getMitoyennetes();
+        $data['shapes'] = $this->shape_model->getShapes();
+        $data['shapes'] = $this->shape_model->getShapes();
+        $data['w_types'] = $this->walltype_model->getWallTypes();
+        $data['g_types'] = $this->glazingtype_model->getGlazingTypes();
+        $data['car_types'] = $this->carpentrytype_model->getCarpentryTypes();
+        $data['d_types'] = $this->doortype_model->getDoorTypes();
+        $data['ichs'] = $this->ich_model->getIchs();
+        $data['ventilations'] = $this->ventilation_model->getVentilations();
+
+        $data['title'] = 'Simulateur !!!';
+
+        return $data;
+    }
 	
 	public function calculation($data){
 			
