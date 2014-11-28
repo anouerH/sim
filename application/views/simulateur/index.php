@@ -14,7 +14,7 @@
             <fieldset>
                 <legend>Situation générale</legend>
                 
-                <div class="form-group" style="width: 100%">
+                <div class="form-group full-row">
                     <label for="levels" class="col-sm-2 control-label">Type d'habitation</label>
                     <div class="col-sm-4">
                         <label class="radio-inline">
@@ -41,7 +41,7 @@
                 
                 <div class="form-group">
                     <label for="mitoyennete" class="col-sm-4 control-label">Mitoyenneté</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                         <select class="form-control" id="mitoyennete" name="mitoyennete">
                             <option value="">- Préciser -</option>
                             <?php foreach ($mitoyennetes as $mitoyennete ) {?>
@@ -67,8 +67,8 @@
                 
                 <div class="form-group">
                     <label for="year_of_construction" class="col-sm-4 control-label">Année de construction</label>
-                    <div class="col-sm-4">
-                        <select class="form-control required" id="year_of_construction" name="year_of_construction">
+                    <div class="col-sm-8">
+                        <select class="form-control" id="year_of_construction" name="year_of_construction">
                                                 <option value="">- Préciser -</option>
                             <?php foreach ($c_years as $year ) {?>
                                 <option value="<?php echo $year['code'] ?>"><?php echo $year['label'] ?></option>
@@ -86,7 +86,7 @@
                 <div class="form-group">
                     <label for="sh" class="col-sm-4 control-label">Surface habitable</label>
                     <div class="col-sm-4 input-group">
-                            <input  class="form-control required number" name="sh" id="sh" placeholder="Surface habitable" value="<?php echo set_value('sh'); ?>">
+                            <input  class="form-control" name="sh" id="sh" placeholder="Surface habitable" value="<?php echo set_value('sh'); ?>">
                             <span class="input-group-addon">m<sup>2</sup></span>
                     </div>
                 </div>
@@ -136,8 +136,8 @@
                 
                 <div class="form-group">
                     <label for="hsp" class="col-sm-4 control-label">Hauteur moyenne sous plafond</label>
-                    <div class="col-sm-4 input-group">
-                        <select class="form-control required" id="hsp" name="hsp">
+                    <div class="col-sm-4">
+                        <select class="form-control" id="hsp" name="hsp">
                             <option value="">- Préciser -</option>
                             <option value="0">- Inconnue -</option>
                             <?php foreach ($hsps as $item ) {?>
@@ -147,39 +147,60 @@
                     </div>
                 </div>
                 
-                <div class="form-group">
+                <div class="form-group clear-div ">
                     <label for="cor_sol" class="col-sm-4 control-label">Type de plancher bas</label>
                     <div class="col-sm-4">
                         <select class="form-control" id="CORsol" name="CORsol">
                             <option value="">- Préciser -</option>
                             <?php foreach ($b_types as $type ) {?>
-                                <option value="<?php echo $type['cor_sol'] ?>"><?php echo $type['label'] ?></option>
+                                <option value="<?php echo $type['cor_sol'] ?>" rel="<?php echo $type['id']?>"><?php echo $type['label'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
                 </div>
-            
+                
+                <div class="form-group" id="basement_form_group">
+                    <label for="basement_form" class="col-sm-4 control-label">Forme de plancher bas</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="basement_form" name="basement_form">
+                           
+                        </select>
+                    </div>
+                </div>
+                
+            </fieldset>
 			
-            
-            
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-
-
-			<div class="form-group has-error">
+            <h3>Equipements</h3>
+            <fieldset>
+                <legend>Isolation</legend>
+                
+                        <div class="form-group full-row">
+				<label for="wall_material" class="col-sm-2 control-label">Type de mur</label>
+				<div class="col-sm-10">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="wall_material" id="wall_material" value="0"> Inconnu
+					</label>
+					<?php foreach ($w_types as $type ) {?>
+						<label class="radio-inline">
+						  <input type="radio" name="wall_material" id="wall_material" value="<?php echo $type['id'] ?>"> <?php echo $type['label'] ?>
+						</label>
+					<?php } ?>
+				</div>
+			</div>
+                
+                <div class="form-group full-row" id="wall_thickness_group">
+				<label for="wall_thickness" class="col-sm-2 control-label">Epaisseur</label>
+				<div class="col-sm-4">
+					<select class="form-control" id="wall_thickness" name="wall_thickness">
+                                            <option>- Préciser -</option>
+                                            <?php foreach ($thickness as $item ) {?>
+                                                    <option value="<?php echo $item['umur'] ?>"><?php echo $item['thickness'] ?></option>
+                                            <?php } ?>
+					</select>
+				</div>
+			</div>
+                
+                        <div class="form-group has-error">
 				<label for="facing_south_glazing" class="col-sm-2 control-label">Grande surface vitrée au sud</label>
 				<div class="col-sm-5">
 					<label class="radio-inline">
@@ -198,16 +219,7 @@
 				</div>
 			</div>
 
-			<div class="form-group has-error">
-				<label for="wall_material" class="col-sm-2 control-label">Type de mur</label>
-				<div class="col-sm-5">
-					<?php foreach ($w_types as $type ) {?>
-						<label class="radio-inline">
-						  <input type="radio" name="wall_material" id="wall_material" value="<?php echo $type['code'] ?>"> <?php echo $type['label'] ?>
-						</label>
-					<?php } ?>
-				</div>
-			</div>
+			
 
 
 			<div class="form-group has-error">
@@ -253,11 +265,7 @@
 					In porgress
 				</div>
 			</div>
-            </fieldset>
-			
-            <h3>Equipements</h3>
-            <fieldset>
-                <legend>Composotion</legend>
+                
                         <div class="form-group">
 				<label for="roof_composition" class="col-sm-2 control-label">Composition du plancher bas</label>
 				<div class="col-sm-5">

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Jeu 27 Novembre 2014 à 22:17
--- Version du serveur :  5.5.39
--- Version de PHP :  5.4.31
+-- Host: localhost
+-- Generation Time: Nov 28, 2014 at 05:11 PM
+-- Server version: 5.5.40-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,23 +17,56 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `simulateur`
+-- Database: `simulateur`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `basement_type`
+-- Table structure for table `basement_form`
+--
+
+CREATE TABLE IF NOT EXISTS `basement_form` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `plancher` varchar(255) NOT NULL,
+  `uplancher` double NOT NULL,
+  `id_palncher_type` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `basement_form`
+--
+
+INSERT INTO `basement_form` (`id`, `plancher`, `uplancher`, `id_palncher_type`) VALUES
+(1, 'Plancher inconnu', 2, 3),
+(2, 'Plancher avec ou sans\r\nremplissage', 1.45, 3),
+(3, 'Plancher entre solives bois avec ou sans remplissage', 1.1, 3),
+(4, 'Bardeaux et remplissage', 1.1, 3),
+(5, 'Plancher bois sur solives bois', 1.6, 3),
+(6, 'Plancher entre solives métalliques avec ou sans remplissage', 1.45, 3),
+(7, 'Plancher bois sur solives métalliques', 1.6, 3),
+(8, 'Voutains sur solives métalliques', 1.75, 3),
+(9, 'Plancher lourd type, entrevous terre-\r\ncuite, poutrelles béton', 2, 3),
+(10, 'Dalle béton', 2, 3),
+(11, 'Voutains en briques ou moellons', 0.8, 3),
+(12, 'Plancher bas à entrevous isolants', 0.45, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `basement_type`
 --
 
 CREATE TABLE IF NOT EXISTS `basement_type` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `cor_sol` double NOT NULL
+  `cor_sol` double NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Type de plancher bas' AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `basement_type`
+-- Dumping data for table `basement_type`
 --
 
 INSERT INTO `basement_type` (`id`, `label`, `cor_sol`) VALUES
@@ -45,17 +78,18 @@ INSERT INTO `basement_type` (`id`, `label`, `cor_sol`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `carpentry_type`
+-- Table structure for table `carpentry_type`
 --
 
 CREATE TABLE IF NOT EXISTS `carpentry_type` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) NOT NULL,
-  `label` varchar(255) NOT NULL
+  `label` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `carpentry_type`
+-- Dumping data for table `carpentry_type`
 --
 
 INSERT INTO `carpentry_type` (`id`, `code`, `label`) VALUES
@@ -67,11 +101,11 @@ INSERT INTO `carpentry_type` (`id`, `code`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `construction_year`
+-- Table structure for table `construction_year`
 --
 
 CREATE TABLE IF NOT EXISTS `construction_year` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `umur_h1_joule` double NOT NULL,
@@ -79,35 +113,44 @@ CREATE TABLE IF NOT EXISTS `construction_year` (
   `umur_h2_joule` double NOT NULL,
   `umur_h2` double NOT NULL,
   `umur_h3_joule` double NOT NULL,
-  `umur_h3` double NOT NULL
+  `umur_h3` double NOT NULL,
+  `uplancher_h1_joule` double NOT NULL,
+  `uplancher_h1` double NOT NULL,
+  `uplancher_h2_joule` double NOT NULL,
+  `uplancher_h2` double NOT NULL,
+  `uplancher_h3_joule` double NOT NULL,
+  `uplancher_h3` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `construction_year`
+-- Dumping data for table `construction_year`
 --
 
-INSERT INTO `construction_year` (`id`, `code`, `label`, `umur_h1_joule`, `umur_h1`, `umur_h2_joule`, `umur_h2`, `umur_h3_joule`, `umur_h3`) VALUES
-(1, 'before_1975', 'Avant 1975', 2.5, 2.5, 2.5, 2.5, 2.5, 2.5),
-(2, 'between_1975_and_1977', 'Entre 1975 et 1977', 1, 1, 1.05, 1.05, 1.11, 1.11),
-(3, 'between_1978_and_1982', 'Entre 1978 et 1982', 0.8, 1, 0.84, 0.84, 0.89, 1.11),
-(4, 'between_1983_and_1988', 'Entre 1983 et 1988', 0.7, 0.8, 0.84, 0.74, 0.78, 0.89),
-(5, 'between_1989_and_2000', 'Entre 1989 et 2000', 0.45, 0.5, 0.47, 0.53, 0.5, 0.56),
-(6, 'after_2000', 'Après 2000', 0.4, 0.4, 0.4, 0.4, 0.47, 0.47);
+INSERT INTO `construction_year` (`id`, `code`, `label`, `umur_h1_joule`, `umur_h1`, `umur_h2_joule`, `umur_h2`, `umur_h3_joule`, `umur_h3`, `uplancher_h1_joule`, `uplancher_h1`, `uplancher_h2_joule`, `uplancher_h2`, `uplancher_h3_joule`, `uplancher_h3`) VALUES
+(1, 'before_1975', 'Avant 1975', 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2, 2, 2, 2, 2, 2),
+(2, 'between_1975_and_1977', 'Entre 1975 et 1977', 1, 1, 1.05, 1.05, 1.11, 1.11, 0.9, 0.9, 0.95, 0.95, 1, 1),
+(3, 'between_1978_and_1982', 'Entre 1978 et 1982', 0.8, 1, 0.84, 0.84, 0.89, 1.11, 0.8, 0.9, 0.84, 0.95, 0.89, 1),
+(4, 'between_1983_and_1988', 'Entre 1983 et 1988', 0.7, 0.8, 0.84, 0.74, 0.78, 0.89, 0.55, 0.7, 0.58, 0.74, 0.61, 0.78),
+(5, 'between_1989_and_2000', 'Entre 1989 et 2000', 0.45, 0.5, 0.47, 0.53, 0.5, 0.56, 0.55, 0.6, 0.58, 0.63, 0.61, 0.67),
+(6, 'after_2000', 'Après 2000', 0.4, 0.4, 0.4, 0.4, 0.47, 0.47, 0.4, 0.4, 0.4, 0.4, 0.43, 0.43);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `door_type`
+-- Table structure for table `door_type`
 --
 
 CREATE TABLE IF NOT EXISTS `door_type` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
-  `u` float NOT NULL
+  `u` float NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Contenu de la table `door_type`
+-- Dumping data for table `door_type`
 --
 
 INSERT INTO `door_type` (`id`, `label`, `u`) VALUES
@@ -126,17 +169,18 @@ INSERT INTO `door_type` (`id`, `label`, `u`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `energy`
+-- Table structure for table `energy`
 --
 
 CREATE TABLE IF NOT EXISTS `energy` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(30) NOT NULL,
-  `a_pcsi` float NOT NULL
+  `a_pcsi` float NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Contenu de la table `energy`
+-- Dumping data for table `energy`
 --
 
 INSERT INTO `energy` (`id`, `label`, `a_pcsi`) VALUES
@@ -152,17 +196,18 @@ INSERT INTO `energy` (`id`, `label`, `a_pcsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `glazing_type`
+-- Table structure for table `glazing_type`
 --
 
 CREATE TABLE IF NOT EXISTS `glazing_type` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) NOT NULL,
-  `label` varchar(255) NOT NULL
+  `label` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Contenu de la table `glazing_type`
+-- Dumping data for table `glazing_type`
 --
 
 INSERT INTO `glazing_type` (`id`, `code`, `label`) VALUES
@@ -175,16 +220,17 @@ INSERT INTO `glazing_type` (`id`, `code`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `hsp`
+-- Table structure for table `hsp`
 --
 
 CREATE TABLE IF NOT EXISTS `hsp` (
-`id` int(11) NOT NULL,
-  `hsp` double NOT NULL
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hsp` double NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
--- Contenu de la table `hsp`
+-- Dumping data for table `hsp`
 --
 
 INSERT INTO `hsp` (`id`, `hsp`) VALUES
@@ -205,21 +251,22 @@ INSERT INTO `hsp` (`id`, `hsp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ich`
+-- Table structure for table `ich`
 --
 
 CREATE TABLE IF NOT EXISTS `ich` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
   `rd` float NOT NULL,
   `re` float NOT NULL,
   `rg` float NOT NULL,
   `rr` varchar(30) NOT NULL,
-  `energy` int(11) NOT NULL
+  `energy` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
--- Contenu de la table `ich`
+-- Dumping data for table `ich`
 --
 
 INSERT INTO `ich` (`id`, `label`, `rd`, `re`, `rg`, `rr`, `energy`) VALUES
@@ -264,18 +311,19 @@ INSERT INTO `ich` (`id`, `label`, `rd`, `re`, `rg`, `rr`, `energy`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `mitoyennete`
+-- Table structure for table `mitoyennete`
 --
 
 CREATE TABLE IF NOT EXISTS `mitoyennete` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mit` float NOT NULL
+  `mit` float NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `mitoyennete`
+-- Dumping data for table `mitoyennete`
 --
 
 INSERT INTO `mitoyennete` (`id`, `code`, `label`, `mit`) VALUES
@@ -289,18 +337,20 @@ INSERT INTO `mitoyennete` (`id`, `code`, `label`, `mit`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `news`
+-- Table structure for table `news`
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `text` text COLLATE utf8_unicode_ci NOT NULL
+  `text` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `slug` (`slug`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `news`
+-- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `title`, `slug`, `text`) VALUES
@@ -311,17 +361,18 @@ INSERT INTO `news` (`id`, `title`, `slug`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `roof_type`
+-- Table structure for table `roof_type`
 --
 
 CREATE TABLE IF NOT EXISTS `roof_type` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `roof_type`
+-- Dumping data for table `roof_type`
 --
 
 INSERT INTO `roof_type` (`id`, `code`, `label`) VALUES
@@ -333,17 +384,18 @@ INSERT INTO `roof_type` (`id`, `code`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `shape`
+-- Table structure for table `shape`
 --
 
 CREATE TABLE IF NOT EXISTS `shape` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `shape`
+-- Dumping data for table `shape`
 --
 
 INSERT INTO `shape` (`id`, `code`, `label`) VALUES
@@ -354,17 +406,18 @@ INSERT INTO `shape` (`id`, `code`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ventilation`
+-- Table structure for table `ventilation`
 --
 
 CREATE TABLE IF NOT EXISTS `ventilation` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
-  `ara` double NOT NULL
+  `ara` double NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Contenu de la table `ventilation`
+-- Dumping data for table `ventilation`
 --
 
 INSERT INTO `ventilation` (`id`, `label`, `ara`) VALUES
@@ -380,194 +433,165 @@ INSERT INTO `ventilation` (`id`, `label`, `ara`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `wall_type`
+-- Table structure for table `wall_thickness`
+--
+
+CREATE TABLE IF NOT EXISTS `wall_thickness` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_wall` int(11) NOT NULL,
+  `thickness` varchar(30) NOT NULL,
+  `umur` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
+
+--
+-- Dumping data for table `wall_thickness`
+--
+
+INSERT INTO `wall_thickness` (`id`, `id_wall`, `thickness`, `umur`) VALUES
+(1, 21, '20 et -', 3.2),
+(2, 21, '25', 2.85),
+(3, 21, '30', 2.65),
+(4, 21, '35', 2.45),
+(5, 21, '40', 2.3),
+(6, 21, '45', 2.15),
+(7, 21, '50', 2.05),
+(8, 21, '55', 1.9),
+(9, 21, '60', 1.8),
+(10, 21, '65', 1.75),
+(11, 21, '70', 1.65),
+(12, 21, '75', 1.55),
+(13, 21, '80', 1.5),
+(14, 21, 'inconnue', 3.2),
+(15, 22, '50', 1.9),
+(16, 22, '55', 1.75),
+(17, 22, '60', 1.6),
+(18, 22, '65', 1.5),
+(19, 22, '70', 1.45),
+(20, 22, '75', 1.3),
+(21, 22, '80', 1.25),
+(22, 22, 'inconnue', 1.9),
+(23, 2, '40 et -', 1.75),
+(24, 2, '45', 1.65),
+(25, 2, '50', 1.55),
+(26, 2, '55', 1.45),
+(27, 2, '60', 1.35),
+(28, 2, '65', 1.25),
+(29, 2, '70', 1.2),
+(30, 2, '75', 1.15),
+(31, 2, '80', 1.1),
+(32, 2, 'inconnue', 1.75),
+(33, 3, '8 et -', 3),
+(34, 3, '10', 2.7),
+(35, 3, '13', 2.35),
+(36, 3, '18', 1.98),
+(37, 3, '24', 1.65),
+(38, 3, '32', 1.35),
+(39, 3, 'inconnue', 3),
+(40, 4, '10 et -', 1.6),
+(41, 4, '15', 1.2),
+(42, 4, '20', 0.95),
+(43, 4, '25', 0.8),
+(44, 4, 'inconnue', 1.6),
+(45, 6, '9 et -', 3.9),
+(46, 6, '12', 3.45),
+(47, 6, '15', 3.05),
+(48, 6, '19', 2.75),
+(49, 6, '23', 2.5),
+(50, 6, '28', 2.25),
+(51, 6, '34', 2),
+(53, 6, '55', 1.45),
+(54, 6, '60', 1.35),
+(55, 6, '70', 1.2),
+(56, 6, 'inconnue', 3.9),
+(57, 7, '20 et -', 2),
+(58, 7, '25', 1.85),
+(59, 7, '30', 1.65),
+(60, 7, '35', 1.55),
+(61, 7, '45', 1.35),
+(62, 7, '50', 1.25),
+(63, 7, '60', 1.2),
+(64, 7, 'inconnue', 2),
+(65, 8, '15 et -', 2.15),
+(66, 8, '18', 2.05),
+(67, 8, '20', 2),
+(68, 8, '23', 1.85),
+(69, 8, '25', 1.7),
+(70, 8, '28', 1.68),
+(71, 8, '33', 1.65),
+(72, 8, '38', 1.55),
+(73, 8, '43', 1.4),
+(74, 8, 'inconnue', 2.15),
+(75, 9, '20 et +', 2.9),
+(76, 9, '23', 2.75),
+(77, 9, '25', 2.5),
+(78, 9, '28', 2.6),
+(79, 9, '30', 2.4),
+(80, 9, '33', 2.3),
+(81, 9, '35', 2.2),
+(82, 9, '38', 2.1),
+(83, 9, '40', 2.05),
+(84, 9, 'inconnue', 2.9),
+(85, 10, '20 et -', 2.8),
+(86, 10, '23', 2.65),
+(87, 10, '25', 2.3),
+(88, 10, 'inconnue', 2.8),
+(89, 11, '20 et -', 2.9),
+(90, 11, '22.5', 2.75),
+(91, 11, '25', 2.65),
+(92, 11, '28', 2.5),
+(93, 11, '30', 2.4),
+(94, 11, '35', 2.2),
+(95, 11, '40', 2.05),
+(96, 11, '45', 1.9),
+(97, 11, 'inconnue', 2.9),
+(98, 13, '30', 0.47),
+(99, 13, '37.5', 0.4),
+(100, 14, '5', 2.12),
+(101, 14, '7', 1.72),
+(102, 14, '10', 1.03),
+(103, 14, '15', 0.72),
+(104, 14, '20', 0.55),
+(105, 14, '25', 0.46),
+(106, 14, '27.5', 0.42),
+(107, 14, '30', 0.39),
+(108, 14, '32.5', 0.35),
+(109, 14, '37.5', 0.32);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wall_type`
 --
 
 CREATE TABLE IF NOT EXISTS `wall_type` (
-`id` int(11) NOT NULL,
-  `code` varchar(30) NOT NULL,
-  `label` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(255) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
--- Contenu de la table `wall_type`
+-- Dumping data for table `wall_type`
 --
 
-INSERT INTO `wall_type` (`id`, `code`, `label`) VALUES
-(1, 'stone', 'Pierre'),
-(2, 'concrete', 'Béton'),
-(3, 'brick', 'Brique'),
-(4, 'half_timbered', 'Pans de bois'),
-(5, 'wooden_logs', 'Rondins'),
-(6, 'monomur_bricks', 'Brique monomur'),
-(7, 'aerated_concrete', 'Béton cellulaire'),
-(8, 'wood', 'bois'),
-(9, 'pvc', 'PVC'),
-(10, 'metal', 'métal'),
-(11, 'metal2', 'métal + rupture de pont thermique');
+INSERT INTO `wall_type` (`id`, `label`, `parent_id`) VALUES
+(1, 'Murs en pierre de taille et moellons', NULL),
+(2, 'Murs en pisé ou béton de terre stabilisé', NULL),
+(3, 'Murs en pans de bois', NULL),
+(4, 'Murs bois (rondins)', NULL),
+(5, 'Mur bois avec remplissage tout venant', NULL),
+(6, 'Murs en briques pleines simples', NULL),
+(7, 'Murs en briques pleines doubles avec lame d’air', NULL),
+(8, 'Murs en briques creuses', NULL),
+(9, 'Murs en blocs de béton pleins', NULL),
+(10, 'Murs en blocs de béton creux', NULL),
+(11, 'Murs en béton banché', NULL),
+(13, 'Monomur terre cuite', NULL),
+(14, 'Béton cellulaire', NULL),
+(21, 'Murs constitués d’un seul\r\nmatériaux', 1),
+(22, 'Murs avec remplissage\r\ntout venant', 1);
 
---
--- Index pour les tables exportées
---
-
---
--- Index pour la table `basement_type`
---
-ALTER TABLE `basement_type`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `carpentry_type`
---
-ALTER TABLE `carpentry_type`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `construction_year`
---
-ALTER TABLE `construction_year`
- ADD PRIMARY KEY (`id`), ADD KEY `id` (`id`);
-
---
--- Index pour la table `door_type`
---
-ALTER TABLE `door_type`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `energy`
---
-ALTER TABLE `energy`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `glazing_type`
---
-ALTER TABLE `glazing_type`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `hsp`
---
-ALTER TABLE `hsp`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `ich`
---
-ALTER TABLE `ich`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `mitoyennete`
---
-ALTER TABLE `mitoyennete`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `news`
---
-ALTER TABLE `news`
- ADD PRIMARY KEY (`id`), ADD KEY `slug` (`slug`);
-
---
--- Index pour la table `roof_type`
---
-ALTER TABLE `roof_type`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `shape`
---
-ALTER TABLE `shape`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `ventilation`
---
-ALTER TABLE `ventilation`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `wall_type`
---
-ALTER TABLE `wall_type`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `basement_type`
---
-ALTER TABLE `basement_type`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT pour la table `carpentry_type`
---
-ALTER TABLE `carpentry_type`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT pour la table `construction_year`
---
-ALTER TABLE `construction_year`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT pour la table `door_type`
---
-ALTER TABLE `door_type`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT pour la table `energy`
---
-ALTER TABLE `energy`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT pour la table `glazing_type`
---
-ALTER TABLE `glazing_type`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT pour la table `hsp`
---
-ALTER TABLE `hsp`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT pour la table `ich`
---
-ALTER TABLE `ich`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
---
--- AUTO_INCREMENT pour la table `mitoyennete`
---
-ALTER TABLE `mitoyennete`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT pour la table `news`
---
-ALTER TABLE `news`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT pour la table `roof_type`
---
-ALTER TABLE `roof_type`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT pour la table `shape`
---
-ALTER TABLE `shape`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT pour la table `ventilation`
---
-ALTER TABLE `ventilation`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT pour la table `wall_type`
---
-ALTER TABLE `wall_type`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -47,6 +47,8 @@ $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 $route['default_controller'] = 'simulateur';
 $route['simulateur/result'] = 'simulateur/result';
+$route['simulateur/wall_thickness'] = 'simulateur/getWallThickness';
+$route['simulateur/basement'] = 'simulateur/getBasementFormByType';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

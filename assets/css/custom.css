@@ -142,7 +142,8 @@
     background: #eee;
     display: block;
     margin: 0.5em;
-    min-height: 90em;
+    min-height: 37em;
+    
     overflow: hidden;
     position: relative;
     width: auto;
@@ -390,4 +391,18 @@
 div.form-group{
   width: 50%;
   float: left;
+}
+
+.full-row{
+    width: 100% !important;
+}
+#wall_thickness_group, #basement_form_group{
+    display: none;
+}
+
+.clear-div{
+    clear: both !important;
+}
+.wizard > .content {
+    overflow: auto;
 }

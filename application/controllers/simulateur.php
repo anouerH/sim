@@ -17,7 +17,9 @@ class Simulateur extends CI_Controller {
 		$this->load->model('doortype_model');
 		$this->load->model('ich_model');
 		$this->load->model('ventilation_model');
-        $this->load->model('hsp_model');
+                $this->load->model('hsp_model');
+                $this->load->model('thickness_model');
+                $this->load->model('basementform_model');
 		
 		
 		
@@ -141,9 +143,9 @@ class Simulateur extends CI_Controller {
         $data['d_types'] = $this->doortype_model->getDoorTypes();
         $data['ichs'] = $this->ich_model->getIchs();
         $data['ventilations'] = $this->ventilation_model->getVentilations();
-        $data['hsps'] = $this->hsp_model->getHsps();
-        
-        // var_dump($data['hsps']);
+        $data['hsps'] = $this->hsp_model->getHsps();    
+       
+        // var_dump($data['thickness']);
 
         $data['title'] = 'Simulateur !!!';
 
@@ -219,5 +221,44 @@ class Simulateur extends CI_Controller {
 	public function cch_bch_env_smurs(){
 		
 	}
+        
+        public  function getWallThickness(){
+            $thickness = new Thickness_model();
+            $id_wall = $_POST['wall'];
+            $data = $thickness->getWallThickness($id_wall);
+            if(!count($data)){
+                echo '0';
+                exit();
+            }
+                
+            
+            $html = "<option value=''>- Préciser -</option>";
+            foreach ($data as $item){
+                $textVal = (is_numeric($item['thickness'] )) ?  $item['thickness']." cm" : $item['thickness']  ;
+                        
+                $html .= "<option value='".$item['umur']."'>".$textVal."</optiion>";
+            }
+            
+            echo $html;
+            exit();
+        }
+        
+        public function getBasementFormByType(){
+            $basement = new Basementform_model();
+            $id_basement = $_POST['id_basement'];
+            $data = $basement->getBasementFormByType($id_basement);
+            if(!count($data)){
+                echo '0';
+                exit();
+            }
+            
+            $html = "<option value=''>- Préciser -</option>";
+            foreach ($data as $item){
+                $html .= "<option value='".$item['uplancher']."'>".$item['plancher']."</optiion>";
+            }
+            
+            echo $html;
+            exit();
+        }
 	
 }

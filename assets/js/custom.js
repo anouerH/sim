@@ -58,4 +58,44 @@ $( document ).ready(function() {
             }
         }
     });
+    
+    
+    // get wall_thickness
+    $("input[name='wall_material']").change(function() {
+        var wall = $(this).val() ;
+        $.ajax({
+            type: "POST",
+            url: "index.php/simulateur/wall_thickness",
+            data: { wall: wall}
+        })
+        .done(function( html ) {
+            if(html === "0")
+                $('#wall_thickness_group').hide("slow");
+            else{
+                $( "#wall_thickness" ).html( html );
+                $('#wall_thickness_group').show("slow");
+            }
+        });
+    });
+    
+    
+    // get Basement from : Uplancher bas
+    $("#CORsol").change(function() {
+       
+        var id_basement = $(this).find('option:selected').attr('rel');
+        $.ajax({
+            type: "POST",
+            url: "index.php/simulateur/basement",
+            data: { id_basement: id_basement}
+        })
+        .done(function( html ) {
+            if(html === "0")
+                $('#basement_form_group').fadeOut();
+            else{
+                $( "#basement_form" ).html( html );
+                $('#basement_form_group').fadeIn();
+            }
+        });
+    });
+  
 });
