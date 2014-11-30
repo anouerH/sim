@@ -17,9 +17,10 @@ class Simulateur extends CI_Controller {
 		$this->load->model('doortype_model');
 		$this->load->model('ich_model');
 		$this->load->model('ventilation_model');
-                $this->load->model('hsp_model');
-                $this->load->model('thickness_model');
-                $this->load->model('basementform_model');
+        $this->load->model('hsp_model');
+        $this->load->model('thickness_model');
+        $this->load->model('basementform_model');
+        $this->load->model('airsapce_model');
 		
 		
 		
@@ -143,7 +144,8 @@ class Simulateur extends CI_Controller {
         $data['d_types'] = $this->doortype_model->getDoorTypes();
         $data['ichs'] = $this->ich_model->getIchs();
         $data['ventilations'] = $this->ventilation_model->getVentilations();
-        $data['hsps'] = $this->hsp_model->getHsps();    
+        $data['hsps'] = $this->hsp_model->getHsps(); 
+        $data['a_spaces'] = $this->airsapce_model->getAirSpaces(); 
        
         // var_dump($data['thickness']);
 

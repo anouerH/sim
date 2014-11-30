@@ -396,7 +396,7 @@ div.form-group{
 .full-row{
     width: 100% !important;
 }
-#wall_thickness_group, #basement_form_group{
+#wall_thickness_group, #basement_form_group, #air_space_group{
     display: none;
 }
 

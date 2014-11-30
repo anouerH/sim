@@ -48,6 +48,7 @@ $( document ).ready(function() {
         onFinished: function (event, currentIndex)
         {
             alert("Submitted!");
+            form.submit();
         }
     }).validate({
         //errorClass : 'error clearfix',
@@ -96,6 +97,13 @@ $( document ).ready(function() {
                 $('#basement_form_group').fadeIn();
             }
         });
+    });
+    
+    // lame d'air
+    $("#glazing_type").change(function(){
+      var id = $(this).val();
+      if(id == 3 || id == 4) $('#air_space_group').fadeIn();
+      else $('#air_space_group').fadeOut();
     });
   
 });

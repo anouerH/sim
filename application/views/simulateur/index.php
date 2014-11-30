@@ -200,7 +200,84 @@
 				</div>
 			</div>
                 
-                        <div class="form-group has-error">
+            <legend>Les fenêtres</legend>
+                
+            
+            <div class="form-group">
+				<label for="Sfenetres" class="col-sm-4 control-label">Surface des fenêtres</label>
+				<div class="col-sm-4 input-group">
+					<input  class="form-control" name="Sfenetres" id="Sfenetres" placeholder="Surface des fenêtres">
+					<span class="input-group-addon">m<sup>2</sup></span>
+				</div>
+			</div>
+                        
+            <div class="form-group">
+				<label for="Sfenetres" class="col-sm-4 control-label">Surface des fenêtres de toit</label>
+				<div class="col-sm-4 input-group">
+					<input  class="form-control" name="Sfenetrestoit" id="Sfenetrestoit" placeholder="Surface des fenêtres de toit">
+					<span class="input-group-addon">m<sup>2</sup></span>
+				</div>
+			</div>
+            
+            <div class="form-group">
+				<label for="glazing_type" class="col-sm-4 control-label">Type de vitrage</label>
+				<div class="col-sm-4">
+					<select class="form-control" id="glazing_type" name="glazing_type">
+						<option value="">- Préciser -</option>
+						<?php foreach ($g_types as $type ) {?>
+							<option value="<?php echo $type['id'] ?>"><?php echo $type['label'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+            
+            <div class="form-group" id="air_space_group">
+				<label for="air_space" class="col-sm-4 control-label">Lame d’air</label>
+				<div class="col-sm-4">
+					<select class="form-control" id="air_space" name="air_space">
+						<option>- Préciser -</option>
+						<?php foreach ($a_spaces as $item ) {?>
+							<option value="<?php echo $item['id'] ?>"><?php echo $item['label'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+            
+            
+			<div class="form-group">
+				<label for="carpentry_type" class="col-sm-4 control-label">Type de menuiserie</label>
+				<div class="col-sm-4">
+					<select class="form-control" id="carpentry_type" name="carpentry_type">
+						<option>- Préciser -</option>
+						<?php foreach ($car_types as $type ) {?>
+							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="with_argon" class="col-sm-4 control-label">Présence de volets</label>
+				<div class="col-sm-5">
+					<label class="radio-inline">
+					  <input type="radio" name="with_argon" id="with_argon" value="true"> Oui  
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="with_argon" id="with_argon" value="false"> Non
+					</label>
+				</div>
+			</div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="form-group has-error">
 				<label for="facing_south_glazing" class="col-sm-2 control-label">Grande surface vitrée au sud</label>
 				<div class="col-sm-5">
 					<label class="radio-inline">
@@ -211,7 +288,6 @@
 					</label>
 				</div>
 			</div>
-
 			<div class="form-group has-error">
 				<label for="wall_insulation" class="col-sm-2 control-label">Surface de mur</label>
 				<div class="col-sm-5">
@@ -286,36 +362,6 @@
 			</div>
 			
 			
-			
-          
-                        <div class="form-group">
-				<label for="Sfenetres" class="col-sm-2 control-label">Surface des fenêtres</label>
-				<div class="col-sm-2 input-group">
-					<input  class="form-control" name="Sfenetres" id="Sfenetres" placeholder="Surface des fenêtres">
-					<span class="input-group-addon">m<sup>2</sup></span>
-				</div>
-			</div>
-                        
-                        <div class="form-group">
-				<label for="Sfenetres" class="col-sm-2 control-label">Surface des fenêtres de toit</label>
-				<div class="col-sm-2 input-group">
-					<input  class="form-control" name="Sfenetrestoit" id="Sfenetrestoit" placeholder="Surface des fenêtres de toit">
-					<span class="input-group-addon">m<sup>2</sup></span>
-				</div>
-			</div>
-          
-
-			<div class="form-group">
-				<label for="glazing_type" class="col-sm-2 control-label">Type de vitrage</label>
-				<div class="col-sm-2">
-					<select class="form-control" id="glazing_type" name="glazing_type">
-						<option>- Préciser -</option>
-						<?php foreach ($g_types as $type ) {?>
-							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
-						<?php } ?>
-					</select>
-				</div>
-			</div>
 
 			
 			<div class="form-group">
@@ -330,29 +376,7 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
-				<label for="carpentry_type" class="col-sm-2 control-label">Type de menuiserie</label>
-				<div class="col-sm-2">
-					<select class="form-control" id="carpentry_type" name="carpentry_type">
-						<option>- Préciser -</option>
-						<?php foreach ($car_types as $type ) {?>
-							<option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
-						<?php } ?>
-					</select>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="with_argon" class="col-sm-2 control-label">Présence de volets</label>
-				<div class="col-sm-5">
-					<label class="radio-inline">
-					  <input type="radio" name="with_argon" id="with_argon" value="true"> Oui  
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="with_argon" id="with_argon" value="false"> Non
-					</label>
-				</div>
-			</div>
+            
 
 			<div class="form-group">
 				<label for="window_area" class="col-sm-2 control-label">Surface de portes extérieures</label>
