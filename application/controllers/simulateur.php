@@ -124,7 +124,7 @@ class Simulateur extends CI_Controller {
         $Smur = ($MIT * $FOR * sqrt($sh / $data['NIV']) * $NIV * $hsp) - $Sfenetres -$Sportes;
         $data['Smur'] = $Smur;
         
-        var_dump($Smur);
+        //var_dump($Smur);
         
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);

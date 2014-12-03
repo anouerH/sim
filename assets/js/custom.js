@@ -47,12 +47,12 @@ $( document ).ready(function() {
         },
         onFinished: function (event, currentIndex)
         {
-            alert("Submitted!");
+            //alert("Submitted!");
             form.submit();
         }
     }).validate({
         //errorClass : 'error clearfix',
-        errorPlacement: function errorPlacement(error, element) { element.parent().parent().after(error); },
+        errorPlacement: function errorPlacement(error, element) {element.parent().after(error); /*element.parent().parent().after(error);*/ },
         rules: {
             confirm: {
                 equalTo: "#password-2"
