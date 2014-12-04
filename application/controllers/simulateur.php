@@ -21,72 +21,15 @@ class Simulateur extends CI_Controller {
         $this->load->model('thickness_model');
         $this->load->model('basementform_model');
         $this->load->model('airsapce_model');
-		
-		
-		
 	}
 
 	public function index()
 	{
 		$data = $this->loadData();
 		$this->load->library('form_validation');
-		// Form is submitted	
-		if ($_POST)
-		{
-			
-			
-			// Is Valid Form 
-			/*$config = array(
-				array(
-                     'field'   => 'surface', 
-                     'label'   => 'surface', 
-                     'rules'   => 'required'
-                  ),
-				array(
-                     'field'   => 'basement_type', 
-                     'label'   => 'basement_type', 
-                     'rules'   => 'required'
-                  ),
-				array(
-                     'field'   => 'ventilation', 
-                     'label'   => 'ventilation', 
-                     'rules'   => 'required'
-                  ),
-				array(
-                     'field'   => 'ceiling_height', 
-                     'label'   => 'ceiling_height', 
-                     'rules'   => 'required'
-                  )
-            );*/
-			
-			$config = array(array(
-                     'field'   => 'surface', 
-                     'label'   => 'surface', 
-                     'rules'   => 'required'
-                  ));
-            $this->form_validation->set_rules($config);
-			
-            // var_dump($this->form_validation->run());
-            // die();
-			if ($this->form_validation->run() == FALSE){
-				
-				$this->load->view('templates/header', $data);
-				$this->load->view('simulateur/index', $data);
-				$this->load->view('templates/footer');
-				
-			}else{
-				// launch calculation
-				$this->calculation($_POST);
-			}
-				
-		}else{
-			$this->load->view('templates/header', $data);
-			$this->load->view('simulateur/index', $data);
-			$this->load->view('templates/footer');
-		}
-			
-		
-		
+		$this->load->view('templates/header', $data);
+		$this->load->view('simulateur/index', $data);
+		$this->load->view('templates/footer');
 	}
     
     public function result(){
@@ -154,113 +97,50 @@ class Simulateur extends CI_Controller {
         return $data;
     }
 	
-	public function calculation($data){
-			
-			
-			//A - Maison individuelle 
-				//1. Calcul des consommations de chauffage
-													/*********************************************************/
-													//Cch PCI = Cch PCS / α pcsi // AVEC : Cch PCS = Bch x Ich
-													/*********************************************************/
-					//1.1.Calcul de Bch 
-													/*********************************************************/
-													// Bch = SH x ENV x METEO x INT
-													/*********************************************************/
-						// 1.1.1. Calcul de ENV
-						
-													/*********************************************************/
-													// ENV = (DPmurs + DPplafond + DPplancher + DPfenêtres + DPportes + DPvéranda + PT) / 2 . 5 x Sh   + aRA
-													/*********************************************************/
-						
-						
-		$sh 			= $data['surface'];  		// SH 	: surface habitable de la maison (m2)
-		$aRA 			= $data['ventilation'];		// aRA 	: deperditions par renouvellement d’air 
-		$hsp  			= $data['ceiling_height'];	// HSP	: hauteur sous plafond (m)
-		$corh  			= $hsp/2.5;					// CORH : coefficient de correction de la hauteur sous plafond
-			
-		// Form is submitted	
-		if ($_POST)
-		{
-				
-			// Is Valid Form 
-			$this->load->library('form_validation');
-			$config = array(
-               array(
-                     'field'   => 'surface', 
-                     'label'   => 'surface', 
-                     'rules'   => 'required'
-                  ),
-               array(
-                     'field'   => 'ventilation', 
-                     'label'   => 'ventilation', 
-                     'rules'   => 'required'
-                  )
-            );
-            $this->form_validation->set_rules($config);
-				
-			if ($this->form_validation->run() == FALSE){
-				//$this->load->view('simulateur/index');
-				
-				die('is NOY valid ... ');
-			}else{
-				//die("is valid");
-			}
-				
-		} 
-					
-			$aRA = $this->input->post('ventilation');	
-			// var_dump($this->input->post('ventilation'));
-			
-			print "<pre>";
-			print "<h1>test detetetet</h1>";
-			print "</pre>";
-			die();
-	}
-	
-	public function cch_bch_env(){
+    public function cch_bch_env(){
 		
 	}
 	public function cch_bch_env_smurs(){
 		
 	}
         
-        public  function getWallThickness(){
-            $thickness = new Thickness_model();
-            $id_wall = $_POST['wall'];
-            $data = $thickness->getWallThickness($id_wall);
-            if(!count($data)){
-                echo '0';
-                exit();
-            }
-                
-            
-            $html = "<option value=''>- Préciser -</option>";
-            foreach ($data as $item){
-                $textVal = (is_numeric($item['thickness'] )) ?  $item['thickness']." cm" : $item['thickness']  ;
-                        
-                $html .= "<option value='".$item['umur']."'>".$textVal."</optiion>";
-            }
-            
-            echo $html;
+    public  function getWallThickness(){
+        $thickness = new Thickness_model();
+        $id_wall = $_POST['wall'];
+        $data = $thickness->getWallThickness($id_wall);
+        if(!count($data)){
+            echo '0';
             exit();
         }
+
+
+        $html = "<option value=''>- Préciser -</option>";
+        foreach ($data as $item){
+            $textVal = (is_numeric($item['thickness'] )) ?  $item['thickness']." cm" : $item['thickness']  ;
+
+            $html .= "<option value='".$item['umur']."'>".$textVal."</optiion>";
+        }
+
+        echo $html;
+        exit();
+    }
         
-        public function getBasementFormByType(){
-            $basement = new Basementform_model();
-            $id_basement = $_POST['id_basement'];
-            $data = $basement->getBasementFormByType($id_basement);
-            if(!count($data)){
-                echo '0';
-                exit();
-            }
-            
-            $html = "<option value=''>- Préciser -</option>";
-            foreach ($data as $item){
-                $html .= "<option value='".$item['uplancher']."'>".$item['plancher']."</optiion>";
-            }
-            
-            echo $html;
+    public function getBasementFormByType(){
+        $basement = new Basementform_model();
+        $id_basement = $_POST['id_basement'];
+        $data = $basement->getBasementFormByType($id_basement);
+        if(!count($data)){
+            echo '0';
             exit();
         }
+
+        $html = "<option value=''>- Préciser -</option>";
+        foreach ($data as $item){
+            $html .= "<option value='".$item['uplancher']."'>".$item['plancher']."</optiion>";
+        }
+
+        echo $html;
+        exit();
+    }
 	
 }

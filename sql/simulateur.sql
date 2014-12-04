@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 30 Novembre 2014 à 21:23
+-- Généré le :  Jeu 04 Décembre 2014 à 23:18
 -- Version du serveur :  5.5.39
 -- Version de PHP :  5.4.31
 
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `glazing_type` (
 `id` int(11) NOT NULL,
   `code` varchar(30) NOT NULL,
   `label` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `glazing_type`
@@ -422,6 +422,78 @@ INSERT INTO `shape` (`id`, `code`, `label`) VALUES
 (1, 'compact', 'compacte'),
 (2, 'elongated', 'Allongée'),
 (3, 'complex', 'Développée');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `sim_depatement`
+--
+
+CREATE TABLE IF NOT EXISTS `sim_depatement` (
+`id` int(11) NOT NULL,
+  `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `nref` double NOT NULL,
+  `dhref` double NOT NULL,
+  `pref` double NOT NULL,
+  `c3` double DEFAULT NULL,
+  `c4` double DEFAULT NULL,
+  `zone_ete` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `zone_hiver` double NOT NULL,
+  `t_ext_base` double NOT NULL,
+  `e_` double NOT NULL,
+  `c_alt_max` double NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=45 ;
+
+--
+-- Contenu de la table `sim_depatement`
+--
+
+INSERT INTO `sim_depatement` (`id`, `code`, `label`, `nref`, `dhref`, `pref`, `c3`, `c4`, `zone_ete`, `zone_hiver`, `t_ext_base`, `e_`, `c_alt_max`) VALUES
+(1, '01', 'Ain', 4900, 55000, 80, 1.5, NULL, 'Ec', 1, -10, 392, 5),
+(2, '02', 'Aisne', 5800, 67000, 73, NULL, NULL, 'Ea', 1, -7, 423, 1),
+(3, '03', 'Allier', 5100, 55000, 79, 1.5, NULL, 'Ec', 1, -8, 403, 4),
+(4, '04', 'Alpes de Haute Provence', 4100, 45000, 132, 1.5, NULL, 'Ed', 2, -8, 541, 6),
+(5, '05', 'Hautes Alpes', 4200, 47000, 130, 1.5, NULL, 'Ed', 1, -10, 564, 6),
+(6, '06', 'Alpes Maritimes', 3900, 31000, 135, 1.8, 5, 'Ed', 3, -5, 527, 6),
+(7, '07', 'Ardèche', 4900, 53000, 100, 1.5, NULL, 'Ed', 2, -6, 490, 5),
+(8, '08', 'Ardennes', 5600, 64000, 71, NULL, NULL, 'Eb', 1, -10, 398, 2),
+(9, '09', 'Ariège', 4400, 41000, 110, 1.5, NULL, 'Ec', 2, -5, 484, 6),
+(10, '10', 'Aube', 5500, 64000, 74, NULL, NULL, 'Eb', 1, -10, 407, 1),
+(11, '11', 'Aude', 4000, 36000, 110, 1.8, 5, 'Ed', 3, -5, 440, 6),
+(12, '12', 'Aveyron', 4400, 45000, 100, 1.5, NULL, 'Ec', 2, -8, 440, 4),
+(13, '13', 'Bouches du Rhône', 4000, 36000, 132, 1.8, 5, 'Ed', 3, -5, 528, 3),
+(14, '14', 'Calvados', 4700, 61000, 79, NULL, 5, 'Ea', 1, -7, 371, 1),
+(15, '15', 'Cantal', 5000, 54000, 87, 1.5, NULL, 'Ec', 1, -8, 435, 5),
+(16, '16', 'Charente', 5000, 48000, 87, NULL, NULL, 'Ec', 2, -5, 435, 1),
+(17, '17', 'Charente Maritime', 5000, 48000, 88, NULL, 5, 'Ec', 2, -5, 440, 1),
+(18, '18', 'Cher', 5300, 58000, 79, NULL, NULL, 'Eb', 2, -7, 419, 2),
+(19, '19', 'Corrèze', 5000, 48000, 85, 1.5, NULL, 'Ec', 1, -8, 425, 3),
+(20, '2A', 'Corse du Sud', 4200, 34000, 126, 1.8, 5, 'Ed', 3, -2, 529, 6),
+(21, '2B', 'Haute Corse', 4000, 32000, 126, 1.8, 5, 'Ed', 3, -2, 504, 6),
+(22, '21', 'Côte d''Or', 4900, 57000, 73, 1.5, NULL, 'Ec', 1, -10, 358, 2),
+(23, '22', 'Côtes d''Armor', 5400, 51000, 79, NULL, 5, 'Ea', 2, -4, 427, 1),
+(24, '23', 'Creuse', 5200, 56000, 84, 1.5, NULL, 'Ec', 1, -8, 437, 3),
+(25, '24', 'Dordogne', 5000, 48000, 87, NULL, NULL, 'Ec', 2, -5, 435, 2),
+(26, '25', 'Doubs', 5000, 57000, 71, 1.5, NULL, 'Ed', 1, -12, 355, 4),
+(27, '26', 'Drôme', 4800, 53000, 110, 1.5, NULL, 'Ed', 2, -6, 528, 6),
+(28, '27', 'Eure', 5500, 58000, 78, NULL, 5, 'Ea', 1, -7, 429, 1),
+(29, '28', 'Eure et Loir', 5600, 63000, 78, NULL, NULL, 'Eb', 1, -7, 437, 1),
+(30, '29', 'Finistère', 5800, 55000, 79, NULL, 5, 'Ea', 2, -4, 458, 1),
+(31, '30', 'Gard', 4000, 36000, 125, 1.8, 5, 'Ed', 3, -5, 500, 4),
+(32, '31', 'Haute Garonne', 4500, 44000, 98, 1.5, NULL, 'Ec', 2, -5, 441, 6),
+(33, '32', 'Haute Garonne', 4800, 50000, 92, NULL, NULL, 'Ec', 2, -5, 442, 1),
+(34, '33', 'Gironde', 4500, 41000, 91, NULL, 5, 'Ec', 2, -5, 410, 1),
+(35, '34', 'Hérault', 4100, 38000, 120, 1.8, 5, 'Ed', 3, -5, 492, 3),
+(36, '35', 'Ile et Vilaine', 4300, 53000, 79, NULL, 5, 'Ea', 2, -5, 340, 1),
+(37, '36', 'Indre', 4300, 59000, 84, NULL, NULL, 'Eb', 2, -7, 361, 2),
+(38, '37', 'Indre et Loire', 4300, 57000, 85, NULL, NULL, 'Eb', 2, -7, 366, 1),
+(39, '38', 'Indre et Loire', 4800, 55000, 100, 1.5, NULL, 'Ec', 1, -10, 480, 6),
+(40, '39', 'Jura', 4900, 55000, 74, 1.5, NULL, 'Ec', 1, -10, 363, 4),
+(41, '40', 'Landes', 4400, 42000, 94, NULL, 5, 'Ec', 2, -5, 414, 1),
+(42, '41', 'Loir et Cher', 5400, 59000, 82, NULL, NULL, 'Eb', 2, -7, 443, 1),
+(43, '42', 'Loire', 4900, 52000, 83, 1.5, NULL, 'Ec', 1, -10, 407, 5),
+(44, '43', 'Haute Loire', 5000, 54000, 92, 1.5, NULL, 'Ec', 1, -8, 460, 5);
 
 -- --------------------------------------------------------
 
@@ -833,6 +905,12 @@ ALTER TABLE `shape`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `sim_depatement`
+--
+ALTER TABLE `sim_depatement`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `ufenetres`
 --
 ALTER TABLE `ufenetres`
@@ -899,7 +977,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT pour la table `glazing_type`
 --
 ALTER TABLE `glazing_type`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `hsp`
 --
@@ -930,6 +1008,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 ALTER TABLE `shape`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `sim_depatement`
+--
+ALTER TABLE `sim_depatement`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT pour la table `ufenetres`
 --
