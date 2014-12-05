@@ -1,36 +1,37 @@
 <?php
 class Simulateur extends CI_Controller {
 
-	public function __construct()
-	{
+    public function __construct()
+    {
 
-		parent::__construct();
-		//$this->load->model('simulateur_model');
-		$this->load->model('constructionyear_model');
-		$this->load->model('rooftype_model');
-		$this->load->model('basementtype_model');
-		$this->load->model('mitoyennete_model');
-		$this->load->model('shape_model');
-		$this->load->model('walltype_model');
-		$this->load->model('glazingtype_model');
-		$this->load->model('carpentrytype_model');
-		$this->load->model('doortype_model');
-		$this->load->model('ich_model');
-		$this->load->model('ventilation_model');
+        parent::__construct();
+        //$this->load->model('simulateur_model');
+        $this->load->model('constructionyear_model');
+        $this->load->model('rooftype_model');
+        $this->load->model('basementtype_model');
+        $this->load->model('mitoyennete_model');
+        $this->load->model('shape_model');
+        $this->load->model('walltype_model');
+        $this->load->model('glazingtype_model');
+        $this->load->model('carpentrytype_model');
+        $this->load->model('doortype_model');
+        $this->load->model('ich_model');
+        $this->load->model('ventilation_model');
         $this->load->model('hsp_model');
         $this->load->model('thickness_model');
         $this->load->model('basementform_model');
         $this->load->model('airsapce_model');
-	}
+        $this->load->model('departement_model');
+    }
 
-	public function index()
-	{
-		$data = $this->loadData();
-		$this->load->library('form_validation');
-		$this->load->view('templates/header', $data);
-		$this->load->view('simulateur/index', $data);
-		$this->load->view('templates/footer');
-	}
+    public function index()
+    {
+        $data = $this->loadData();
+        $this->load->library('form_validation');
+        $this->load->view('templates/header', $data);
+        $this->load->view('simulateur/index', $data);
+        $this->load->view('templates/footer');
+    }
     
     public function result(){
         
@@ -52,8 +53,27 @@ class Simulateur extends CI_Controller {
         $data['MIT'] =  $MIT  = (isset($_POST['mitoyennete'])) ? $_POST['mitoyennete'] : 0 ;
         $data['NIV'] =  $NIV  = (isset($_POST['nbre_niveaux'])) ? $_POST['nbre_niveaux'] : 0 ; 
         
-        $data['FOR'] =  $FOR  = 4.12 ; // configuration a  FOR = 4.12 
         
+        
+        // Forme
+        $data['shape'] =  $shape  = $_POST['shape'] ; 
+        
+        switch ($shape){
+            case  'compact' :
+                $FOR = 4.12;
+                break;
+            case  'elongated' :
+                $FOR = 4.81;
+                break;
+            case  'complex' :
+                $FOR = 5.71;
+                break;
+            default :
+                $FOR = 4.12;
+            
+        }
+        $data['FOR'] =  $FOR  ; // FOR depends on the shape
+        //
         // Type toiture
         $data['roof_type'] =  $roof_type = (isset($_POST['roof_type'])) ? $_POST['roof_type'] : false ;
         $isHabitableAttics = false; //type toiture : Combles habités
@@ -67,7 +87,24 @@ class Simulateur extends CI_Controller {
         $Smur = ($MIT * $FOR * sqrt($sh / $data['NIV']) * $NIV * $hsp) - $Sfenetres -$Sportes;
         $data['Smur'] = $Smur;
         
-        //var_dump($Smur);
+        
+        // clacul Splancher
+        $data['Splancher'] = $Splancher = $sh/$NIV;
+        
+        // clacul Splafond
+        $data['Splafond'] = $Splafond = $sh/$NIV;
+        if($isHabitableAttics) {
+             $data['Splafond'] = $Splafond = ((1.3 * $sh)/$NIV) - $Sfenetrestoit;
+        }
+        
+        // Calcul Umur
+        $data['departement'] = $departement =  $_POST['departement'] ; 
+        $data['zone'] = $zone = $this->getZone($departement) ; 
+        $data['wall'] = $wall = $_POST['wall_material'] ;  // type de mur
+        
+        $data['Umur'] = $Umur = $this->getUmur($wall, $zone);
+        
+        var_dump($zone);
         
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
@@ -89,6 +126,7 @@ class Simulateur extends CI_Controller {
         $data['ventilations'] = $this->ventilation_model->getVentilations();
         $data['hsps'] = $this->hsp_model->getHsps(); 
         $data['a_spaces'] = $this->airsapce_model->getAirSpaces(); 
+        $data['departements'] = $this->departement_model->getDepartements(); 
        
         // var_dump($data['thickness']);
 
@@ -142,5 +180,16 @@ class Simulateur extends CI_Controller {
         echo $html;
         exit();
     }
+    
+    /**
+     * retourner la zone id selon le dpartement
+     */
+    public function getZone($departement){
+        $Odept = new Departement_model();
+        $zone = "H".$Odept->getZone($departement);
+        return $zone;
+    }
+    
+    
 	
 }

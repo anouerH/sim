@@ -42,8 +42,8 @@
                 <div class="form-group">
                     <label for="shape" class="col-sm-4 control-label">Forme</label>
                     <div class="col-sm-4">
-                        <select class="form-control" id="shape" name="shape">
-                            <option>- Préciser -</option>
+                        <select class="form-control required" id="shape" name="shape">
+                            <option value="">- Préciser -</option>
                             <?php foreach ($shapes as $shape ) {?>
                                 <option value="<?php echo $shape['code'] ?>"><?php echo $shape['label'] ?></option>
                             <?php } ?>
@@ -67,11 +67,10 @@
                     <label for="departement" class="col-sm-4 control-label">Département</label>
                     <div class="col-sm-4">
                         <select class="form-control required" id="departement" name="departement">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option value="">- Préciser -</option>
+                            <?php foreach ($departements as $departement ) {?>
+                                <option value="<?php echo $departement['code'] ?>"><?php echo $departement['label'] ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -80,7 +79,7 @@
                 <div class="form-group">
                     <label for="year_of_construction" class="col-sm-4 control-label">Année de construction</label>
                     <div class="col-sm-8">
-                        <select class="form-control" id="year_of_construction" name="year_of_construction">
+                        <select class="form-control required" id="year_of_construction" name="year_of_construction">
                                                 <option value="">- Préciser -</option>
                             <?php foreach ($c_years as $year ) {?>
                                 <option value="<?php echo $year['code'] ?>"><?php echo $year['label'] ?></option>
@@ -106,7 +105,7 @@
                 <div class="form-group">
                     <label for="altitude" class="col-sm-4 control-label">Altitude</label>
                     <div class="col-sm-4 input-group">
-                        <input type="number" class="form-control" id="altitude" name="altitude" placeholder="Altitude">
+                        <input type="number" class="form-control required" id="altitude" name="altitude" placeholder="Altitude">
                         <span class="input-group-addon">m<sup>2</sup></span>
                     </div>
                 </div>
@@ -114,7 +113,7 @@
                 <div class="form-group">
                     <label for="roof_type" class="col-sm-4 control-label">Type de toiture</label>
                     <div class="col-sm-4">
-                        <select class="form-control" id="roof_type" name="roof_type">
+                        <select class="form-control required" id="roof_type" name="roof_type">
                                                 <option value="">- Préciser -</option>
                             <?php foreach ($r_types as $type ) {?>
                                 <option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
@@ -125,16 +124,16 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="levels" class="col-sm-4 control-label">Nombre de niveaux</label>
+                    <label for="nbre_niveaux" class="col-sm-4 control-label">Nombre de niveaux</label>
                     <div class="col-sm-8">
                         <label class="radio-inline">
-                            <input type="radio" name="levels" id="levels" value="1" class="required"> 1
+                            <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="1" class="required"> 1
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="levels" id="levels" value="1.5" class="required"> 1.5
+                            <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="1.5" class="required"> 1.5
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="levels" id="levels" value="2" class="required"> 2
+                            <input type="radio" name="nbre_niveaux" id="nbre_niveaux" value="2" class="required"> 2
                         </label>
 
                         <label class="radio-inline">
