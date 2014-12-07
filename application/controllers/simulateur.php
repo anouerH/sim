@@ -52,7 +52,7 @@ class Simulateur extends CI_Controller {
         
         $data['MIT'] =  $MIT  = (isset($_POST['mitoyennete'])) ? $_POST['mitoyennete'] : 0 ;
         $data['NIV'] =  $NIV  = (isset($_POST['nbre_niveaux'])) ? $_POST['nbre_niveaux'] : 0 ; 
-        
+        $data['year_of_construction'] = $year_of_construction = $_POST['year_of_construction'];
         
         
         // Forme
@@ -101,11 +101,23 @@ class Simulateur extends CI_Controller {
         $data['departement'] = $departement =  $_POST['departement'] ; 
         $data['zone'] = $zone = $this->getZone($departement) ; 
         $data['wall'] = $wall = $_POST['wall_material'] ;  // type de mur
+        $data['wall_thickness'] =  $wall_thickness  = (isset($_POST['wall_thickness'])) ? $_POST['wall_thickness'] : 0 ; 
         
-        $data['Umur'] = $Umur = $this->getUmur($wall, $zone);
+        if(!$wall){ // si le type de mur est inconnu
+            $criteria = "umur_".$zone;
+            $cYear = new Constructionyear_model();
+            $data['Umur'] = $Umur = $cYear->getUmurByConstructionYear($year_of_construction, $criteria);
+        }else{
+            $Othickness = new Thickness_model();
+            $data['Umur'] = $Umur = $wall_thickness;
+        }
         
-        var_dump($zone);
+        // Coefficients U des planchers bas
+        $data['plancher_bas'] = $plancher_bas = $_POST['plancher_bas'] ;
         
+        if($plancher_bas == 'terre-plein'){
+            $data['Uplancher'] = $Uplancher = 0 ;
+        }
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
 				$this->load->view('templates/footer');
@@ -186,10 +198,8 @@ class Simulateur extends CI_Controller {
      */
     public function getZone($departement){
         $Odept = new Departement_model();
-        $zone = "H".$Odept->getZone($departement);
+        $zone = "h".$Odept->getZone($departement);
         return $zone;
     }
-    
-    
 	
 }

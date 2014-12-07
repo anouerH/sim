@@ -164,9 +164,10 @@
                         <select class="form-control required" id="CORsol" name="CORsol">
                             <option value="">- Préciser -</option>
                             <?php foreach ($b_types as $type ) {?>
-                                <option value="<?php echo $type['cor_sol'] ?>" rel="<?php echo $type['id']?>"><?php echo $type['label'] ?></option>
+                                <option value="<?php echo $type['cor_sol'] ?>" rel="<?php echo $type['id']?>" code="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
                             <?php } ?>
                         </select>
+                      <input type="hidden" id="plancher_bas" name="plancher_bas" value="">
                     </div>
                 </div>
                 
@@ -189,7 +190,7 @@
 				<label for="wall_material" class="col-sm-2 control-label">Type de mur</label>
 				<div class="col-sm-10">
                                         <label class="radio-inline">
-                                            <input type="radio" name="wall_material" id="wall_material" value="0"> Inconnu
+                                          <input type="radio" name="wall_material" id="wall_material" value="0" checked="checked"> Inconnu
 					</label>
 					<?php foreach ($w_types as $type ) {?>
 						<label class="radio-inline">

@@ -45,27 +45,6 @@
     
     <kbd class="bg-primary">SH = <?php echo $sh ?> m<sup>2</sup></kbd><br>
     <kbd class="bg-primary">ENV = (DPmurs + DPplafond + DPplancher + DPfenêtres + DPportes + DPvéranda + PT) / 2.5 x Sh + aRA</kbd>
-    
-    <h3>1.1.1. Calcul de ENV</h3>
-    <!--<br>
-    <code>DP murs = b 1 x S murs1 x U murs1 + b 2 x S murs2 x U murs2 + b 3 x S murs3 x U murs3</code><br>
-    <code>DP plafond = b’ 1 x S plafond1 x U plafond1 + b’ 2 x S plafond2 x U plafond2 + b’ 3 x S plafondt3 x U plafond3</code><br>
-    <code>DP plancher = C orsol1 x S plancher 1 x U plancher 1 + C orsol2 x S plancher 2 x U plancher 2 + C orsol3 x S plancher 3 x U plancher 3</code><br>
-    <code>DP fenêtres = S fenêtres1 x U fenêtres1 + S fenêtres2 x U fenêtres2 + S fenêtres3 x U fenêtres3</code><br>
-    <code>DP portes = S portes1 x U portes1 + S portes2 x U portes2 + S portes3 x U portes3</code><br>
-    <code>DP véranda = S véranda1 x U véranda1 + S véranda2 x U véranda2 + S véranda3 x U véranda3</code><br>-->
-    
-    <h4>Calcul de aRA</h4>
-    <samp>selon le type de ventillation :
-    </samp><kbd class="bg-primary">aRA = <?php echo $aRA?></kbd>
-    <h4>Calcul de CORH</h4>
-    <samp>Si la hauteur moyenne est connue : <code>CORH = HSP / 2.5</code> </samp><kbd class="bg-primary">CORH = <?php echo $CORH ?></kbd>
-        
-    
-    <h4>Caclul CORsol</h4>
-    <samp>selon le type de plancher bas : </samp><kbd class="bg-primary">CORsol = <?php echo $CORsol?></kbd>
-    <h4>Caclul Smur</h4>
-    
     <div class="bs-example">
     <table class="table table-striped">
       <caption>Données du formulaire</caption>
@@ -129,9 +108,46 @@
           <td><kbd><?php  echo $wall ?></kbd> </td>
         </tr>
         
+        <tr>
+          <td>Epaisseur</td>
+          <td><kbd><?php  echo $wall_thickness ?></kbd> </td>
+        </tr>
+        
+        
+        <tr>
+          <td>Année de construction</td>
+          <td><kbd><?php  echo $year_of_construction ?></kbd> </td>
+        </tr>
+        
+        <tr>
+          <td>Type de plancher</td>
+          <td><kbd><?php  echo $plancher_bas ?></kbd> </td>
+        </tr>
+        
       </tbody>
     </table>
   </div>
+    <h3>1.1.1. Calcul de ENV</h3>
+    <!--<br>
+    <code>DP murs = b 1 x S murs1 x U murs1 + b 2 x S murs2 x U murs2 + b 3 x S murs3 x U murs3</code><br>
+    <code>DP plafond = b’ 1 x S plafond1 x U plafond1 + b’ 2 x S plafond2 x U plafond2 + b’ 3 x S plafondt3 x U plafond3</code><br>
+    <code>DP plancher = C orsol1 x S plancher 1 x U plancher 1 + C orsol2 x S plancher 2 x U plancher 2 + C orsol3 x S plancher 3 x U plancher 3</code><br>
+    <code>DP fenêtres = S fenêtres1 x U fenêtres1 + S fenêtres2 x U fenêtres2 + S fenêtres3 x U fenêtres3</code><br>
+    <code>DP portes = S portes1 x U portes1 + S portes2 x U portes2 + S portes3 x U portes3</code><br>
+    <code>DP véranda = S véranda1 x U véranda1 + S véranda2 x U véranda2 + S véranda3 x U véranda3</code><br>-->
+    
+    <h4>Calcul de aRA</h4>
+    <samp>selon le type de ventillation :
+    </samp><kbd class="bg-primary">aRA = <?php echo $aRA?></kbd>
+    <h4>Calcul de CORH</h4>
+    <samp>Si la hauteur moyenne est connue : <code>CORH = HSP / 2.5</code> </samp><kbd class="bg-primary">CORH = <?php echo $CORH ?></kbd>
+        
+    
+    <h4>Caclul CORsol</h4>
+    <samp>selon le type de plancher bas : </samp><kbd class="bg-primary">CORsol = <?php echo $CORsol?></kbd>
+    <h4>Caclul Smur</h4>
+    
+    
     
     <!--<h4>Sur. fenêtres</h4><kbd class="bg-primary">Sfenetres = <?php echo $Sfenetres?></kbd>
     <h4>Sur. fenêtres toit</h4><kbd class="bg-primary">Sfenetrestoit = <?php echo $Sfenetrestoit?></kbd>
@@ -173,5 +189,16 @@
     </div>
     
     <h4>Coefficients U des murs</h4>
-    <samp> Zone : </samp><kbd class="bg-primary"> <?php echo $zone ?></kbd>
+    <samp> Zone : </samp><kbd class="bg-primary"> <?php echo $zone ?></kbd> <br>
+    <samp> Type de mur : </samp><kbd class="bg-primary"> <?php echo $wall ?></kbd> <br>
+    <samp> Année de construction : </samp><kbd class="bg-primary"> <?php echo $year_of_construction ?></kbd>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>Umur = <?php echo $Umur  ?></samp></samp></strong>
+    </div>
+    
+    <h4>Coefficients U des planchers bas</h4>
+    <samp> Zone : </samp><kbd class="bg-primary"> <?php echo $zone ?></kbd> <br>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>Uplancher = <?php echo $Uplancher  ?></samp></samp></strong>
+    </div>
 </div>

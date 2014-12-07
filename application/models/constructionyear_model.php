@@ -8,9 +8,8 @@ class Constructionyear_model extends CI_Model {
 	
 	public function getConstructionYears()
 	{
-		
 		$query = $this->db->get('construction_year');
-		return $query->result_array();
+        return $query->result_array();
 	}
 
 }

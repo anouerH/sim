@@ -12,5 +12,4 @@ class Walltype_model extends CI_Model {
             $query = $this->db->get_where('wall_type',array('parent_id'=>null));
             return $query->result_array();
 	}
-
 }
