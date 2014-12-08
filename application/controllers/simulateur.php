@@ -118,6 +118,9 @@ class Simulateur extends CI_Controller {
         if($plancher_bas == 'terre-plein'){
             $data['Uplancher'] = $Uplancher = 0 ;
         }
+        // Coefficients U des fenêtres, porte-fenêtres :
+        $data['glazing_type'] = $glazing_type = $_POST['glazing_type'] ;
+        
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
 				$this->load->view('templates/footer');

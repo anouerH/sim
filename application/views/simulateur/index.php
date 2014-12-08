@@ -234,7 +234,7 @@
             <div class="form-group">
                 <label for="glazing_type" class="col-sm-4 control-label">Type de vitrage</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="glazing_type" name="glazing_type">
+                    <select class="form-control required" id="glazing_type" name="glazing_type">
                         <option value="">- Préciser -</option>
                         <?php foreach ($g_types as $type ) {?>
                                 <option value="<?php echo $type['id'] ?>"><?php echo $type['label'] ?></option>
@@ -255,6 +255,17 @@
                 </div>
             </div>
             
+            <div class="form-group">
+                <label for="with_volet" class="col-sm-4 control-label">Présence de volets</label>
+                <div class="col-sm-5">
+                    <label class="radio-inline">
+                      <input type="radio" name="with_volet" id="with_volet" value="true"> Oui  
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="with_volet" id="with_volet" value="false"> Non
+                    </label>
+                </div>
+            </div>
             
             <div class="form-group">
                 <label for="carpentry_type" class="col-sm-4 control-label">Type de menuiserie</label>
@@ -268,17 +279,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="with_argon" class="col-sm-4 control-label">Présence de volets</label>
-                <div class="col-sm-5">
-                    <label class="radio-inline">
-                      <input type="radio" name="with_argon" id="with_argon" value="true"> Oui  
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="with_argon" id="with_argon" value="false"> Non
-                    </label>
-                </div>
-            </div>
+            
             
             
             

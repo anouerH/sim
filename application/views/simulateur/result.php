@@ -201,4 +201,11 @@
     <div class="alert alert-success alert-dismissible fade in" role="alert">
         <strong><samp><samp>Uplancher = <?php echo $Uplancher  ?></samp></samp></strong>
     </div>
+    
+    <h4>Coefficients U des fenêtres, porte-fenêtres :</h4>
+    <samp> id vitrage : </samp><kbd class="bg-primary"> <?php echo $glazing_type ?></kbd> <br>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>Uplancher = <?php echo $Uplancher  ?></samp></samp></strong>
+    </div>
+    
 </div>
