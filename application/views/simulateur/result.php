@@ -1,3 +1,6 @@
+<?php
+    var_dump($_POST);
+?>
 <div class="container">
     <h1>1. Calcul des consommations de chauffage</h1>
     <div class="alert alert-info alert-dismissible fade in" role="alert">
@@ -202,10 +205,23 @@
         <strong><samp><samp>Uplancher = <?php echo $Uplancher  ?></samp></samp></strong>
     </div>
     
-    <h4>Coefficients U des fenêtres, porte-fenêtres :</h4>
+    
+    <h4>Coefficients U des planchers hauts :</h4>
     <samp> id vitrage : </samp><kbd class="bg-primary"> <?php echo $glazing_type ?></kbd> <br>
     <div class="alert alert-success alert-dismissible fade in" role="alert">
         <strong><samp><samp>Uplancher = <?php echo $Uplancher  ?></samp></samp></strong>
+    </div>
+    
+    <h4>Coefficients U des fenêtres, porte-fenêtres :</h4>
+    <samp> id vitrage : </samp><kbd class="bg-primary"> <?php echo $glazing_type ?></kbd> <br>
+    <samp> Type de menuiserie: </samp><kbd class="bg-primary"> <?php echo $carpentry_type ?></kbd> <br>
+    <samp> Avex ou sans volet: </samp><kbd class="bg-primary"> <?php echo $with_volet ?></kbd> <br>
+    <samp> lame d'air: </samp><kbd class="bg-primary"> <?php echo $air_space  ?></kbd> <br>
+    
+    
+    
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>Ufenetre = <?php echo $Ufenetre  ?></samp></samp></strong>
     </div>
     
 </div>

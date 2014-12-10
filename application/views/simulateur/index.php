@@ -163,6 +163,7 @@
                     <div class="col-sm-4">
                         <select class="form-control required" id="CORsol" name="CORsol">
                             <option value="">- Préciser -</option>
+                            <option value="0" rel="0" code="0">Inconnue</option>
                             <?php foreach ($b_types as $type ) {?>
                                 <option value="<?php echo $type['cor_sol'] ?>" rel="<?php echo $type['id']?>" code="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
                             <?php } ?>
@@ -243,11 +244,13 @@
                 </div>
             </div>
             
+            
+            
             <div class="form-group" id="air_space_group">
                 <label for="air_space" class="col-sm-4 control-label">Lame d’air</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="air_space" name="air_space">
-                        <option>- Préciser -</option>
+                    <select class="form-control required" id="air_space" name="air_space">
+                      <option value="0">- Préciser -</option>
                         <?php foreach ($a_spaces as $item ) {?>
                                 <option value="<?php echo $item['id'] ?>"><?php echo $item['label'] ?></option>
                         <?php } ?>
@@ -259,10 +262,10 @@
                 <label for="with_volet" class="col-sm-4 control-label">Présence de volets</label>
                 <div class="col-sm-5">
                     <label class="radio-inline">
-                      <input type="radio" name="with_volet" id="with_volet" value="true"> Oui  
+                      <input type="radio" name="with_volet" id="with_volet" value="true" class="required"> Oui  
                     </label>
                     <label class="radio-inline">
-                      <input type="radio" name="with_volet" id="with_volet" value="false"> Non
+                      <input type="radio" name="with_volet" id="with_volet" value="false" class="required"> Non
                     </label>
                 </div>
             </div>
@@ -270,10 +273,10 @@
             <div class="form-group">
                 <label for="carpentry_type" class="col-sm-4 control-label">Type de menuiserie</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="carpentry_type" name="carpentry_type">
-                        <option>- Préciser -</option>
+                    <select class="form-control required" id="carpentry_type" name="carpentry_type">
+                        <option value="">- Préciser -</option>
                         <?php foreach ($car_types as $type ) {?>
-                                <option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+                            <option value="<?php echo $type['id'] ?>"><?php echo $type['label'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -400,10 +403,10 @@
             </div>
 
             <div class="form-group">
-                <label for="glazing_type" class="col-sm-4 control-label">Type de porte</label>
+                <label for="door_type" class="col-sm-4 control-label">Type de porte</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="glazing_type" name="glazing_type">
-                            <option>- Préciser -</option>
+                    <select class="form-control" id="door_type" name="door_type">
+                      <option value="">- Préciser -</option>
                             <?php foreach ($d_types as $type ) {?>
                                     <option value="<?php echo $type['id'] ?>"><?php echo $type['label'] ?></option>
                             <?php } ?>
@@ -490,9 +493,9 @@
             </div>
 
             <div class="form-group has-warning">
-                <label for="glazing_type" class="col-sm-4 control-label">Système d’ECS</label>
+                <label for="esc" class="col-sm-4 control-label">Système d’ECS</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="glazing_type" name="glazing_type">
+                    <select class="form-control" id="esc" name="esc">
                             <option>- Préciser -</option>
                             <?php foreach ($g_types as $type ) {?>
                                     <option value="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>

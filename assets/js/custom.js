@@ -86,7 +86,7 @@ $( document ).ready(function() {
         var id_basement = $(this).find('option:selected').attr('rel');
         var code =  $(this).find('option:selected').attr('code');
         $("#plancher_bas").val(code);
-        alert(code);
+        
         
         $.ajax({
             type: "POST",

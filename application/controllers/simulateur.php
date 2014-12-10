@@ -117,10 +117,21 @@ class Simulateur extends CI_Controller {
         
         if($plancher_bas == 'terre-plein'){
             $data['Uplancher'] = $Uplancher = 0 ;
+        }elseif($plancher_bas == '0'){
+            $criteria = "uplancher_".$zone;
+            $cYear = new Constructionyear_model();
+            $data['Uplancher'] = $Uplancher = $cYear->getUmurByConstructionYear($year_of_construction, $criteria);
+        }else{
+            $data['Uplancher'] = $Uplancher = (isset($_POST['basement_form'])) ? $_POST['basement_form'] : 0;
         }
         // Coefficients U des fenêtres, porte-fenêtres :
         $data['glazing_type'] = $glazing_type = $_POST['glazing_type'] ;
+        $data['carpentry_type'] = $carpentry_type = $_POST['carpentry_type'] ;
+        $data['with_volet'] = $with_volet = (isset($_POST['with_volet']) && $_POST['with_volet'] == "true") ? 2 : 1 ;
+        $data['air_space'] = $air_space  = (isset($_POST['air_space'])) ? $_POST['air_space'] : null ;
         
+        $Oglazing = new Glazingtype_model();
+        $data['Ufenetre'] = $Ufenetre = $Oglazing->getUfenetre($glazing_type, $with_volet, $carpentry_type, $air_space);
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
 				$this->load->view('templates/footer');
