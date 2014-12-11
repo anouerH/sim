@@ -47,7 +47,7 @@
     </div>
     
     <kbd class="bg-primary">SH = <?php echo $sh ?> m<sup>2</sup></kbd><br>
-    <kbd class="bg-primary">ENV = (DPmurs + DPplafond + DPplancher + DPfenêtres + DPportes + DPvéranda + PT) / 2.5 x Sh + aRA</kbd>
+    
     <div class="bs-example">
     <table class="table table-striped">
       <caption>Données du formulaire</caption>
@@ -131,14 +131,14 @@
     </table>
   </div>
     <h3>1.1.1. Calcul de ENV</h3>
-    <!--<br>
+    <kbd class="bg-primary">ENV = (DPmurs + DPplafond + DPplancher + DPfenêtres + DPportes + DPvéranda + PT) / 2.5 x Sh + aRA</kbd>
+    <br>
     <code>DP murs = b 1 x S murs1 x U murs1 + b 2 x S murs2 x U murs2 + b 3 x S murs3 x U murs3</code><br>
     <code>DP plafond = b’ 1 x S plafond1 x U plafond1 + b’ 2 x S plafond2 x U plafond2 + b’ 3 x S plafondt3 x U plafond3</code><br>
     <code>DP plancher = C orsol1 x S plancher 1 x U plancher 1 + C orsol2 x S plancher 2 x U plancher 2 + C orsol3 x S plancher 3 x U plancher 3</code><br>
     <code>DP fenêtres = S fenêtres1 x U fenêtres1 + S fenêtres2 x U fenêtres2 + S fenêtres3 x U fenêtres3</code><br>
     <code>DP portes = S portes1 x U portes1 + S portes2 x U portes2 + S portes3 x U portes3</code><br>
-    <code>DP véranda = S véranda1 x U véranda1 + S véranda2 x U véranda2 + S véranda3 x U véranda3</code><br>-->
-    
+    <code>DP véranda = S véranda1 x U véranda1 + S véranda2 x U véranda2 + S véranda3 x U véranda3</code><br>    
     <h4>Calcul de aRA</h4>
     <samp>selon le type de ventillation :
     </samp><kbd class="bg-primary">aRA = <?php echo $aRA?></kbd>
