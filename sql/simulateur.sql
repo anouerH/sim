@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 10 Décembre 2014 à 22:42
+-- Généré le :  Dim 14 Décembre 2014 à 21:30
 -- Version du serveur :  5.5.39
 -- Version de PHP :  5.4.31
 
@@ -384,6 +384,35 @@ INSERT INTO `news` (`id`, `title`, `slug`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `plafond`
+--
+
+CREATE TABLE IF NOT EXISTS `plafond` (
+`id` int(11) NOT NULL,
+  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `upafond` double NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+
+--
+-- Contenu de la table `plafond`
+--
+
+INSERT INTO `plafond` (`id`, `label`, `upafond`) VALUES
+(1, 'Inconnu', 2.5),
+(2, 'Avec ou sans remplissage', 1.45),
+(3, 'bois', 2.3),
+(4, 'bois sur solives bois', 2),
+(5, 'Bardeaux et remplissage', 1.2),
+(6, 'Plafond entre solives bois avec ou sans remplissage', 1.2),
+(7, 'Plancher bois sur solives', 2.5),
+(8, 'Plancher bois sou ssolives', 2.5),
+(9, 'Plafond entre solives métalliques avec ou sans remplissage', 1.45),
+(10, 'Plancher lourd type, entrevous terrecuite, poutrelles béton', 2.5),
+(11, 'Dalle béton', 2.5);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `roof_type`
 --
 
@@ -630,6 +659,129 @@ INSERT INTO `ufenetres` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_ai
 (112, 4, 2, 4, 4, 2.1),
 (113, 4, 2, 4, 5, 1.97),
 (114, 4, 2, 4, 6, 2.39);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `uveranda`
+--
+
+CREATE TABLE IF NOT EXISTS `uveranda` (
+  `id` int(11) NOT NULL,
+  `id_vitrage` int(11) NOT NULL,
+  `id_volet` int(11) NOT NULL,
+  `id_menuiserie` int(11) NOT NULL,
+  `id_airspace` int(11) DEFAULT NULL,
+  `uveranda` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `uveranda`
+--
+
+INSERT INTO `uveranda` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_airspace`, `uveranda`) VALUES
+(1, 1, 1, 1, NULL, 4.3),
+(2, 1, 1, 2, NULL, 4),
+(3, 1, 1, 3, NULL, 4.9),
+(4, 1, 2, 1, NULL, 3.6),
+(5, 1, 2, 2, NULL, 3.35),
+(6, 1, 2, 3, NULL, 4.05),
+(7, 3, 1, 1, 1, 2.75),
+(8, 3, 1, 1, 2, 2.65),
+(9, 3, 1, 1, 3, 2.6),
+(10, 3, 1, 1, 4, 2.5),
+(11, 3, 1, 1, 5, 2.35),
+(12, 3, 1, 1, 6, 2.75),
+(13, 3, 2, 1, 1, 2.4),
+(14, 3, 2, 1, 2, 2.35),
+(15, 3, 2, 1, 3, 2.3),
+(16, 3, 2, 1, 4, 2.25),
+(17, 3, 2, 1, 5, 2.1),
+(18, 3, 2, 1, 6, 2.4),
+(19, 3, 1, 2, 1, 2.5),
+(20, 3, 1, 2, 2, 2.4),
+(21, 3, 1, 2, 3, 2.35),
+(22, 3, 1, 2, 4, 2.3),
+(23, 3, 1, 2, 5, 2.25),
+(24, 3, 1, 2, 6, 2.5),
+(25, 3, 2, 2, 1, 2.2),
+(26, 3, 2, 2, 2, 2.1),
+(27, 3, 2, 2, 3, 2.05),
+(28, 3, 2, 2, 4, 2.05),
+(30, 3, 2, 2, 5, 2),
+(31, 3, 2, 2, 6, 2.2),
+(32, 3, 1, 3, 1, 3.65),
+(33, 3, 1, 3, 2, 3.5),
+(34, 3, 1, 3, 3, 3.45),
+(35, 3, 1, 3, 4, 3.4),
+(36, 3, 1, 3, 5, 3.35),
+(37, 3, 1, 3, 6, 3.65),
+(38, 3, 2, 3, 1, 3.1),
+(39, 3, 2, 3, 2, 3),
+(40, 3, 2, 3, 3, 2.95),
+(41, 3, 2, 3, 4, 2.9),
+(42, 3, 2, 3, 5, 2.9),
+(43, 3, 2, 3, 6, 3.2),
+(44, 3, 1, 4, 1, 3.15),
+(45, 3, 1, 4, 2, 3),
+(46, 3, 1, 4, 3, 2.95),
+(47, 3, 1, 4, 4, 2.9),
+(48, 3, 1, 4, 5, 2.9),
+(49, 3, 1, 4, 6, 3.15),
+(50, 3, 2, 4, 1, 2.7),
+(51, 3, 2, 4, 2, 2.6),
+(52, 3, 2, 4, 3, 2.55),
+(53, 3, 2, 4, 4, 2.5),
+(54, 3, 2, 4, 5, 2.5),
+(55, 3, 2, 4, 6, 2.7),
+(56, 4, 1, 1, 1, 2.55),
+(57, 4, 1, 1, 2, 2.35),
+(58, 4, 1, 1, 3, 2.2),
+(59, 4, 1, 1, 4, 2.1),
+(60, 4, 1, 1, 5, 1.92),
+(61, 4, 1, 1, 6, 2.55),
+(62, 4, 2, 1, 1, 2.2),
+(63, 4, 2, 1, 2, 2.07),
+(64, 4, 2, 1, 3, 1.98),
+(65, 4, 2, 1, 4, 1.89),
+(66, 4, 2, 1, 5, 1.72),
+(67, 4, 2, 1, 6, 2.2),
+(68, 4, 1, 2, 1, 2.3),
+(69, 4, 1, 2, 2, 2.12),
+(70, 4, 1, 2, 3, 1.97),
+(71, 4, 1, 2, 4, 1.87),
+(72, 4, 1, 2, 5, 1.74),
+(73, 4, 1, 2, 6, 2.3),
+(74, 4, 2, 2, 1, 2),
+(75, 4, 2, 2, 2, 1.89),
+(76, 4, 2, 2, 3, 1.75),
+(77, 4, 2, 2, 4, 1.66),
+(78, 4, 2, 2, 5, 1.6),
+(79, 4, 2, 2, 6, 2),
+(80, 4, 1, 3, 1, 3.45),
+(81, 4, 1, 3, 2, 3.01),
+(82, 4, 1, 3, 3, 2.89),
+(83, 4, 1, 3, 4, 2.79),
+(84, 4, 1, 3, 5, 2.64),
+(85, 4, 1, 3, 6, 3.45),
+(86, 4, 2, 3, 1, 2.9),
+(87, 4, 2, 3, 2, 2.6),
+(88, 4, 2, 3, 3, 2.5),
+(90, 4, 2, 3, 4, 2.4),
+(91, 4, 2, 3, 5, 2.32),
+(92, 4, 2, 3, 6, 2.9),
+(93, 4, 1, 4, 1, 2.75),
+(94, 4, 1, 4, 2, 2.53),
+(95, 4, 1, 4, 3, 2.42),
+(96, 4, 1, 4, 4, 2.31),
+(97, 4, 1, 4, 5, 2.16),
+(98, 4, 1, 4, 6, 2.75),
+(100, 4, 2, 4, 1, 2.4),
+(101, 4, 2, 4, 2, 2.21),
+(102, 4, 2, 4, 3, 2.11),
+(103, 4, 2, 4, 4, 2.02),
+(104, 4, 2, 4, 5, 1.94),
+(105, 4, 2, 4, 6, 2.4);
 
 -- --------------------------------------------------------
 
@@ -894,6 +1046,12 @@ ALTER TABLE `news`
  ADD PRIMARY KEY (`id`), ADD KEY `slug` (`slug`);
 
 --
+-- Index pour la table `plafond`
+--
+ALTER TABLE `plafond`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `roof_type`
 --
 ALTER TABLE `roof_type`
@@ -999,6 +1157,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 ALTER TABLE `news`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `plafond`
+--
+ALTER TABLE `plafond`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `roof_type`
 --

@@ -1,5 +1,5 @@
 <?php
-    var_dump($_POST);
+    //var_dump($_POST);
 ?>
 <div class="container">
     <h1>1. Calcul des consommations de chauffage</h1>
@@ -209,7 +209,7 @@
     <h4>Coefficients U des planchers hauts :</h4>
     <samp> id vitrage : </samp><kbd class="bg-primary"> <?php echo $glazing_type ?></kbd> <br>
     <div class="alert alert-success alert-dismissible fade in" role="alert">
-        <strong><samp><samp>Uplancher = <?php echo $Uplancher  ?></samp></samp></strong>
+        <strong><samp><samp>Uplafond = <?php echo $Uplafond  ?></samp></samp></strong>
     </div>
     
     <h4>Coefficients U des fenêtres, porte-fenêtres :</h4>
@@ -223,5 +223,12 @@
     <div class="alert alert-success alert-dismissible fade in" role="alert">
         <strong><samp><samp>Ufenetre = <?php echo $Ufenetre  ?></samp></samp></strong>
     </div>
-    
+    <h4>Coefficients U de la véranda (chauffée) :</h4>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>Uveranda = <?php echo $Uveranda  ?></samp></samp></strong>
+    </div>
+    <h4>Coefficients U des portes :</h4>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>Uportes = <?php echo $Uportes  ?></samp></samp></strong>
+    </div>
 </div>

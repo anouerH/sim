@@ -5,6 +5,16 @@ $( document ).ready(function() {
         headerTag: "h3",
         bodyTag: "fieldset",
         transitionEffect: "slideLeft",
+        /* Labels */
+        labels: {
+            cancel: "Annuler",
+            current: "Etape courante:",
+            pagination: "Pagination",
+            finish: "Envoyer",
+            next: "Suivant",
+            previous: "Précédant",
+            loading: "Chargement en cours ..."
+        },
         onStepChanging: function (event, currentIndex, newIndex)
         {
             // Allways allow previous action even if the current form is not valid!

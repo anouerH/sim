@@ -1,7 +1,7 @@
 
 <div class="container">
 
-      <h1>simulateur énergétique</h1>
+  <h1>simulateur énergétique</h1>
       <!--<p>Calcul des consommations de chauffage.</p>
       <p>Calcul des consommations d’ECS</p>
       <p>Calcul des consommations de refroidissement</p>-->
@@ -97,7 +97,7 @@
                 <div class="form-group">
                     <label for="sh" class="col-sm-4 control-label">Surface habitable</label>
                     <div class="col-sm-4 input-group">
-                            <input  class="form-control required" name="sh" id="sh" placeholder="Surface habitable" value="<?php echo set_value('sh'); ?>">
+                            <input  class="form-control required number" name="sh" id="sh" placeholder="Surface habitable" value="<?php echo set_value('sh'); ?>">
                             <span class="input-group-addon">m<sup>2</sup></span>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 <div class="form-group">
                     <label for="altitude" class="col-sm-4 control-label">Altitude</label>
                     <div class="col-sm-4 input-group">
-                        <input type="number" class="form-control required" id="altitude" name="altitude" placeholder="Altitude">
+                      <input type="text" class="form-control required number" id="altitude" name="altitude" placeholder="Altitude">
                         <span class="input-group-addon">m<sup>2</sup></span>
                     </div>
                 </div>
@@ -157,29 +157,45 @@
                         </select>
                     </div>
                 </div>
-                
-                <div class="form-group clear-div ">
-                    <label for="cor_sol" class="col-sm-4 control-label">Type de plancher bas</label>
+                <div class="form-group ">
+                    <label for="cor_sol" class="col-sm-4 control-label">Plafond</label>
                     <div class="col-sm-4">
-                        <select class="form-control required" id="CORsol" name="CORsol">
+                        <select class="form-control" id="plafond" name="plafond">
                             <option value="">- Préciser -</option>
-                            <option value="0" rel="0" code="0">Inconnue</option>
-                            <?php foreach ($b_types as $type ) {?>
-                                <option value="<?php echo $type['cor_sol'] ?>" rel="<?php echo $type['id']?>" code="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+                            <?php foreach ($plafonds as $plafond ) {?>
+                                <option value="<?php echo $plafond['upafond'] ?>" ><?php echo $plafond['label'] ?></option>
                             <?php } ?>
                         </select>
-                      <input type="hidden" id="plancher_bas" name="plancher_bas" value="">
+                    </div>
+                </div> 
+                <div class="row  clear-div">
+                    <div class="form-group">
+                        <label for="cor_sol" class="col-sm-4 control-label">Type de plancher bas</label>
+                        <div class="col-sm-4">
+                            <select class="form-control required" id="CORsol" name="CORsol">
+                                <option value="">- Préciser -</option>
+                                <option value="0" rel="0" code="0">Inconnue</option>
+                                <?php foreach ($b_types as $type ) {?>
+                                    <option value="<?php echo $type['cor_sol'] ?>" rel="<?php echo $type['id']?>" code="<?php echo $type['code'] ?>"><?php echo $type['label'] ?></option>
+                                <?php } ?>
+                            </select>
+                          <input type="hidden" id="plancher_bas" name="plancher_bas" value="">
+                        </div>
+                    </div>
+                    <div class="form-group" id="basement_form_group">
+                        <label for="basement_form" class="col-sm-4 control-label">Forme de plancher bas</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="basement_form" name="basement_form">
+
+                            </select>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="form-group required" id="basement_form_group">
-                    <label for="basement_form" class="col-sm-4 control-label">Forme de plancher bas</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="basement_form" name="basement_form">
-                           
-                        </select>
-                    </div>
-                </div>
+                
+                
+                
+                
                 
             </fieldset>
 			
@@ -293,7 +309,7 @@
             
             
             
-            <div class="form-group has-error">
+            <div class="form-group">
                 <label for="facing_south_glazing" class="col-sm-4 control-label">Grande surface vitrée au sud</label>
                 <div class="col-sm-5">
                     <label class="radio-inline">
@@ -304,17 +320,12 @@
                     </label>
                 </div>
             </div>
-            <div class="form-group has-error">
-                <label for="wall_insulation" class="col-sm-4 control-label">Surface de mur</label>
-                <div class="col-sm-5">
-                        In progress
-                </div>
-            </div>
+            
 
 			
 
 
-            <div class="form-group has-error">
+            <!--<div class="form-group has-error">
                 <label for="wall_insulation" class="col-sm-4 control-label">Isolation du mur</label>
                 <div class="col-sm-5">
                         In progress
@@ -326,9 +337,9 @@
                 <div class="col-sm-5">
                         In progress
                 </div>
-            </div>
+            </div>-->
 
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label for="roof_composition" class="col-sm-4 control-label">Composition de la toiture</label>
                 <div class="col-sm-5">
                         <label class="radio-inline">
@@ -375,7 +386,7 @@
                 <div class="col-sm-5">
                         In porgress
                 </div>
-            </div>
+            </div>-->
 			
 			
 
@@ -405,10 +416,10 @@
             <div class="form-group">
                 <label for="door_type" class="col-sm-4 control-label">Type de porte</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="door_type" name="door_type">
+                    <select class="form-control required" id="door_type" name="door_type">
                       <option value="">- Préciser -</option>
                             <?php foreach ($d_types as $type ) {?>
-                                    <option value="<?php echo $type['id'] ?>"><?php echo $type['label'] ?></option>
+                                    <option value="<?php echo $type['u'] ?>"><?php echo $type['label'] ?></option>
                             <?php } ?>
                     </select>
                 </div>

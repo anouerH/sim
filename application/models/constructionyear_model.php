@@ -11,7 +11,7 @@ class Constructionyear_model extends CI_Model {
 		$query = $this->db->get('construction_year');
         return $query->result_array();
 	}
-    public function getUmurByConstructionYear($year_of_construction, $criteria)
+    public function getUByConstructionYear($year_of_construction, $criteria)
     {
         $query = $this->db->get_where('construction_year',array('code'=>$year_of_construction));
         $resutl = $query->result_array() ;

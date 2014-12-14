@@ -22,6 +22,7 @@ class Simulateur extends CI_Controller {
         $this->load->model('basementform_model');
         $this->load->model('airsapce_model');
         $this->load->model('departement_model');
+        $this->load->model('plafond_model');
     }
 
     public function index()
@@ -106,7 +107,7 @@ class Simulateur extends CI_Controller {
         if(!$wall){ // si le type de mur est inconnu
             $criteria = "umur_".$zone;
             $cYear = new Constructionyear_model();
-            $data['Umur'] = $Umur = $cYear->getUmurByConstructionYear($year_of_construction, $criteria);
+            $data['Umur'] = $Umur = $cYear->getUByConstructionYear($year_of_construction, $criteria);
         }else{
             $Othickness = new Thickness_model();
             $data['Umur'] = $Umur = $wall_thickness;
@@ -118,11 +119,23 @@ class Simulateur extends CI_Controller {
         if($plancher_bas == 'terre-plein'){
             $data['Uplancher'] = $Uplancher = 0 ;
         }elseif($plancher_bas == '0'){
+            
             $criteria = "uplancher_".$zone;
             $cYear = new Constructionyear_model();
-            $data['Uplancher'] = $Uplancher = $cYear->getUmurByConstructionYear($year_of_construction, $criteria);
+            $data['Uplancher'] = $Uplancher = $cYear->getUByConstructionYear($year_of_construction, $criteria);
         }else{
             $data['Uplancher'] = $Uplancher = (isset($_POST['basement_form'])) ? $_POST['basement_form'] : 0;
+        }
+        // Coefficients U des planchers hauts
+        if(isset($_POST['plafond']) && !empty($_POST['plafond'])){
+            $data['Uplafond'] = $Uplafond = $_POST['plafond'];
+        }else{
+            $criteria = "uplancher_combles_".$zone;
+            if($roof_type == 'roof_terrace' || $roof_type == 'terrace_and_attics' )
+                $criteria = "uplancher_terrasse_".$zone;
+              
+            $cYear = new Constructionyear_model();
+            $data['Uplafond'] = $Uplafond = $cYear->getUByConstructionYear($year_of_construction, $criteria);
         }
         // Coefficients U des fenêtres, porte-fenêtres :
         $data['glazing_type'] = $glazing_type = $_POST['glazing_type'] ;
@@ -132,9 +145,24 @@ class Simulateur extends CI_Controller {
         
         $Oglazing = new Glazingtype_model();
         $data['Ufenetre'] = $Ufenetre = $Oglazing->getUfenetre($glazing_type, $with_volet, $carpentry_type, $air_space);
+        // Coefficients U de la véranda (chauffée) :
+        $data['Uveranda'] = $Uveranda = $Oglazing->getUveranda($glazing_type, $with_volet, $carpentry_type, $air_space);
+        
+        // Coefficients U des portes :: door_type
+        $data['Uportes'] =  $Uportes  = (isset($_POST['door_type'])) ? $_POST['door_type'] : 0 ;
+        
+        /****************************************/
+        /****************CACUL DES DPs***********/
+        /****************************************/
+        $b = 1 ;
+        // Calcul DPmurs :: DPmurs = b1 x Smurs1 x Umurs1 + b2 x Smurs2 x Umurs2 + b3 x Smurs3 x Umurs3
+        $data['DPmurs'] =  $DPmurs = $b * $Smur * $Umur ;
+        
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
 				$this->load->view('templates/footer');
+        
+        
     }
 	
     public function loadData(){
@@ -152,7 +180,8 @@ class Simulateur extends CI_Controller {
         $data['ventilations'] = $this->ventilation_model->getVentilations();
         $data['hsps'] = $this->hsp_model->getHsps(); 
         $data['a_spaces'] = $this->airsapce_model->getAirSpaces(); 
-        $data['departements'] = $this->departement_model->getDepartements(); 
+        $data['departements'] = $this->departement_model->getDepartements();
+        $data['plafonds'] = $this->plafond_model->getPlafonds();
        
         // var_dump($data['thickness']);
 
