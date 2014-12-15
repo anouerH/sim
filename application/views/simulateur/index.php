@@ -241,6 +241,14 @@
             </div>
                         
             <div class="form-group">
+                <label for="Sveranda" class="col-sm-4 control-label">Surface de véranda</label>
+                <div class="col-sm-4 input-group">
+                    <input  class="form-control required" name="Sveranda" id="Sveranda" placeholder="Surface de véranda">
+                    <span class="input-group-addon">m<sup>2</sup></span>
+                </div>
+            </div>
+            
+            <div class="form-group">
                 <label for="Sfenetres" class="col-sm-4 control-label">Surface des fenêtres de toit</label>
                 <div class="col-sm-4 input-group">
                     <input  class="form-control required" name="Sfenetrestoit" id="Sfenetrestoit" placeholder="Surface des fenêtres de toit">
@@ -529,12 +537,12 @@
             </div>
     </fieldset>
  
-    <h3>Résultats</h3>
+    <!--<h3>Résultats</h3>
     <fieldset>
         <legend>Résultats</legend>
         <p>Affichage des résultats ...</p>
-        <!--<input id="acceptTerms-2" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>-->
-    </fieldset>
+        
+    </fieldset>-->
 </form>
 
 

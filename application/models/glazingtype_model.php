@@ -28,13 +28,14 @@ class Glazingtype_model extends CI_Model {
     }
     
     public function getUveranda($id_vitrage, $id_volet, $id_menuiserie, $air_space){
+        
         $Aparams = array(
                         'id_vitrage'=>$id_vitrage, 
                         'id_volet'=>$id_volet, 
                         'id_menuiserie'=>$id_menuiserie
             ) ;
         
-        if($air_space)
+        if($air_space && $air_space > 0)
             $Aparams['id_airspace'] = $air_space;
         
         $query = $this->db->get_where('uveranda', $Aparams);

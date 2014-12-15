@@ -231,4 +231,35 @@
     <div class="alert alert-success alert-dismissible fade in" role="alert">
         <strong><samp><samp>Uportes = <?php echo $Uportes  ?></samp></samp></strong>
     </div>
+    
+    <!-- DPs-->
+    <h4>Calcul des Dps</h4>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>DPmurs = <?php echo $DPmurs  ?></samp></samp></strong>
+    </div>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>DPplafond = <?php echo $DPplafond  ?></samp></samp></strong>
+    </div>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>DPplancher = <?php echo $DPplancher  ?></samp></samp></strong>
+    </div>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>DPfenetres = <?php echo $DPfenetres  ?></samp></samp></strong>
+    </div>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>DPportes = <?php echo $DPportes  ?></samp></samp></strong>
+    </div>
+    
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>DPveranda = <?php echo $DPveranda  ?></samp></samp></strong>
+    </div>
+    <h4>Calcul des ponts thermiques PT :</h4>
+    
+    <kbd class="bg-primary">PT = Kpb_m  x Lpb_m + kpi_m x lpi_m + krf_m x lrf_m + krf_pb x lrf_pb + kmen x lmen</kbd>
+    <br>
+    
+    <h4>Calcul de ENV </h4>
+    <kbd class="bg-primary">ENV = (DPmurs + DPplafond + DPplancher + DPfenêtres + DPportes + DPvéranda + PT) / 2.5 x Sh + aRA</kbd>
+    <br>
+    
 </div>

@@ -49,6 +49,7 @@ class Simulateur extends CI_Controller {
         
         $data['Sfenetres'] =  $Sfenetres = (isset($_POST['Sfenetres'])) ? $_POST['Sfenetres'] : 0 ;
         $data['Sfenetrestoit'] =  $Sfenetrestoit = (isset($_POST['Sfenetrestoit'])) ? $_POST['Sfenetrestoit'] : 0 ;
+         $data['Sveranda'] =  $Sveranda = (isset($_POST['Sveranda'])) ? $_POST['Sveranda'] : 0 ;
         $data['Sportes'] =  $Sportes = 2 ; 
         
         $data['MIT'] =  $MIT  = (isset($_POST['mitoyennete'])) ? $_POST['mitoyennete'] : 0 ;
@@ -158,6 +159,16 @@ class Simulateur extends CI_Controller {
         // Calcul DPmurs :: DPmurs = b1 x Smurs1 x Umurs1 + b2 x Smurs2 x Umurs2 + b3 x Smurs3 x Umurs3
         $data['DPmurs'] =  $DPmurs = $b * $Smur * $Umur ;
         
+        //DP plafond = b’ 1 x S plafond1 x U plafond1 + b’ 2 x S plafond2 x U plafond2 + b’ 3 x S plafondt3 x U plafond3 
+        $data['DPplafond'] =  $DPplafond = $b * $Splafond * $Uplafond ;
+        //DP plancher = C orsol1 x S plancher 1 x U plancher 1 + C orsol2 x S plancher 2 x U plancher 2 + C orsol3 x S plancher 3 x U plancher 3
+        $data['DPplancher'] =  $DPplancher = $b * $Splancher * $Uplancher ;
+        //DP fenêtres = S fenêtres1 x U fenêtres1 + S fenêtres2 x U fenêtres2 + S fenêtres3 x U fenêtres3
+        $data['DPfenetres'] =  $DPfenetres =  $Sfenetres * $Ufenetre ;
+        // DP portes = S portes1 x U portes1 + S portes2 x U portes2 + S portes3 x U portes3
+        $data['DPportes'] =  $DPportes =  $Sportes * $Uportes ;
+        //DP véranda = S véranda1 x U véranda1 + S véranda2 x U véranda2 + S véranda3 x U véranda3
+        $data['DPveranda'] =  $DPveranda =  $Sveranda * $Uveranda ;
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
 				$this->load->view('templates/footer');
