@@ -57,7 +57,7 @@
                         <select class="form-control required" id="mitoyennete" name="mitoyennete">
                             <option value="">- Préciser -</option>
                             <?php foreach ($mitoyennetes as $mitoyennete ) {?>
-                                <option value="<?php echo $mitoyennete['mit'] ?>"><?php echo $mitoyennete['label'] ?></option>
+                                <option value="<?php echo $mitoyennete['id'] ?>"><?php echo $mitoyennete['label'] ?></option>
                             <?php } ?>
                         </select>
                     </div>

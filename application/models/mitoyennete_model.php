@@ -12,8 +12,20 @@ class Mitoyennete_model extends CI_Model {
 		$query = $this->db->get('mitoyennete');
 		return $query->result_array();
 		
-
-		
-	}
+        }
+        
+        public function getMit($id, $strfield = null){
+            $Aparams = array(
+                        'id'=>$id, 
+            ) ;
+        
+            $query = $this->db->get_where('mitoyennete', $Aparams);
+            $resutl = $query->result_array() ;
+            if($strfield)
+                return $resutl[0][$strfield];
+            return $resutl[0]['mit'];
+        }
+        
+        
 
 }

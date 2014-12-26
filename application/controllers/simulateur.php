@@ -52,7 +52,9 @@ class Simulateur extends CI_Controller {
          $data['Sveranda'] =  $Sveranda = (isset($_POST['Sveranda'])) ? $_POST['Sveranda'] : 0 ;
         $data['Sportes'] =  $Sportes = 2 ; 
         
-        $data['MIT'] =  $MIT  = (isset($_POST['mitoyennete'])) ? $_POST['mitoyennete'] : 0 ;
+        $mitID = ($_POST['mitoyennete']);
+        $mitoyennete= new Mitoyennete_model();
+        $data['MIT'] =  $MIT  = $mitoyennete->getMit($mitID) ;
         $data['NIV'] =  $NIV  = (isset($_POST['nbre_niveaux'])) ? $_POST['nbre_niveaux'] : 0 ; 
         $data['year_of_construction'] = $year_of_construction = $_POST['year_of_construction'];
         
@@ -63,15 +65,19 @@ class Simulateur extends CI_Controller {
         switch ($shape){
             case  'compact' :
                 $FOR = 4.12;
+                $strConfiguration = "a";
                 break;
             case  'elongated' :
                 $FOR = 4.81;
+                $strConfiguration = "b";
                 break;
             case  'complex' :
                 $FOR = 5.71;
+                $strConfiguration = "c";
                 break;
             default :
                 $FOR = 4.12;
+                $strConfiguration = "a";
             
         }
         $data['FOR'] =  $FOR  ; // FOR depends on the shape
@@ -169,6 +175,320 @@ class Simulateur extends CI_Controller {
         $data['DPportes'] =  $DPportes =  $Sportes * $Uportes ;
         //DP véranda = S véranda1 x U véranda1 + S véranda2 x U véranda2 + S véranda3 x U véranda3
         $data['DPveranda'] =  $DPveranda =  $Sveranda * $Uveranda ;
+        
+        
+        /************************************************************/
+        /****************Calcul des ponts thermiques PT : ***********/
+        /************************************************************/
+        
+        // calcul MIT2 
+        $str_filed = "mit2".$strConfiguration;
+        $data['MIT2'] =  $MIT2 =  $mitoyennete->getMit($mitID, $str_filed) ;
+        
+        // calcul l pb/m (plancher bas / mur extérieur) : 
+        $data['lpb_m'] =  $lpb_m = $FOR * $MIT2 * sqrt($sh/$NIV) ;
+        
+        // k pb/m (plancher bas / mur extérieur) :
+        $data['kpb_m'] =  $kpb_m = 0.44 ;
+        
+        // l pi/m (plancher intermédiaire / mur extérieur) :
+        switch ($data['NIV']){
+            case  1 :
+                $Cniv = 0;
+                break;
+            case  1.5 :
+                $Cniv = 1;
+                break;
+            case  2 :
+                $Cniv = 1;
+                break;
+            case  2.5 :
+                $Cniv = 2;
+                break;
+            case  3 :
+                $Cniv = 2;
+                break;
+            default :
+                $Cniv = 0;
+            
+        }
+        
+        $data['lpi_m'] =  $lpi_m = $lpb_m * $Cniv ;
+        
+        // k pi/m (plancher intermédiaire / mur extérieur) :
+        $wallType = new Walltype_model();
+        $data['kpi_m'] =  $kpi_m = $wallType->getKpi_m($wall) ;
+        
+        // l rf/pb (refend/plancher bas) :
+        if(($sh/$NIV)<= 50 )
+            $data['lrf_pb'] =  $lrf_pb = 0 ;
+        else{
+            switch ($strConfiguration){
+                case  'a' :
+                    $Cfor = 1.5;
+                    break;
+                case  'b' :
+                    $Cfor = 3.5;
+                    break;
+                case  'c' :
+                    $Cfor = 6.5;
+                    break;
+                default :
+                    $Cfor = 1.5;
+
+            }
+            $data['lrf_pb'] =  $lrf_pb = sqrt($sh/($NIV*$Cfor)) ; ;
+        }
+        
+        
+        // k rf/pb (refend/plancher bas) = 0.64
+        $data['krf_pb'] =  $krf_pb = 0.64;
+        
+        // l rf/m (refend/mur extérieur) :
+        if(($sh/$NIV)<= 50 )
+            $data['lrf_m'] =  $lrf_m = 0 ;
+        else{
+            if($sh<90){
+                switch ($data['NIV']){
+                    case  1 :
+                        switch ($strConfiguration){
+                            case  'a' :
+                                $data['lrf_m'] =  $lrf_m = 2;
+                                break;
+                            case  'b' :
+                                $data['lrf_m'] =  $lrf_m = 4;
+                                break;
+                            case  'c' :
+                                $data['lrf_m'] =  $lrf_m = 6;
+                                break;
+                            default :
+                                $data['lrf_m'] =  $lrf_m = 2;
+
+                        }
+                        break;
+                    case  1.5 :
+                        switch ($strConfiguration){
+                            case  'a' :
+                                $data['lrf_m'] =  $lrf_m = 2;
+                                break;
+                            case  'b' :
+                                $data['lrf_m'] =  $lrf_m = 4;
+                                break;
+                            case  'c' :
+                                $data['lrf_m'] =  $lrf_m = 6;
+                                break;
+                            default :
+                                $data['lrf_m'] =  $lrf_m = 2;
+
+                        }
+                        break;
+                    default :
+                       $data['lrf_m'] =  $lrf_m = 0;
+
+                }
+            }elseif (90>$sh && $sh<160) {
+                switch ($data['NIV']){
+                    case  1 :
+                        switch ($strConfiguration){
+                            case  'a' :
+                                $data['lrf_m'] =  $lrf_m = 2;
+                                break;
+                            case  'b' :
+                                $data['lrf_m'] =  $lrf_m = 4;
+                                break;
+                            case  'c' :
+                                $data['lrf_m'] =  $lrf_m = 6;
+                                break;
+                            default :
+                                $data['lrf_m'] =  $lrf_m = 2;
+
+                        }
+                        break;
+                    case  1.5 :
+                        switch ($strConfiguration){
+                            case  'a' :
+                                $data['lrf_m'] =  $lrf_m = 2;
+                                break;
+                            case  'b' :
+                                $data['lrf_m'] =  $lrf_m = 4;
+                                break;
+                            case  'c' :
+                                $data['lrf_m'] =  $lrf_m = 6;
+                                break;
+                            default :
+                                $data['lrf_m'] =  $lrf_m = 2;
+
+                        }
+                        break;
+                    case  2 :
+                        switch ($strConfiguration){
+                            case  'a' :
+                                $data['lrf_m'] =  $lrf_m = 4;
+                                break;
+                            case  'b' :
+                                $data['lrf_m'] =  $lrf_m = 8;
+                                break;
+                            case  'c' :
+                                $data['lrf_m'] =  $lrf_m = 12;
+                                break;
+                            default :
+                                $data['lrf_m'] =  $lrf_m = 4;
+
+                        }
+                        break;
+                    default :
+                       $data['lrf_m'] =  $lrf_m = 0;
+
+                }
+            }elseif ($sh>160) {
+                switch ($data['NIV']){
+                    case  1 :
+                        switch ($strConfiguration){
+                            case  'a' :
+                                $data['lrf_m'] =  $lrf_m = 2;
+                                break;
+                            case  'b' :
+                                $data['lrf_m'] =  $lrf_m = 4;
+                                break;
+                            case  'c' :
+                                $data['lrf_m'] =  $lrf_m = 6;
+                                break;
+                            default :
+                                $data['lrf_m'] =  $lrf_m = 2;
+
+                        }
+                        break;
+                    case  1.5 :
+                        switch ($strConfiguration){
+                            case  'a' :
+                                $data['lrf_m'] =  $lrf_m = 2;
+                                break;
+                            case  'b' :
+                                $data['lrf_m'] =  $lrf_m = 4;
+                                break;
+                            case  'c' :
+                                $data['lrf_m'] =  $lrf_m = 6;
+                                break;
+                            default :
+                                $data['lrf_m'] =  $lrf_m = 2;
+
+                        }
+                        break;
+                    case  2 :
+                        switch ($strConfiguration){
+                            case  'a' :
+                                $data['lrf_m'] =  $lrf_m = 4;
+                                break;
+                            case  'b' :
+                                $data['lrf_m'] =  $lrf_m = 8;
+                                break;
+                            case  'c' :
+                                $data['lrf_m'] =  $lrf_m = 12;
+                                break;
+                            default :
+                                $data['lrf_m'] =  $lrf_m = 4;
+
+                        }
+                        break;
+                    case  2.5 :
+                        switch ($strConfiguration){
+                            case  'a' :
+                                $data['lrf_m'] =  $lrf_m = 4;
+                                break;
+                            case  'b' :
+                                $data['lrf_m'] =  $lrf_m = 8;
+                                break;
+                            case  'c' :
+                                $data['lrf_m'] =  $lrf_m = 12;
+                                break;
+                            default :
+                                $data['lrf_m'] =  $lrf_m = 4;
+
+                        }
+                        break;
+                    case  3 :
+                        switch ($strConfiguration){
+                            case  'a' :
+                                $data['lrf_m'] =  $lrf_m = 4;
+                                break;
+                            case  'b' :
+                                $data['lrf_m'] =  $lrf_m = 8;
+                                break;
+                            case  'c' :
+                                $data['lrf_m'] =  $lrf_m = 12;
+                                break;
+                            default :
+                                $data['lrf_m'] =  $lrf_m = 4;
+
+                        }
+                        break;
+                    default :
+                       $data['lrf_m'] =  $lrf_m = 0;
+
+                }
+            }else{
+                $data['lrf_m'] =  $lrf_m  = 0;
+            }
+            
+        }
+        
+        // k rf/m (refend/mur extérieur) :
+        $data['krf_m'] = $krf_m = 1 ;
+        /* if(!ITE)
+            $data['krf_m'] = $krf_m = 0.4 ;*/
+        
+        //l men (menuiseries) :
+        $data['lmen'] = $lmen = 3 * $Sfenetres ;
+        
+        // k men (menuiseries) :
+        $data['kmen'] = $kmen = 0.1 ;
+        /*
+         * if(!ITE)
+         * $data['kmen'] = $kmen = 0 ;
+         */
+        
+        $data['PT'] = $PT = ($kpb_m * $lpb_m) + ($kpi_m * $lpi_m) + ($krf_m * $lrf_m) + ($krf_pb * $lrf_pb) + ($kmen * $lmen) ;
+        
+        
+        
+        /************************************************************/
+        /****************Calcul ENV : ***********/
+        /************************************************************/
+        
+        $data['ENV'] = $ENV = (($DPmurs + $DPplafond + $DPplancher + $DPfenetres + $DPportes + $DPveranda + $PT) / (2.5 * $sh))  + $aRA;
+        
+        
+        /************************************************************/
+        /**************** 1.1.2. Calcul de METEO ********************/
+        /**************** METEO = CLIMAT x COMPL ********************/
+        /************************************************************/
+        
+        // CLIMAT
+        $Odept = new Departement_model();
+        $data['CLIMAT'] = $CLIMAT = $Odept->getZone($departement);
+        
+        // COMPL
+        $Sse = 0.028;
+        /*
+         * if(vitredegage){
+         *      $Sse = 0.028;
+         * }
+         */
+        
+        /*switch ($zone){
+            case  'h1' :
+                $X = (22.9 + $Sse + )
+                break;
+            case  'h2' :
+                $data['lrf_m'] =  $lrf_m = 8;
+                break;
+            case  'h3' :
+                $data['lrf_m'] =  $lrf_m = 12;
+                break;
+            default :
+                $data['lrf_m'] =  $lrf_m = 4;
+
+        }*/
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
 				$this->load->view('templates/footer');

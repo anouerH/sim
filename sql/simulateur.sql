@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 15, 2014 at 04:29 PM
+-- Generation Time: Dec 26, 2014 at 05:07 PM
 -- Server version: 5.5.40-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -356,6 +356,9 @@ CREATE TABLE IF NOT EXISTS `mitoyennete` (
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `mit` float NOT NULL,
+  `mit2a` float NOT NULL,
+  `mit2b` float NOT NULL,
+  `mit2c` float NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
@@ -363,13 +366,13 @@ CREATE TABLE IF NOT EXISTS `mitoyennete` (
 -- Dumping data for table `mitoyennete`
 --
 
-INSERT INTO `mitoyennete` (`id`, `code`, `label`, `mit`) VALUES
-(1, 'individual_house', 'Indépendante', 1),
-(2, 'short_side', 'Accolée sur 1 petit côté', 0.8),
-(3, 'long_side', 'Accolée sur 1 grand côté', 0.7),
-(4, '2_short_sides', 'Accolée sur 2 petits côtés', 0.7),
-(5, 'value="short_and_long_sides"', 'Accolée sur 1 grand et 1 petit côtés', 0.5),
-(6, '2_long_sides', 'Clear Accolée sur 2 grands côtés', 0.35);
+INSERT INTO `mitoyennete` (`id`, `code`, `label`, `mit`, `mit2a`, `mit2b`, `mit2c`) VALUES
+(1, 'individual_house', 'Indépendante', 1, 1, 1, 1),
+(2, 'short_side', 'Accolée sur 1 petit côté', 0.8, 0.8, 0.9, 0.9),
+(3, 'long_side', 'Accolée sur 1 grand côté', 0.7, 0.7, 0.65, 0.7),
+(4, '2_short_sides', 'Accolée sur 2 petits côtés', 0.7, 0.65, 0.8, 0.8),
+(5, 'value="short_and_long_sides"', 'Accolée sur 1 grand et 1 petit côtés', 0.5, 0.5, 0.55, 0.7),
+(6, '2_long_sides', 'Clear Accolée sur 2 grands côtés', 0.35, 0.35, 0.4, 0.55);
 
 -- --------------------------------------------------------
 

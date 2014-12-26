@@ -83,7 +83,7 @@
         
         <tr>
           <td>Nbre de niveau </td>
-          <td><kbd>MIT = <?php echo $MIT?></kbd></td>
+          <td><kbd>NIV = <?php echo $NIV?></kbd></td>
         </tr>
         
         <tr>
@@ -256,10 +256,16 @@
     <h4>Calcul des ponts thermiques PT :</h4>
     
     <kbd class="bg-primary">PT = Kpb_m  x Lpb_m + kpi_m x lpi_m + krf_m x lrf_m + krf_pb x lrf_pb + kmen x lmen</kbd>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <strong><samp><samp>PT = <?php echo $PT  ?></samp></samp></strong>
+    </div>
     <br>
     
     <h4>Calcul de ENV </h4>
     <kbd class="bg-primary">ENV = (DPmurs + DPplafond + DPplancher + DPfenêtres + DPportes + DPvéranda + PT) / 2.5 x Sh + aRA</kbd>
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <strong><samp><samp>ENV = <?php echo $ENV  ?></samp></samp></strong>
+    </div>
     <br>
     
 </div>
