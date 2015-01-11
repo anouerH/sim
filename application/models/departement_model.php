@@ -23,5 +23,17 @@ class Departement_model extends CI_Model {
         $resutl = $query->result_array() ;
         return $resutl[0]['c_alt_max'];
     }
+    
+    public function getE($departement){
+        $query = $this->db->get_where('sim_departement',array('id'=>$departement));
+        $resutl = $query->result_array() ;
+        return ($resutl[0]['pref'] * $resutl[0]['pref']) / 100;
+    }
+    
+    public function getFch($departement){
+        $query = $this->db->get_where('sim_departement',array('id'=>$departement));
+        $resutl = $query->result_array() ;
+        return $resutl[0]['fch'];
+    }
 
 }

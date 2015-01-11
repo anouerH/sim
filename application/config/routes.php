@@ -49,6 +49,7 @@ $route['default_controller'] = 'simulateur';
 $route['simulateur/result'] = 'simulateur/result';
 $route['simulateur/wall_thickness'] = 'simulateur/getWallThickness';
 $route['simulateur/basement'] = 'simulateur/getBasementFormByType';
-
+$route['simulateur/iecs'] = 'simulateur/getIecs';
+$route['simulateur/ich'] = 'simulateur/getIch';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

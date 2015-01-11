@@ -399,7 +399,9 @@ div.form-group{
 .full-row{
     width: 100% !important;
 }
-#wall_thickness_group, #basement_form_group, #air_space_group{
+#wall_thickness_group, #basement_form_group, #air_space_group,
+#iecs_group, #ich_group, #ballon_type_group , #veilleuse_group, #accumulation_group
+{
     display: none;
 }
 

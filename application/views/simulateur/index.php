@@ -194,9 +194,6 @@
                 
                 
                 
-                
-                
-                
             </fieldset>
 			
             <h3>Equipements</h3>
@@ -449,20 +446,93 @@
             
     <h3>Chauffage</h3>
     <fieldset>
-        <legend>Chauffage</legend>
- 
-        <div class="form-group">
-                <label for="ich" class="col-sm-4 control-label">Système de chauffage</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="ich" name="ich">
-                            <option>- Préciser -</option>
-                            <?php foreach ($ichs as $ich ) {?>
-                                    <option value="<?php echo $ich['id'] ?>"><?php echo $ich['label'] ?></option>
-                            <?php } ?>
-                    </select>
-                </div>
-            </div>
+        
+      
+      <legend>Chauffage</legend>
+                <div class="row  clear-div">
+                    <div class="form-group ">
+                        <label for="energy" class="col-sm-4 control-label">Energie</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="energy" name="energy">
+                                <option value="">- Préciser -</option>
+                                <?php foreach ($energys as $energy ) {?>
+                                    <option value="<?php echo $energy['id'] ?>" ><?php echo $energy['label'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="ich_group">
+                        <label for="ich" class="col-sm-4 control-label">Système de chauffage</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="ich" name="ich">
+                                    
+                            </select>
+                        </div>
+                    </div>
+                </div> 
+                <legend>Chauffage-eau</legend>
+                <div class="row  clear-div">
+                    <div class="form-group ">
+                        <label for="energy_eau" class="col-sm-4 control-label">Energie</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="energy_eau" name="energy_eau">
+                                <option value="">- Préciser -</option>
+                                <?php foreach ($energys as $energy ) {?>
+                                    <option value="<?php echo $energy['id'] ?>" ><?php echo $energy['label'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="iecs_group">
+                        <label for="iecs" class="col-sm-4 control-label">Installation</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="iecs" name="iecs">
 
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  clear-div">
+                  <div class="form-group" id="ballon_type_group">
+                        <label for="ballon_type" class="col-sm-4 control-label">Ballon</label>
+                        <div class="col-sm-6">
+                            <label class="radio-inline">
+                              <input type="radio" name="ballon_type" id="ballon_type" value="bv" class="required"> Vertical  
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="ballon_type" id="ballon_type" value="bh" class="required"> Horizontal
+                            </label>
+                        </div>
+                    </div>
+                  
+                    <div class="form-group" id="veilleuse_group">
+                        <label for="veilleuse" class="col-sm-4 control-label">Veilleuse</label>
+                        <div class="col-sm-6">
+                            <label class="radio-inline">
+                              <input type="radio" name="veilleuse" id="veilleuse" value="av" class="required"> Avec  
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="veilleuse" id="veilleuse" value="sv" class="required"> Sans
+                            </label>
+                        </div>
+                    </div>
+                  
+                    <div class="form-group" id="accumulation_group">
+                        <label for="accumulation" class="col-sm-4 control-label">Accumulation</label>
+                        <div class="col-sm-6">
+                            <label class="radio-inline">
+                              <input type="radio" name="accumulation" id="accumulation" value="inst" class="required"> instantanée  
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="accumulation" id="accumulation" value="acc" class="required"> Accumulation
+                            </label>
+                        </div>
+                    </div>
+                  
+                </div>
+                
+                
+                <legend>Autres</legend>
             <div class="form-group">
                 <label for="with_argon" class="col-sm-4 control-label">Chauffage eau chaude</label>
                 <div class="col-sm-5">
@@ -535,6 +605,7 @@
                     </select>
                 </div>
             </div>
+        <legend>Chauffage eau</legend>
     </fieldset>
  
     <!--<h3>Résultats</h3>

@@ -60,15 +60,15 @@ $( document ).ready(function() {
             //alert("Submitted!");
             form.submit();
         }
-    }).validate({
+    })/*.validate({
         //errorClass : 'error clearfix',
-        errorPlacement: function errorPlacement(error, element) {element.parent().after(error); /*element.parent().parent().after(error);*/ },
+        errorPlacement: function errorPlacement(error, element) {element.parent().after(error); /*element.parent().parent().after(error);** },
         rules: {
             confirm: {
                 equalTo: "#password-2"
             }
         }
-    });
+    })*/;
     
     
     // get wall_thickness
@@ -113,11 +113,63 @@ $( document ).ready(function() {
         });
     });
     
+    
     // lame d'air
     $("#glazing_type").change(function(){
       var id = $(this).val();
       if(id == 3 || id == 4) $('#air_space_group').fadeIn();
       else $('#air_space_group').fadeOut();
     });
-  
+    
+    
+    // get Installation Ich  selon energy
+    $("#energy").change(function() {
+        
+        var energy = $(this).val();
+        
+        
+        $.ajax({
+            type: "POST",
+            url: "index.php/simulateur/ich",
+            data: { energy: energy}
+        })
+        .done(function( html ) {
+          console.log(html);
+            if(html === "0")
+                $('#ich_group').fadeOut();
+            else{
+                $( "#ich" ).html( html );
+                $('#ich_group').fadeIn();
+            }
+        });
+    });
+    
+    // get Installation Iecs selon energy
+    $("#energy_eau").change(function() {
+        $('#ballon_type_group').fadeOut();
+        $('#veilleuse_group').fadeOut();
+        $('#accumulation_group').fadeOut();
+        var energy = $(this).val();
+        if(energy == 1)
+          $('#ballon_type_group').fadeIn();
+        if(energy == 2 || energy == 3){
+          $('#veilleuse_group').fadeIn();
+          $('#accumulation_group').fadeIn();
+        }
+        $.ajax({
+            type: "POST",
+            url: "index.php/simulateur/iecs",
+            data: { energy: energy}
+        })
+        .done(function( html ) {
+          console.log(html);
+            if(html === "0")
+                $('#iecs_group').fadeOut();
+            else{
+                $( "#iecs" ).html( html );
+                $('#iecs_group').fadeIn();
+            }
+        });
+    });
+    
 });

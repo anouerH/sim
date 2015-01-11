@@ -23,6 +23,8 @@ class Simulateur extends CI_Controller {
         $this->load->model('airsapce_model');
         $this->load->model('departement_model');
         $this->load->model('plafond_model');
+        $this->load->model('energy_model');
+        $this->load->model('iecs_model');
     }
 
     public function index()
@@ -466,29 +468,88 @@ class Simulateur extends CI_Controller {
         // CLIMAT
         $Odept = new Departement_model();
         $data['CLIMAT'] = $CLIMAT = $Odept->getZone($departement);
-        
-        // COMPL
         $Sse = 0.028;
-        /*
+         /*
          * if(vitredegage){
          *      $Sse = 0.028;
          * }
          */
+        // Caclul de E 
+        // E = Pref x Nref / 1000 (selon méthode DEL2), par département – Ensoleillement sur(kWh/m²) – Valeurs en annexe 1.
+        $data['E'] = $E = $Odept->getE($departement);
         
-        /*switch ($zone){
+        
+        // Calcul de X 
+        switch ($zone){
             case  'h1' :
-                $X = (22.9 + $Sse + )
+                $data['X'] = $X = (22.9 + ($Sse * $E ) ) / $ENV * 2.5 * $CLIMAT;
                 break;
             case  'h2' :
-                $data['lrf_m'] =  $lrf_m = 8;
+                $data['X'] = $X = (21.7 + ($Sse * $E ) ) / $ENV * 2.5 * $CLIMAT;
                 break;
             case  'h3' :
-                $data['lrf_m'] =  $lrf_m = 12;
+                $data['X'] = $X = (18.5 + ($Sse * $E ) ) / $ENV * 2.5 * $CLIMAT;
                 break;
             default :
-                $data['lrf_m'] =  $lrf_m = 4;
+               $data['X'] = $X = (22.9 + ($Sse * $E ) ) / $ENV * 2.5 * $CLIMAT;
 
-        }*/
+        }
+       
+        // COMPL
+        $data['COMPL'] = $COMPL = 2.5 * (1 - ( ($X - pow($X, 2.9)) / (1 - pow($X, 2.9)) ));
+        
+        $data['METEO'] = $METEO = $CLIMAT * $COMPL;
+        
+        
+        
+           /***********************************************************/
+          /**************** 1.1.3. Calcul de INT ********************/
+         /********* INT = Io / (1 + 0.1 * (G - 1 ) )  *************/
+        /********************************************************/
+        
+        $data['Io'] = $Io = 0.85 ;
+        $data['G'] = $G = $ENV / $CORH ;
+        
+        $data['INT'] = $INT = $Io / (1 + 0.1 * ($G - 1) );
+        
+        // Bch = SH x ENV x METEO x INT 
+        $data['Bch'] = $Bch  = $sh * $ENV * $METEO * $INT ;
+        
+       
+        
+        /************************************************************/
+        /************************************************************/
+        /****************   1.2. Calcul de Ich (P:25) ***************/
+        /************************************************************/
+        /************************************************************/
+        $data['ich_id'] =  $ich_id = (isset($_POST['ich'])) ? $_POST['ich'] : 0 ;
+        $OIch = new Ich_model();
+        list($Rg, $Re, $Rd, $Rr) = $OIch->getRow($ich_id);
+        $data['Rg'] = $Rg ;
+        $data['Re'] = $Re ;
+        $data['Rd'] = $Rd ;
+        $data['Rr'] = $Rr ;
+        $Pg = 1;
+        
+        /*
+         * if($programateur)
+         *      $Pg = 0.97
+         */
+        $data['Pg'] = $Pg ;
+            
+        // Calcul $CORCH
+        if($Bch < 2000 )
+            $Corch = 1.7 - 6 * pow(10, -4) * $Bch;
+        elseif(2000 < $Bch  && $Bch> 6000)
+            $Corch = 0.75 - 1.25 * pow(10, -4) * $Bch;
+        else 
+            $Corch = 0;
+        $data['Corch'] = $Corch;
+        $data['Ich'] = $Ich = $Pg * (  (1 / $Rg * $Re * $Rd * $Rr) + $Corch ) ;
+        
+        // Calcul de Fch
+        $data['Fch'] = $Fch = $Odept->getFch($departement);
+        
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
 				$this->load->view('templates/footer');
@@ -513,7 +574,7 @@ class Simulateur extends CI_Controller {
         $data['a_spaces'] = $this->airsapce_model->getAirSpaces(); 
         $data['departements'] = $this->departement_model->getDepartements();
         $data['plafonds'] = $this->plafond_model->getPlafonds();
-       
+        $data['energys'] = $this->energy_model->getEnergys();
         // var_dump($data['thickness']);
 
         $data['title'] = 'Simulateur !!!';
@@ -574,6 +635,52 @@ class Simulateur extends CI_Controller {
         $Odept = new Departement_model();
         $zone = "h".$Odept->getZone($departement);
         return $zone;
+    }
+    
+    
+    
+    /**
+     * retourner les installations Ich selon le type d'energies
+     */
+    public function getIch(){
+        $Oich = new Ich_model();
+        $energy = $_POST['energy'];
+        
+        $data = $Oich->getIchs($energy);
+        if(!count($data)){
+            echo '0';
+            exit();
+        }
+        
+        $html = "<option value=''>- Préciser -</option>";
+        foreach ($data as $item){
+            $html .= "<option value='".$item['id']."'>".$item['label']."</optiion>";
+        }
+
+        echo $html;
+        exit();
+    }
+    
+    /**
+     * retourner les installations Iecs selon le type d'energies
+     */
+    public function getIecs(){
+        $Oiecs = new Iecs_model();
+        $energy = $_POST['energy'];
+        
+        $data = $Oiecs->getIecs($energy);
+        if(!count($data)){
+            echo '0';
+            exit();
+        }
+        
+        $html = "<option value=''>- Préciser -</option>";
+        foreach ($data as $item){
+            $html .= "<option value='".$item['id']."'>".$item['label']."</optiion>";
+        }
+
+        echo $html;
+        exit();
     }
 	
 }
