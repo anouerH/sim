@@ -444,7 +444,7 @@
     
                 </fieldset>
             
-    <h3>Chauffage</h3>
+    <h3>Chauffage / Chauffe-eau</h3>
     <fieldset>
         
       
@@ -470,7 +470,7 @@
                         </div>
                     </div>
                 </div> 
-                <legend>Chauffage-eau</legend>
+                <legend>Chauffe-eau</legend>
                 <div class="row  clear-div">
                     <div class="form-group ">
                         <label for="energy_eau" class="col-sm-4 control-label">Energie</label>
@@ -493,38 +493,38 @@
                     </div>
                 </div>
                 <div class="row  clear-div">
-                  <div class="form-group" id="ballon_type_group">
-                        <label for="ballon_type" class="col-sm-4 control-label">Ballon</label>
-                        <div class="col-sm-6">
+                  <div class="form-group clear-div" id="ballon_type_group">
+                        <label class="col-sm-4 control-label"></label>
+                        <div class="col-sm-8">
                             <label class="radio-inline">
-                              <input type="radio" name="ballon_type" id="ballon_type" value="bv" class="required"> Vertical  
+                              <input type="radio" name="iecs_field" id="iecs_field" value="bv" class="required"> Ballon vertical  
                             </label>
                             <label class="radio-inline">
-                              <input type="radio" name="ballon_type" id="ballon_type" value="bh" class="required"> Horizontal
-                            </label>
-                        </div>
-                    </div>
-                  
-                    <div class="form-group" id="veilleuse_group">
-                        <label for="veilleuse" class="col-sm-4 control-label">Veilleuse</label>
-                        <div class="col-sm-6">
-                            <label class="radio-inline">
-                              <input type="radio" name="veilleuse" id="veilleuse" value="av" class="required"> Avec  
-                            </label>
-                            <label class="radio-inline">
-                              <input type="radio" name="veilleuse" id="veilleuse" value="sv" class="required"> Sans
+                              <input type="radio" name="iecs_field" id="iecs_field" value="bh" class="required"> Ballon horizontal
                             </label>
                         </div>
                     </div>
                   
-                    <div class="form-group" id="accumulation_group">
-                        <label for="accumulation" class="col-sm-4 control-label">Accumulation</label>
-                        <div class="col-sm-6">
+                    <div class="form-group clear-div" id="veilleuse_group">
+                        <label class="col-sm-4 control-label"></label>
+                        <div class="col-sm-8">
                             <label class="radio-inline">
-                              <input type="radio" name="accumulation" id="accumulation" value="inst" class="required"> instantanée  
+                              <input type="radio" name="iecs_field" id="iecs_field" value="av" class="required"> Avec veilleuse  
                             </label>
                             <label class="radio-inline">
-                              <input type="radio" name="accumulation" id="accumulation" value="acc" class="required"> Accumulation
+                              <input type="radio" name="iecs_field" id="iecs_field" value="sv" class="required"> Sans veilleuse
+                            </label>
+                        </div>
+                    </div>
+                  
+                    <div class="form-group clear-div" id="accumulation_group">
+                        <label class="col-sm-4 control-label"></label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                              <input type="radio" name="iecs_field" id="iecs_field" value="inst" class="required"> instantanée  
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="iecs_field" id="iecs_field" value="acc" class="required"> Accumulation
                             </label>
                         </div>
                     </div>

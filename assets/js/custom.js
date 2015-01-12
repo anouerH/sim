@@ -60,15 +60,15 @@ $( document ).ready(function() {
             //alert("Submitted!");
             form.submit();
         }
-    })/*.validate({
+    }).validate({
         //errorClass : 'error clearfix',
-        errorPlacement: function errorPlacement(error, element) {element.parent().after(error); /*element.parent().parent().after(error);** },
+        errorPlacement: function errorPlacement(error, element) {element.parent().after(error); /*element.parent().parent().after(error);*/ },
         rules: {
             confirm: {
                 equalTo: "#password-2"
             }
         }
-    })*/;
+    });
     
     
     // get wall_thickness
@@ -146,16 +146,18 @@ $( document ).ready(function() {
     
     // get Installation Iecs selon energy
     $("#energy_eau").change(function() {
+        
         $('#ballon_type_group').fadeOut();
         $('#veilleuse_group').fadeOut();
         $('#accumulation_group').fadeOut();
         var energy = $(this).val();
+        $('input:radio[name=iecs_field]').each(function () { $(this).prop('checked', false); });
         if(energy == 1)
           $('#ballon_type_group').fadeIn();
-        if(energy == 2 || energy == 3){
+        /*if(energy == 2 || energy == 3){
           $('#veilleuse_group').fadeIn();
           $('#accumulation_group').fadeIn();
-        }
+        }*/
         $.ajax({
             type: "POST",
             url: "index.php/simulateur/iecs",
@@ -170,6 +172,23 @@ $( document ).ready(function() {
                 $('#iecs_group').fadeIn();
             }
         });
+    });
+    
+    //iecs 
+    $("#iecs").change(function() {
+        var id_iecs = $(this).val();
+        var energy = $("#energy_eau").val();
+        $('input:radio[name=iecs_field]').each(function () { $(this).prop('checked', false); });
+        $('#veilleuse_group').fadeOut();
+        $('#accumulation_group').fadeOut();
+        if(energy == 2 || energy == 3){
+            if(id_iecs == 6 || id_iecs == 7){
+              $('#veilleuse_group').fadeIn();
+
+            }else{
+                $('#accumulation_group').fadeIn();
+            }
+        }
     });
     
 });

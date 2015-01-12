@@ -305,5 +305,20 @@
         <strong><samp><samp>Fch = <?php echo $Fch  ?> % </samp></samp></strong>
     </div>
     <br>
-    
+    <h1>2. Calcul des consommations d’ECS</h1>
+    <div class="alert alert-info alert-dismissible fade in" role="alert">
+      
+      <strong><samp>Cecs PCI = Cecs PCS / α pcsi</samp></strong>
+    </div>
+    <h2>2.1. Calcul de Becs</h2>
+    <div class="alert alert-info alert-dismissible fade in" role="alert">
+      
+      <strong><samp><samp>Becs = 1.163 x Qecs x (40 – Tef) x 48 / 1000</samp></samp></strong>
+    </div>
+    <h1 class="text-info">Becs =  <?php echo $Becs ?></h1>
+    <h2>2.2. Calcul de Iecs </h2>
+    <h1 class="text-info">Iecs =  <?php echo $Iecs ?></h1>
+    <h2>2.3. Calcul de Fecs</h2>
+    <h1 class="text-info">Fecs =  <?php echo $Fecs ?></h1>
+    <h1>3. Calcul des consommations de refroidissement</h1>
 </div>

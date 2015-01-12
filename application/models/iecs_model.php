@@ -15,5 +15,20 @@ class Iecs_model extends CI_Model {
         
 		return $query->result_array();
 	}
+        
+        public function getIecsValue($id, $field){
+            $query = $this->db->get_where('ecs',array('id'=>$id));
+            $resutl = $query->result_array() ;
+            return $resutl[0][$field];
+        }
+        
+        public function checkInstall($id){
+            $query = $this->db->get_where('ecs',array('id'=>$id));
+            $resutl = $query->result_array() ;
+            if($resutl[0]['new_install'])
+                return true;
+            else 
+                return false;
+        }
 
 }

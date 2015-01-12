@@ -35,5 +35,14 @@ class Departement_model extends CI_Model {
         $resutl = $query->result_array() ;
         return $resutl[0]['fch'];
     }
+    
+    public function getFecs($departement, $isNewInstall=false){
+        $query = $this->db->get_where('sim_departement',array('id'=>$departement));
+        $resutl = $query->result_array() ;
+        if($isNewInstall)
+           return $resutl[0]['fecs_new'];
+        else 
+            return $resutl[0]['fecs_old'];
+    }
 
 }

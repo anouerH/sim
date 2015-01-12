@@ -550,6 +550,55 @@ class Simulateur extends CI_Controller {
         // Calcul de Fch
         $data['Fch'] = $Fch = $Odept->getFch($departement);
         
+        
+        
+        
+        /*********************************************************/
+        /************ 2 . CALCUL DE CONSOMMATION ECS ************/
+        /*********************************************************/
+        
+        // 2.1. Calcul de Becs
+        $Qecs = 17.7 * $sh ;
+        if($sh > 27 )
+            $Qecs = (470.9 * $sh ) - 1075 ;
+        
+        switch ($zone){
+            case  'h1' :
+                $Tef = 10.5;
+                break;
+            case  'h2' :
+                $Tef = 12;
+                break;
+            case  'h3' :
+                $Tef = 14.5;
+                break;
+            default :
+               $Tef = 10.5;
+
+        }
+            
+        $data['Becs'] =  $Becs = 1.163 * $Qecs * (40 -$Tef) * 48 / 100 ;
+        
+        $data['ecs_id'] =  $ecs_id = (isset($_POST['iecs'])) ? $_POST['iecs'] : 0 ;
+        $data['iecs_field'] =  $iecs_field  = (isset($_POST['iecs_field'])) ? $_POST['iecs_field'] : 0 ;
+        
+        // 2.2. Calcul de Iecs
+        $strIecsField = 'iecs_acc';
+        if($iecs_field)
+            $strIecsField = 'iecs_'.$iecs_field;
+       
+        $Oiecs = new Iecs_model();
+        
+        
+        
+        
+        $data['Iecs'] =  $Iecs = $Oiecs->getIecsValue($ecs_id, $strIecsField);
+        
+        // 2.3. Calcul de Fecs 
+        $isNewInstall = $Oiecs->checkInstall($ecs_id);
+        
+        $data['Fecs'] = $Fecs = $Odept->getFecs($departement, $isNewInstall);
+        
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
 				$this->load->view('templates/footer');
