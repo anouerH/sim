@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 12, 2015 at 06:08 PM
+-- Generation Time: Jan 13, 2015 at 05:29 PM
 -- Server version: 5.5.40-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `air_space`
 --
 
+DROP TABLE IF EXISTS `air_space`;
 CREATE TABLE IF NOT EXISTS `air_space` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -50,6 +51,7 @@ INSERT INTO `air_space` (`id`, `label`) VALUES
 -- Table structure for table `basement_form`
 --
 
+DROP TABLE IF EXISTS `basement_form`;
 CREATE TABLE IF NOT EXISTS `basement_form` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `plancher` varchar(255) NOT NULL,
@@ -82,6 +84,7 @@ INSERT INTO `basement_form` (`id`, `plancher`, `uplancher`, `id_palncher_type`) 
 -- Table structure for table `basement_type`
 --
 
+DROP TABLE IF EXISTS `basement_type`;
 CREATE TABLE IF NOT EXISTS `basement_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -106,6 +109,7 @@ INSERT INTO `basement_type` (`id`, `label`, `code`, `cor_sol`) VALUES
 -- Table structure for table `carpentry_type`
 --
 
+DROP TABLE IF EXISTS `carpentry_type`;
 CREATE TABLE IF NOT EXISTS `carpentry_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) NOT NULL,
@@ -129,6 +133,7 @@ INSERT INTO `carpentry_type` (`id`, `code`, `label`) VALUES
 -- Table structure for table `construction_year`
 --
 
+DROP TABLE IF EXISTS `construction_year`;
 CREATE TABLE IF NOT EXISTS `construction_year` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -179,6 +184,7 @@ INSERT INTO `construction_year` (`id`, `code`, `label`, `umur_h1_joule`, `umur_h
 -- Table structure for table `door_type`
 --
 
+DROP TABLE IF EXISTS `door_type`;
 CREATE TABLE IF NOT EXISTS `door_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
@@ -209,6 +215,7 @@ INSERT INTO `door_type` (`id`, `label`, `u`) VALUES
 -- Table structure for table `ecs`
 --
 
+DROP TABLE IF EXISTS `ecs`;
 CREATE TABLE IF NOT EXISTS `ecs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -265,6 +272,7 @@ INSERT INTO `ecs` (`id`, `label`, `iecs_bv`, `iecs_bh`, `iecs_av`, `iecs_sv`, `i
 -- Table structure for table `energy`
 --
 
+DROP TABLE IF EXISTS `energy`;
 CREATE TABLE IF NOT EXISTS `energy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(30) NOT NULL,
@@ -292,6 +300,7 @@ INSERT INTO `energy` (`id`, `label`, `a_pcsi`) VALUES
 -- Table structure for table `glazing_type`
 --
 
+DROP TABLE IF EXISTS `glazing_type`;
 CREATE TABLE IF NOT EXISTS `glazing_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) NOT NULL,
@@ -316,6 +325,7 @@ INSERT INTO `glazing_type` (`id`, `code`, `label`) VALUES
 -- Table structure for table `hsp`
 --
 
+DROP TABLE IF EXISTS `hsp`;
 CREATE TABLE IF NOT EXISTS `hsp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hsp` double NOT NULL,
@@ -347,6 +357,7 @@ INSERT INTO `hsp` (`id`, `hsp`) VALUES
 -- Table structure for table `ich`
 --
 
+DROP TABLE IF EXISTS `ich`;
 CREATE TABLE IF NOT EXISTS `ich` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
@@ -407,6 +418,7 @@ INSERT INTO `ich` (`id`, `label`, `rd`, `re`, `rg`, `rr`, `energy`) VALUES
 -- Table structure for table `mitoyennete`
 --
 
+DROP TABLE IF EXISTS `mitoyennete`;
 CREATE TABLE IF NOT EXISTS `mitoyennete` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -436,6 +448,7 @@ INSERT INTO `mitoyennete` (`id`, `code`, `label`, `mit`, `mit2a`, `mit2b`, `mit2
 -- Table structure for table `news`
 --
 
+DROP TABLE IF EXISTS `news`;
 CREATE TABLE IF NOT EXISTS `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
@@ -460,6 +473,7 @@ INSERT INTO `news` (`id`, `title`, `slug`, `text`) VALUES
 -- Table structure for table `plafond`
 --
 
+DROP TABLE IF EXISTS `plafond`;
 CREATE TABLE IF NOT EXISTS `plafond` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -490,6 +504,7 @@ INSERT INTO `plafond` (`id`, `label`, `upafond`) VALUES
 -- Table structure for table `roof_type`
 --
 
+DROP TABLE IF EXISTS `roof_type`;
 CREATE TABLE IF NOT EXISTS `roof_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -513,6 +528,7 @@ INSERT INTO `roof_type` (`id`, `code`, `label`) VALUES
 -- Table structure for table `shape`
 --
 
+DROP TABLE IF EXISTS `shape`;
 CREATE TABLE IF NOT EXISTS `shape` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -535,6 +551,7 @@ INSERT INTO `shape` (`id`, `code`, `label`) VALUES
 -- Table structure for table `sim_departement`
 --
 
+DROP TABLE IF EXISTS `sim_departement`;
 CREATE TABLE IF NOT EXISTS `sim_departement` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -611,6 +628,7 @@ INSERT INTO `sim_departement` (`id`, `code`, `label`, `nref`, `dhref`, `pref`, `
 -- Table structure for table `ufenetres`
 --
 
+DROP TABLE IF EXISTS `ufenetres`;
 CREATE TABLE IF NOT EXISTS `ufenetres` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_vitrage` int(11) NOT NULL,
@@ -747,6 +765,7 @@ INSERT INTO `ufenetres` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_ai
 -- Table structure for table `uveranda`
 --
 
+DROP TABLE IF EXISTS `uveranda`;
 CREATE TABLE IF NOT EXISTS `uveranda` (
   `id` int(11) NOT NULL,
   `id_vitrage` int(11) NOT NULL,
@@ -870,6 +889,7 @@ INSERT INTO `uveranda` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_air
 -- Table structure for table `ventilation`
 --
 
+DROP TABLE IF EXISTS `ventilation`;
 CREATE TABLE IF NOT EXISTS `ventilation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
@@ -897,6 +917,7 @@ INSERT INTO `ventilation` (`id`, `label`, `ara`) VALUES
 -- Table structure for table `wall_thickness`
 --
 
+DROP TABLE IF EXISTS `wall_thickness`;
 CREATE TABLE IF NOT EXISTS `wall_thickness` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_wall` int(11) NOT NULL,
@@ -1025,6 +1046,7 @@ INSERT INTO `wall_thickness` (`id`, `id_wall`, `thickness`, `umur`) VALUES
 -- Table structure for table `wall_type`
 --
 
+DROP TABLE IF EXISTS `wall_type`;
 CREATE TABLE IF NOT EXISTS `wall_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
