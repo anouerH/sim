@@ -40,6 +40,16 @@ class Simulateur extends CI_Controller {
         
         $data = $this->loadData();
         
+        /*********************************************************/
+        /************ 1 . CALCUL DE CONSOMMATION ECS *************/
+        /************ Cch PCI = Cch PCS / α pcsi (P: 7 ) *********/
+        /*********************************************************/
+        
+        /*-------------------------------------------------------*/
+        // 1.1. Calcul de Bch : Bch = SH x ENV x METEO x INT (P:8)
+        /*-------------------------------------------------------*/
+        
+        //  -------------- 1.1.1. Calcul de ENV (P:8)-------------- 
         
         $data['sh'] =  $sh = (isset($_POST['sh'])) ? $_POST['sh'] : 0 ;
         $data['aRA'] = $aRA = (isset($_POST['aRA'])) ? $_POST['aRA'] : 0 ;
@@ -179,9 +189,9 @@ class Simulateur extends CI_Controller {
         $data['DPveranda'] =  $DPveranda =  $Sveranda * $Uveranda ;
         
         
-        /************************************************************/
-        /****************Calcul des ponts thermiques PT : ***********/
-        /************************************************************/
+        /*************************************************************/
+        /**************** Calcul des ponts thermiques PT : ***********/
+        /*************************************************************/
         
         // calcul MIT2 
         $str_filed = "mit2".$strConfiguration;
@@ -453,17 +463,10 @@ class Simulateur extends CI_Controller {
         
         
         
-        /************************************************************/
-        /****************Calcul ENV : ***********/
-        /************************************************************/
-        
         $data['ENV'] = $ENV = (($DPmurs + $DPplafond + $DPplancher + $DPfenetres + $DPportes + $DPveranda + $PT) / (2.5 * $sh))  + $aRA;
         
+        // --------------  1.1.2. Calcul de METEO (P:24)-----------
         
-        /************************************************************/
-        /**************** 1.1.2. Calcul de METEO ********************/
-        /**************** METEO = CLIMAT x COMPL ********************/
-        /************************************************************/
         
         // CLIMAT
         $Odept = new Departement_model();
@@ -507,6 +510,7 @@ class Simulateur extends CI_Controller {
          /********* INT = Io / (1 + 0.1 * (G - 1 ) )  *************/
         /********************************************************/
         
+        
         $data['Io'] = $Io = 0.85 ;
         $data['G'] = $G = $ENV / $CORH ;
         
@@ -515,13 +519,10 @@ class Simulateur extends CI_Controller {
         // Bch = SH x ENV x METEO x INT 
         $data['Bch'] = $Bch  = $sh * $ENV * $METEO * $INT ;
         
-       
+        /*----------------------------------------------------------------*/
+        // 1.2. Calcul de Ich : Ich selon l’installation de chauffage (P:25)
+        /*----------------------------------------------------------------*/
         
-        /************************************************************/
-        /************************************************************/
-        /****************   1.2. Calcul de Ich (P:25) ***************/
-        /************************************************************/
-        /************************************************************/
         $data['ich_id'] =  $ich_id = (isset($_POST['ich'])) ? $_POST['ich'] : 0 ;
         $OIch = new Ich_model();
         list($Rg, $Re, $Rd, $Rr) = $OIch->getRow($ich_id);
@@ -554,10 +555,15 @@ class Simulateur extends CI_Controller {
         
         
         /*********************************************************/
-        /************ 2 . CALCUL DE CONSOMMATION ECS ************/
+        /************ 2 . CALCUL DE CONSOMMATION ECS *************/
+        /************ Cecs PCI = Cecs PCS / α pcsi (P: 28 ) ******/
         /*********************************************************/
         
-        // 2.1. Calcul de Becs
+        
+        /*------------------------------------------------------------------------*/
+        // 2.1. Calcul de Becs : Becs = 1.163 x Qecs x (40 – Tef) x 48 / 1000 (P:28)
+        /*------------------------------------------------------------------------*/
+        
         $Qecs = 17.7 * $sh ;
         if($sh > 27 )
             $Qecs = (470.9 * $sh ) - 1075 ;
@@ -582,7 +588,10 @@ class Simulateur extends CI_Controller {
         $data['ecs_id'] =  $ecs_id = (isset($_POST['iecs'])) ? $_POST['iecs'] : 0 ;
         $data['iecs_field'] =  $iecs_field  = (isset($_POST['iecs_field'])) ? $_POST['iecs_field'] : 0 ;
         
-        // 2.2. Calcul de Iecs
+        /*------------------------------------------------------------------------*/
+        // 2.2. Calcul de Iecs : Iecs selon l’installation  (P:29)
+        /*------------------------------------------------------------------------*/
+        
         $strIecsField = 'iecs_acc';
         if($iecs_field)
             $strIecsField = 'iecs_'.$iecs_field;
@@ -594,10 +603,67 @@ class Simulateur extends CI_Controller {
         
         $data['Iecs'] =  $Iecs = $Oiecs->getIecsValue($ecs_id, $strIecsField);
         
+        /*------------------------------------------------------------------------*/
+        // 2.3. Calcul de Fecs   (P:30)
+        /*------------------------------------------------------------------------*/
+        
         // 2.3. Calcul de Fecs 
         $isNewInstall = $Oiecs->checkInstall($ecs_id);
         
         $data['Fecs'] = $Fecs = $Odept->getFecs($departement, $isNewInstall);
+        
+        
+        /**************************************************************************/
+        /************ 3 . Calcul des consommations de refroidissement  ************/
+        /************       Cclim = Rclim x Sclim  (P: 32 )                  ******/
+        /**************************************************************************/
+        
+        // Cclim = Rclim x Sclim
+        $data['sh_clim'] =  $sh_clim  = (isset($_POST['sh_clim'])) ? $_POST['sh_clim'] : 1 ;
+        
+        $data['Sclim'] =  $Sclim = $sh_clim * $sh ;
+        
+        $zone_ete = $Odept->getZone($departement, true);
+        
+        switch ($zone_ete){
+            case  'Ea' :
+                if($Sclim<150)
+                    $data['Rclim'] =  $Rclim = 2 ;
+                else 
+                    $data['Rclim'] =  $Rclim = 4 ;
+                break;
+            case  'Eb' :
+                if($Sclim<150)
+                    $data['Rclim'] =  $Rclim = 3 ;
+                else 
+                    $data['Rclim'] =  $Rclim = 5 ;
+                break;
+            case  'Ec' :
+                if($Sclim<150)
+                    $data['Rclim'] =  $Rclim = 4 ;
+                else 
+                    $data['Rclim'] =  $Rclim = 6 ;
+                break;
+            case  'Ed' :
+                if($Sclim<150)
+                    $data['Rclim'] =  $Rclim = 5 ;
+                else 
+                    $data['Rclim'] =  $Rclim = 7 ;
+                break;
+            default :
+               if($Sclim<150)
+                    $data['Rclim'] =  $Rclim = 3 ;
+                else 
+                    $data['Rclim'] =  $Rclim = 5 ;
+
+        }
+        
+        $data['Cclim'] =  $Cclim = $Rclim * $Sclim;
+        
+        
+        /**************************************************************************/
+        /************ 4. Prise en compte de systèmes particuliers  ****************/
+        /**************************************************************************/
         
         $this->load->view('templates/header', $data);
 		$this->load->view('simulateur/result', $data);
@@ -624,8 +690,7 @@ class Simulateur extends CI_Controller {
         $data['departements'] = $this->departement_model->getDepartements();
         $data['plafonds'] = $this->plafond_model->getPlafonds();
         $data['energys'] = $this->energy_model->getEnergys();
-        // var_dump($data['thickness']);
-
+        
         $data['title'] = 'Simulateur !!!';
 
         return $data;

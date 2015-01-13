@@ -101,7 +101,13 @@
                             <span class="input-group-addon">m<sup>2</sup></span>
                     </div>
                 </div>
-                
+                <div class="form-group">
+                    <label for="sh_clim" class="col-sm-4 control-label">Pourcentage de surface habitable climatisée</label>
+                    <div class="col-sm-4 input-group">
+                            <input  class="form-control required number" name="sh_clim" id="sh_clim" placeholder="Pourcentage de surface habitable climatisée" value="<?php echo set_value('sh'); ?>">
+                            <span class="input-group-addon">%</span>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="altitude" class="col-sm-4 control-label">Altitude</label>
                     <div class="col-sm-4 input-group">

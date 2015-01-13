@@ -12,10 +12,13 @@ class Departement_model extends CI_Model {
             return $query->result_array();
 	}
         
-    public function getZone($departement){
+    public function getZone($departement, $summer = false){
         $query = $this->db->get_where('sim_departement',array('id'=>$departement));
         $resutl = $query->result_array() ;
-        return $resutl[0]['zone_hiver'];
+        if($summer)
+            return $resutl[0]['zone_ete'];
+        else 
+            return $resutl[0]['zone_hiver'];
     }
     
     public function getClimat($departement){
