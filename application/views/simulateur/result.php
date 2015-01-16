@@ -269,8 +269,7 @@
     </div>
     <br>
     
-    
-    <h4>Calcul de METEO </h4>
+    <h3>1.1.1. Calcul de METEO</h3>
     <kbd class="bg-primary">METEO = CLIMAT x COMPL</kbd><br><br>
     
     <kbd class="bg-primary">CLIMAT = <?php echo $CLIMAT  ?></kbd>
@@ -289,23 +288,37 @@
         <strong><samp><samp>INT = <?php echo $INT  ?></samp></samp></strong>
     </div>
     <br>
-    <h1 class="text-info">Bch =  SH x ENV x METEO x INT </h1>
-    <h1 class="text-info">Bch =  <?php echo $sh?> x <?php echo $ENV?> x <?php echo $METEO?> x <?php echo $INT?> </h1>
-    <h1 class="text-info">Bch = <?php echo $Bch?></h1>
+    <h4 class="text-info">Bch =  SH x ENV x METEO x INT </h4>
+    <h4 class="text-info">Bch =  <?php echo $sh?> x <?php echo $ENV?> x <?php echo $METEO?> x <?php echo $INT?> </h4>
+    <h4 class="text-info">Bch = <?php echo $Bch?></h4>
+    
+    
+    
     <h2>1.2. Calcul de Ich</h2>
     <div class="alert alert-info alert-dismissible fade in" role="alert">
       
       <strong><samp><samp>Ich = Pg x (  (1 / Rg * Re * Rd * Rr) + Corch ) </samp></samp></strong>
     </div>
     
-    <h1 class="text-info">Ich = <?php echo $Pg?> x (  (1 / <?php echo $Rg?> * <?php echo $Re?> * <?php echo $Rd?> * <?php echo $Rr?>) + <?php echo $Corch   ?> ) </h1>
-    <h1 class="text-info">Ich = <?php echo $Ich?></h1>
+    <h4 class="text-info">Ich = <?php echo $Pg?> x (  (1 / <?php echo $Rg?> * <?php echo $Re?> * <?php echo $Rd?> * <?php echo $Rr?>) + <?php echo $Corch   ?> ) </h4>
+    <h4 class="text-info">Ich = <?php echo $Ich?></h4>
     
     <h4>Calcul de Fch</h4>
     <div class="alert alert-success alert-dismissible fade in" role="alert">
         <strong><samp><samp>Fch = <?php echo $Fch  ?> % </samp></samp></strong>
     </div>
     <br>
+    
+    <h3 class="text-info">Cch PCS = Bch x Ich</h3>
+    <h3 class="text-info">Cch_PCS = <?php echo $Cch_PCS?></h3>
+    <h3 class="text-info">Cch_PCS = <?php echo $Cch_PCS?></h3>
+    <h3 class="text-info">a_pcsi = <?php echo $a_pcsi?></h3>
+    <div class="alert alert-info alert-dismissible fade in" role="alert">
+      
+      <strong><samp>CchPCI = CchPCS / apcsi</samp></strong>
+    </div>
+    <h2 class="text-danger">Cch_PCI = <?php echo $Cch_PCI ?></h2>
+    
     <h1>2. Calcul des consommations d’ECS</h1>
     <div class="alert alert-info alert-dismissible fade in" role="alert">
       

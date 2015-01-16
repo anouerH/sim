@@ -505,9 +505,9 @@ class Simulateur extends CI_Controller {
         
         
         
-           /***********************************************************/
-          /**************** 1.1.3. Calcul de INT ********************/
-         /********* INT = Io / (1 + 0.1 * (G - 1 ) )  *************/
+        /********************************************************/
+        /**************** 1.1.3. Calcul de INT ******************/
+        /********* INT = Io / (1 + 0.1 * (G - 1 ) )  ************/
         /********************************************************/
         
         
@@ -551,7 +551,22 @@ class Simulateur extends CI_Controller {
         // Calcul de Fch
         $data['Fch'] = $Fch = $Odept->getFch($departement);
         
+        // Calcul Calcul des consommations de chauffage : Cch PCI = Cch PCS / α pcs 
+        // S’il y a un seul système de chauffage sans système de chauffage solaire :
         
+        if($_POST['c_solaire']){
+            // Avec un syteme Solaire : Cch PCS = Bch x (1-Fch) x Ich
+            $data['Cch_PCS'] = $Cch_PCS = $Bch * (1-($Fch/100)) * $Ich;
+        }else{
+            // Sans systeme solaire : Cch PCS = Bch x Ich
+            $data['Cch_PCS'] = $Cch_PCS = $Bch * $Ich;
+        }
+        
+        // get a_pcsi
+        $Oenergy = new Energy_model() ;
+        $data['a_pcsi'] = $a_pcsi = $Oenergy->getAPcsi($_POST['energy']);
+        
+        $data['Cch_PCI'] = $Cch_PCI = $Cch_PCS / $a_pcsi ;
         
         
         /*********************************************************/

@@ -459,7 +459,7 @@
                     <div class="form-group ">
                         <label for="energy" class="col-sm-4 control-label">Energie</label>
                         <div class="col-sm-4">
-                            <select class="form-control" id="energy" name="energy">
+                            <select class="form-control required" id="energy" name="energy">
                                 <option value="">- Préciser -</option>
                                 <?php foreach ($energys as $energy ) {?>
                                     <option value="<?php echo $energy['id'] ?>" ><?php echo $energy['label'] ?></option>
@@ -470,18 +470,42 @@
                     <div class="form-group" id="ich_group">
                         <label for="ich" class="col-sm-4 control-label">Système de chauffage</label>
                         <div class="col-sm-4">
-                            <select class="form-control" id="ich" name="ich">
+                            <select class="form-control required" id="ich" name="ich">
                                     
                             </select>
                         </div>
                     </div>
-                </div> 
+                </div>
+                <div class="row  clear-div">
+                    <div class="form-group" >
+                        <label class="col-sm-4 control-label">Installation avec un chauffage solaire ? </label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                              <input type="radio" name="c_solaire" id="c_solaire" value="1" class="required"> Oui  
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="c_solaire" id="c_solaire" value="0" checked="checked" class="required"> Non
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label class="col-sm-4 control-label">Installation avec un insert ou poêle à bois ? </label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                              <input type="radio" name="c_insert" id="c_insert" value="1" class="required"> Oui  
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="c_insert" id="c_insert" value="0" checked="checked" class="required"> Non
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <legend>Chauffe-eau</legend>
                 <div class="row  clear-div">
                     <div class="form-group ">
                         <label for="energy_eau" class="col-sm-4 control-label">Energie</label>
                         <div class="col-sm-4">
-                            <select class="form-control" id="energy_eau" name="energy_eau">
+                            <select class="form-control required" id="energy_eau" name="energy_eau">
                                 <option value="">- Préciser -</option>
                                 <?php foreach ($energys as $energy ) {?>
                                     <option value="<?php echo $energy['id'] ?>" ><?php echo $energy['label'] ?></option>
@@ -492,7 +516,7 @@
                     <div class="form-group" id="iecs_group">
                         <label for="iecs" class="col-sm-4 control-label">Installation</label>
                         <div class="col-sm-4">
-                            <select class="form-control" id="iecs" name="iecs">
+                            <select class="form-control required" id="iecs" name="iecs">
 
                             </select>
                         </div>
