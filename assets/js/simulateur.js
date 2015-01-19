@@ -76,7 +76,7 @@ $( document ).ready(function() {
         var wall = $(this).val() ;
         $.ajax({
             type: "POST",
-            url: "index.php/simulateur/wall_thickness",
+            url: "index.php/simulateur/getWallThickness",
             data: { wall: wall}
         })
         .done(function( html ) {
@@ -100,7 +100,7 @@ $( document ).ready(function() {
         
         $.ajax({
             type: "POST",
-            url: "index.php/simulateur/basement",
+            url: "index.php/simulateur/getBasementFormByType",
             data: { id_basement: id_basement}
         })
         .done(function( html ) {
@@ -130,7 +130,7 @@ $( document ).ready(function() {
         
         $.ajax({
             type: "POST",
-            url: "index.php/simulateur/ich",
+            url: "index.php/simulateur/getIch",
             data: { energy: energy}
         })
         .done(function( html ) {
@@ -160,7 +160,7 @@ $( document ).ready(function() {
         }*/
         $.ajax({
             type: "POST",
-            url: "index.php/simulateur/iecs",
+            url: "index.php/simulateur/getIecs",
             data: { energy: energy}
         })
         .done(function( html ) {

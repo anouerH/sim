@@ -741,7 +741,17 @@ class Simulateur extends CI_Controller {
         
     public function getBasementFormByType(){
         $basement = new Basementform_model();
+        if(!isset($_POST['id_basement'])){
+            echo '0';
+            exit();
+        }
+        
         $id_basement = $_POST['id_basement'];
+        if($id_basement == 0){
+            echo '0';
+            exit();
+        }
+            
         $data = $basement->getBasementFormByType($id_basement);
         if(!count($data)){
             echo '0';

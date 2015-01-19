@@ -8,7 +8,7 @@
                 <script src="<?php echo base_url('assets/js/jquery-1.9.1.min.js') ?>"></script>
                 <script src="<?php echo base_url('assets/js/jquery.cookie-1.3.1.js') ?>"></script>
                 <script src="<?php echo base_url('assets/js/jquery.steps.js') ?>"></script>
-                <script src="<?php echo base_url('assets/js/custom.js') ?>"></script>
+                <script src="<?php echo base_url('assets/js/simulateur.js') ?>"></script>
                 <script src="<?php echo base_url('assets/js/jquery.validate.js') ?>"></script>
                 
                 

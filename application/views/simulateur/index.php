@@ -561,7 +561,7 @@
                   
                 </div>
                 
-                
+                <!--
                 <legend>Autres</legend>
             <div class="form-group">
                 <label for="with_argon" class="col-sm-4 control-label">Chauffage eau chaude</label>
@@ -635,7 +635,7 @@
                     </select>
                 </div>
             </div>
-        <legend>Chauffage eau</legend>
+        <legend>Chauffage eau</legend>-->
     </fieldset>
  
     <!--<h3>Résultats</h3>
