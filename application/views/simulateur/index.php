@@ -622,7 +622,7 @@
                     </select>
                 </div>
             </div>
-
+                -->
 
             <div class="form-group">
                 <label for="aRA" class="col-sm-4 control-label">Système de ventilation</label>
@@ -635,7 +635,7 @@
                     </select>
                 </div>
             </div>
-        <legend>Chauffage eau</legend>-->
+       <!-- <legend>Chauffage eau</legend>-->
     </fieldset>
  
     <!--<h3>Résultats</h3>

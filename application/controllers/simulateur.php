@@ -186,6 +186,7 @@ class Simulateur extends CI_Controller {
         // DP portes = S portes1 x U portes1 + S portes2 x U portes2 + S portes3 x U portes3
         $data['DPportes'] =  $DPportes =  $Sportes * $Uportes ;
         //DP véranda = S véranda1 x U véranda1 + S véranda2 x U véranda2 + S véranda3 x U véranda3
+        
         $data['DPveranda'] =  $DPveranda =  $Sveranda * $Uveranda ;
         
         
@@ -444,6 +445,7 @@ class Simulateur extends CI_Controller {
             
         }
         
+        
         // k rf/m (refend/mur extérieur) :
         $data['krf_m'] = $krf_m = 1 ;
         /* if(!ITE)
@@ -468,9 +470,26 @@ class Simulateur extends CI_Controller {
         // --------------  1.1.2. Calcul de METEO (P:24)-----------
         
         
-        // CLIMAT
+        // CLIMAT = DHcor / 1000 
+        // Avec = DHcor= Dhref + ((Nref / C2)+5) x dN 
+        
         $Odept = new Departement_model();
-        $data['CLIMAT'] = $CLIMAT = $Odept->getZone($departement);
+        // get Departement Meteo Data
+        $dataMeto = $Odept->getDeptMetoData($departement);
+        
+        $data['Dhref'] = $Dhref = $dataMeto['dhref'];
+        $data['Nref'] = $Nref = $dataMeto['nref'];
+        // Si C4 = NULL ; C2=340 sinon C2=400
+        $data['C4'] = $C4 = (int)$dataMeto['c4'];
+        $data['C3'] = $C3 = (int)$dataMeto['c3'];
+        $data['C2'] = $C2 = ($dataMeto['c4']) ? 400 : 340 ;
+        // dN = C3 x altitude (m)
+        $data['altitude'] = $altitude = (int) $_POST['altitude'] ;
+        $data['dN'] = $dN = (int)$dataMeto['c3']  * (int) $_POST['altitude'] ;
+        // Avec = DHcor= Dhref + ((Nref / C2)+5) x dN 
+        $data['DHcor'] = $DHcor = (int)$Dhref + (((int)$Nref / (int)$C2) + 5 ) * $dN ;
+        $data['CLIMAT'] = $CLIMAT = $DHcor / 1000;
+        
         $Sse = 0.028;
          /*
          * if(vitredegage){
@@ -481,29 +500,30 @@ class Simulateur extends CI_Controller {
         // E = Pref x Nref / 1000 (selon méthode DEL2), par département – Ensoleillement sur(kWh/m²) – Valeurs en annexe 1.
         $data['E'] = $E = $Odept->getE($departement);
         
-        
         // Calcul de X 
         switch ($zone){
             case  'h1' :
-                $data['X'] = $X = (22.9 + ($Sse * $E ) ) / $ENV * 2.5 * $CLIMAT;
+                $data['X'] = $X = (22.9 + ($Sse * $E ) ) / ($ENV * 2.5 * $CLIMAT);
+                
                 break;
             case  'h2' :
-                $data['X'] = $X = (21.7 + ($Sse * $E ) ) / $ENV * 2.5 * $CLIMAT;
+                $data['X'] = $X = (21.7 + ($Sse * $E ) ) / ($ENV * 2.5 * $CLIMAT);
                 break;
             case  'h3' :
-                $data['X'] = $X = (18.5 + ($Sse * $E ) ) / $ENV * 2.5 * $CLIMAT;
+                $data['X'] = $X = (18.5 + ($Sse * $E ) ) / ($ENV * 2.5 * $CLIMAT);
                 break;
             default :
-               $data['X'] = $X = (22.9 + ($Sse * $E ) ) / $ENV * 2.5 * $CLIMAT;
+               $data['X'] = $X = (22.9 + ($Sse * $E ) ) / ($ENV * 2.5 * $CLIMAT);
 
         }
+        
+        
        
         // COMPL
         $data['COMPL'] = $COMPL = 2.5 * (1 - ( ($X - pow($X, 2.9)) / (1 - pow($X, 2.9)) ));
         
+        
         $data['METEO'] = $METEO = $CLIMAT * $COMPL;
-        
-        
         
         /********************************************************/
         /**************** 1.1.3. Calcul de INT ******************/

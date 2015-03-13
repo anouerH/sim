@@ -30,7 +30,10 @@ class Departement_model extends CI_Model {
     public function getE($departement){
         $query = $this->db->get_where('sim_departement',array('id'=>$departement));
         $resutl = $query->result_array() ;
-        return ($resutl[0]['pref'] * $resutl[0]['pref']) / 100;
+        $res = (($resutl[0]['pref'] * $resutl[0]['nref']) / 100) ;
+        
+        
+        return $res;
     }
     
     public function getFch($departement){
@@ -46,6 +49,15 @@ class Departement_model extends CI_Model {
            return $resutl[0]['fecs_new'];
         else 
             return $resutl[0]['fecs_old'];
+    }
+    
+    /**
+     * get Departement METEO DATA
+     */
+    public function getDeptMetoData($departement){
+        $query = $this->db->get_where('sim_departement',array('id'=>$departement));
+        $resutl = $query->row_array();
+        return $resutl ;
     }
 
 }

@@ -48,7 +48,7 @@
     
     
     
-    <!--<div class="bs-example">
+    <div class="bs-example">
     <table class="table table-striped">
       <caption>Données du formulaire</caption>
       <thead>
@@ -129,7 +129,7 @@
         
       </tbody>
     </table>
-  </div>-->
+  </div>
     <h3>1.1.1. Calcul de ENV</h3>
     <kbd class="bg-primary">ENV = (DPmurs + DPplafond + DPplancher + DPfenêtres + DPportes + DPvéranda + PT) / 2.5 x Sh + aRA</kbd>
     <!--<br>
@@ -272,7 +272,25 @@
     <h3>1.1.1. Calcul de METEO</h3>
     <kbd class="bg-primary">METEO = CLIMAT x COMPL</kbd><br><br>
     
-    <kbd class="bg-primary">CLIMAT = <?php echo $CLIMAT  ?></kbd>
+    
+    <kbd class="bg-primary">CLIMAT = DHcor / 1000</kbd><br><br>
+    <kbd class="bg-primary">DHcor= Dhref + ((Nref / C2)+5) x dN</kbd><br><br>
+    <kbd class="bg-primary">Dhref = <?php echo (int)$Dhref  ?></kbd><br>
+    <kbd class="bg-primary">Nref = <?php echo (int)$Nref  ?></kbd><br>
+    
+    <kbd class="bg-primary">C3 = <?php echo (int)$C3  ?></kbd><br>
+    <kbd class="bg-primary">C4 = <?php echo (int)$C4  ?></kbd><br>
+    
+    <kbd class="bg-primary">C2 = <?php echo (int)$C2  ?>  (Si C4 = - ; C2=340 sinon C2=400)</kbd><br><br>
+    
+    <kbd class="bg-primary">dN = C3 x altitude (m)</kbd><br>
+    <kbd class="bg-primary">dN = <?php echo $C3 ?> x <?php echo $altitude ?> </kbd><br>
+    <kbd class="bg-primary">dN = <?php echo $dN ?></kbd><br><br>
+    <kbd class="bg-primary">DHcor = <?php echo $Dhref ?> + ((<?php echo $Nref ?> / <?php echo $C2 ?> )+5) x <?php echo $dN ?> </kbd><br>
+    <kbd class="bg-primary">DHcor = <?php echo $DHcor ?> </kbd><br><br>
+    
+    <kbd class="bg-primary">CLIMAT = <?php echo $DHcor  ?> / 1000 </kbd><br>
+    <kbd class="bg-primary">CLIMAT = <?php echo $CLIMAT  ?> / 1000 </kbd><br><br>
     <kbd class="bg-primary">COMPL = <?php echo $COMPL  ?></kbd>
     <div class="alert alert-danger alert-dismissible fade in" role="alert">
         <strong><samp><samp>METEO = <?php echo $METEO  ?></samp></samp></strong>
