@@ -9,7 +9,7 @@ class Mitoyennete_model extends CI_Model {
 	public function getMitoyennetes()
 	{
 		
-		$query = $this->db->get('mitoyennete');
+		$query = $this->db->get('sim_mitoyennete');
 		return $query->result_array();
 		
         }
@@ -19,7 +19,7 @@ class Mitoyennete_model extends CI_Model {
                         'id'=>$id, 
             ) ;
         
-            $query = $this->db->get_where('mitoyennete', $Aparams);
+            $query = $this->db->get_where('sim_mitoyennete', $Aparams);
             $resutl = $query->result_array() ;
             if($strfield)
                 return $resutl[0][$strfield];

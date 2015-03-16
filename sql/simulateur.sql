@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 16, 2015 at 05:43 PM
--- Server version: 5.5.40-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.5
+-- Generation Time: Mar 16, 2015 at 03:35 PM
+-- Server version: 5.5.41-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,8 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `air_space`
 --
 
-DROP TABLE IF EXISTS `air_space`;
-CREATE TABLE IF NOT EXISTS `air_space` (
+CREATE TABLE IF NOT EXISTS `sim_air_space` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
@@ -37,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `air_space` (
 -- Dumping data for table `air_space`
 --
 
-INSERT INTO `air_space` (`id`, `label`) VALUES
+INSERT INTO `sim_air_space` (`id`, `label`) VALUES
 (1, '4/6/4'),
 (2, '4/8/4'),
 (3, '4/10/4'),
@@ -51,8 +50,7 @@ INSERT INTO `air_space` (`id`, `label`) VALUES
 -- Table structure for table `basement_form`
 --
 
-DROP TABLE IF EXISTS `basement_form`;
-CREATE TABLE IF NOT EXISTS `basement_form` (
+CREATE TABLE IF NOT EXISTS `sim_basement_form` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `plancher` varchar(255) NOT NULL,
   `uplancher` double NOT NULL,
@@ -64,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `basement_form` (
 -- Dumping data for table `basement_form`
 --
 
-INSERT INTO `basement_form` (`id`, `plancher`, `uplancher`, `id_palncher_type`) VALUES
+INSERT INTO `sim_basement_form` (`id`, `plancher`, `uplancher`, `id_palncher_type`) VALUES
 (1, 'Plancher inconnu', 2, 3),
 (2, 'Plancher avec ou sans\r\nremplissage', 1.45, 3),
 (3, 'Plancher entre solives bois avec ou sans remplissage', 1.1, 3),
@@ -84,8 +82,7 @@ INSERT INTO `basement_form` (`id`, `plancher`, `uplancher`, `id_palncher_type`) 
 -- Table structure for table `basement_type`
 --
 
-DROP TABLE IF EXISTS `basement_type`;
-CREATE TABLE IF NOT EXISTS `basement_type` (
+CREATE TABLE IF NOT EXISTS `sim_basement_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -97,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `basement_type` (
 -- Dumping data for table `basement_type`
 --
 
-INSERT INTO `basement_type` (`id`, `label`, `code`, `cor_sol`) VALUES
+INSERT INTO `sim_basement_type` (`id`, `label`, `code`, `cor_sol`) VALUES
 (1, 'Terre-plein', 'terre-plein', 1),
 (2, 'extérieur', 'exterieur', 1),
 (3, 'Vide-sanitaire', 'vide-sanitaire', 0.85),
@@ -109,8 +106,7 @@ INSERT INTO `basement_type` (`id`, `label`, `code`, `cor_sol`) VALUES
 -- Table structure for table `carpentry_type`
 --
 
-DROP TABLE IF EXISTS `carpentry_type`;
-CREATE TABLE IF NOT EXISTS `carpentry_type` (
+CREATE TABLE IF NOT EXISTS `sim_carpentry_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) NOT NULL,
   `label` varchar(255) NOT NULL,
@@ -121,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `carpentry_type` (
 -- Dumping data for table `carpentry_type`
 --
 
-INSERT INTO `carpentry_type` (`id`, `code`, `label`) VALUES
+INSERT INTO `sim_carpentry_type` (`id`, `code`, `label`) VALUES
 (1, 'wood', 'bois'),
 (2, 'pvc', 'PVC'),
 (3, 'metal', 'métal'),
@@ -133,8 +129,7 @@ INSERT INTO `carpentry_type` (`id`, `code`, `label`) VALUES
 -- Table structure for table `construction_year`
 --
 
-DROP TABLE IF EXISTS `construction_year`;
-CREATE TABLE IF NOT EXISTS `construction_year` (
+CREATE TABLE IF NOT EXISTS `sim_construction_year` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -170,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `construction_year` (
 -- Dumping data for table `construction_year`
 --
 
-INSERT INTO `construction_year` (`id`, `code`, `label`, `umur_h1_joule`, `umur_h1`, `umur_h2_joule`, `umur_h2`, `umur_h3_joule`, `umur_h3`, `uplancher_h1_joule`, `uplancher_h1`, `uplancher_h2_joule`, `uplancher_h2`, `uplancher_h3_joule`, `uplancher_h3`, `uplancher_combles_h1_joule`, `uplancher_combles_h1`, `uplancher_combles_h2_joule`, `uplancher_combles_h2`, `uplancher_combles_h3_joule`, `uplancher_combles_h3`, `uplancher_terrasse_h1_joule`, `uplancher_terrasse_h1`, `uplancher_terrasse_h2_joule`, `uplancher_terrasse_h2`, `uplancher_terrasse_h3_joule`, `uplancher_terrasse_h3`) VALUES
+INSERT INTO `sim_construction_year` (`id`, `code`, `label`, `umur_h1_joule`, `umur_h1`, `umur_h2_joule`, `umur_h2`, `umur_h3_joule`, `umur_h3`, `uplancher_h1_joule`, `uplancher_h1`, `uplancher_h2_joule`, `uplancher_h2`, `uplancher_h3_joule`, `uplancher_h3`, `uplancher_combles_h1_joule`, `uplancher_combles_h1`, `uplancher_combles_h2_joule`, `uplancher_combles_h2`, `uplancher_combles_h3_joule`, `uplancher_combles_h3`, `uplancher_terrasse_h1_joule`, `uplancher_terrasse_h1`, `uplancher_terrasse_h2_joule`, `uplancher_terrasse_h2`, `uplancher_terrasse_h3_joule`, `uplancher_terrasse_h3`) VALUES
 (1, 'before_1975', 'Avant 1975', 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2, 2, 2, 2, 2, 2, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5),
 (2, 'between_1975_and_1977', 'Entre 1975 et 1977', 1, 1, 1.05, 1.05, 1.11, 1.11, 0.9, 0.9, 0.95, 0.95, 1, 1, 0.5, 0.5, 0.53, 0.53, 0.56, 0.56, 0.75, 0.75, 0.79, 0.79, 0.83, 0.83),
 (3, 'between_1978_and_1982', 'Entre 1978 et 1982', 0.8, 1, 0.84, 0.84, 0.89, 1.11, 0.8, 0.9, 0.84, 0.95, 0.89, 1, 0.4, 0.5, 0.42, 0.53, 0.44, 0.56, 0.7, 0.75, 0.74, 0.79, 0.78, 0.83),
@@ -184,8 +179,7 @@ INSERT INTO `construction_year` (`id`, `code`, `label`, `umur_h1_joule`, `umur_h
 -- Table structure for table `door_type`
 --
 
-DROP TABLE IF EXISTS `door_type`;
-CREATE TABLE IF NOT EXISTS `door_type` (
+CREATE TABLE IF NOT EXISTS `sim_door_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
   `u` float NOT NULL,
@@ -196,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `door_type` (
 -- Dumping data for table `door_type`
 --
 
-INSERT INTO `door_type` (`id`, `label`, `u`) VALUES
+INSERT INTO `sim_door_type` (`id`, `label`, `u`) VALUES
 (1, 'Porte opaque pleine', 3.5),
 (2, 'Porte avec moins de 30% de vitrage simple', 4),
 (3, 'Porte avec 30-60% de vitrage simple', 4.5),
@@ -215,8 +209,7 @@ INSERT INTO `door_type` (`id`, `label`, `u`) VALUES
 -- Table structure for table `ecs`
 --
 
-DROP TABLE IF EXISTS `ecs`;
-CREATE TABLE IF NOT EXISTS `ecs` (
+CREATE TABLE IF NOT EXISTS `sim_ecs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `iecs_bv` double DEFAULT NULL,
@@ -234,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `ecs` (
 -- Dumping data for table `ecs`
 --
 
-INSERT INTO `ecs` (`id`, `label`, `iecs_bv`, `iecs_bh`, `iecs_av`, `iecs_sv`, `iecs_inst`, `iecs_acc`, `energy`, `new_install`) VALUES
+INSERT INTO `sim_ecs` (`id`, `label`, `iecs_bv`, `iecs_bh`, `iecs_av`, `iecs_sv`, `iecs_inst`, `iecs_acc`, `energy`, `new_install`) VALUES
 (1, 'Chauffe-eau électrique installé il y a plus de 15ans', 1.59, 1.75, NULL, NULL, NULL, NULL, 1, 0),
 (2, 'Chauffe-eau électrique installé entre 5 et 15 ans', 1.48, 1.59, NULL, NULL, NULL, NULL, 1, 0),
 (3, 'Chauffe-eau électrique installé il y a moins de 5ans', 1.44, 1.52, NULL, NULL, NULL, NULL, 1, 1),
@@ -272,8 +265,7 @@ INSERT INTO `ecs` (`id`, `label`, `iecs_bv`, `iecs_bh`, `iecs_av`, `iecs_sv`, `i
 -- Table structure for table `energy`
 --
 
-DROP TABLE IF EXISTS `energy`;
-CREATE TABLE IF NOT EXISTS `energy` (
+CREATE TABLE IF NOT EXISTS `sim_energy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(30) NOT NULL,
   `a_pcsi` float NOT NULL,
@@ -284,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `energy` (
 -- Dumping data for table `energy`
 --
 
-INSERT INTO `energy` (`id`, `label`, `a_pcsi`) VALUES
+INSERT INTO `sim_energy` (`id`, `label`, `a_pcsi`) VALUES
 (1, 'Electrique', 1),
 (2, 'Gaz naturel', 1.11),
 (3, 'GPL', 1.09),
@@ -300,8 +292,7 @@ INSERT INTO `energy` (`id`, `label`, `a_pcsi`) VALUES
 -- Table structure for table `glazing_type`
 --
 
-DROP TABLE IF EXISTS `glazing_type`;
-CREATE TABLE IF NOT EXISTS `glazing_type` (
+CREATE TABLE IF NOT EXISTS `sim_glazing_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) NOT NULL,
   `label` varchar(255) NOT NULL,
@@ -312,7 +303,7 @@ CREATE TABLE IF NOT EXISTS `glazing_type` (
 -- Dumping data for table `glazing_type`
 --
 
-INSERT INTO `glazing_type` (`id`, `code`, `label`) VALUES
+INSERT INTO `sim_glazing_type` (`id`, `code`, `label`) VALUES
 (1, 'single_glazing', 'Simple'),
 (2, 'overglazing', 'Survitrage'),
 (3, 'double_glazing', 'Double vitrage'),
@@ -325,8 +316,7 @@ INSERT INTO `glazing_type` (`id`, `code`, `label`) VALUES
 -- Table structure for table `hsp`
 --
 
-DROP TABLE IF EXISTS `hsp`;
-CREATE TABLE IF NOT EXISTS `hsp` (
+CREATE TABLE IF NOT EXISTS `sim_hsp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hsp` double NOT NULL,
   PRIMARY KEY (`id`)
@@ -336,7 +326,7 @@ CREATE TABLE IF NOT EXISTS `hsp` (
 -- Dumping data for table `hsp`
 --
 
-INSERT INTO `hsp` (`id`, `hsp`) VALUES
+INSERT INTO `sim_hsp` (`id`, `hsp`) VALUES
 (1, 2),
 (2, 2.25),
 (3, 2.5),
@@ -357,8 +347,7 @@ INSERT INTO `hsp` (`id`, `hsp`) VALUES
 -- Table structure for table `ich`
 --
 
-DROP TABLE IF EXISTS `ich`;
-CREATE TABLE IF NOT EXISTS `ich` (
+CREATE TABLE IF NOT EXISTS `sim_ich` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
   `rd` float NOT NULL,
@@ -373,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `ich` (
 -- Dumping data for table `ich`
 --
 
-INSERT INTO `ich` (`id`, `label`, `rd`, `re`, `rg`, `rr`, `energy`) VALUES
+INSERT INTO `sim_ich` (`id`, `label`, `rd`, `re`, `rg`, `rr`, `energy`) VALUES
 (1, 'Convecteurs électriques NF électricité performance catégorie C', 1, 0.95, 1, '0.99', 1),
 (2, 'Panneaux rayonnants électriques ou radiateurs électriques NF..C', 1, 0.97, 1, '0.99', 1),
 (3, 'Plafond rayonnant électrique', 1, 0.98, 1, 'Rr2', 1),
@@ -418,8 +407,7 @@ INSERT INTO `ich` (`id`, `label`, `rd`, `re`, `rg`, `rr`, `energy`) VALUES
 -- Table structure for table `mitoyennete`
 --
 
-DROP TABLE IF EXISTS `mitoyennete`;
-CREATE TABLE IF NOT EXISTS `mitoyennete` (
+CREATE TABLE IF NOT EXISTS `sim_mitoyennete` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -434,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `mitoyennete` (
 -- Dumping data for table `mitoyennete`
 --
 
-INSERT INTO `mitoyennete` (`id`, `code`, `label`, `mit`, `mit2a`, `mit2b`, `mit2c`) VALUES
+INSERT INTO `sim_mitoyennete` (`id`, `code`, `label`, `mit`, `mit2a`, `mit2b`, `mit2c`) VALUES
 (1, 'individual_house', 'Indépendante', 1, 1, 1, 1),
 (2, 'short_side', 'Accolée sur 1 petit côté', 0.8, 0.8, 0.9, 0.9),
 (3, 'long_side', 'Accolée sur 1 grand côté', 0.7, 0.7, 0.65, 0.7),
@@ -448,8 +436,7 @@ INSERT INTO `mitoyennete` (`id`, `code`, `label`, `mit`, `mit2a`, `mit2b`, `mit2
 -- Table structure for table `news`
 --
 
-DROP TABLE IF EXISTS `news`;
-CREATE TABLE IF NOT EXISTS `news` (
+CREATE TABLE IF NOT EXISTS `sim_news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
@@ -462,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `news` (
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id`, `title`, `slug`, `text`) VALUES
+INSERT INTO `sim_news` (`id`, `title`, `slug`, `text`) VALUES
 (1, 'test1', 'test1', 'test1test1test1test1test1test1test1'),
 (2, 'test2', 'test2', 'test2test2test2test2test2test2test2test2test2test2'),
 (3, 'aby-(-ç_ç_', 'aby-__', 'hfhhfghfhgf');
@@ -473,8 +460,7 @@ INSERT INTO `news` (`id`, `title`, `slug`, `text`) VALUES
 -- Table structure for table `plafond`
 --
 
-DROP TABLE IF EXISTS `plafond`;
-CREATE TABLE IF NOT EXISTS `plafond` (
+CREATE TABLE IF NOT EXISTS `sim_plafond` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `upafond` double NOT NULL,
@@ -485,7 +471,7 @@ CREATE TABLE IF NOT EXISTS `plafond` (
 -- Dumping data for table `plafond`
 --
 
-INSERT INTO `plafond` (`id`, `label`, `upafond`) VALUES
+INSERT INTO `sim_plafond` (`id`, `label`, `upafond`) VALUES
 (1, 'Inconnu', 2.5),
 (2, 'Avec ou sans remplissage', 1.45),
 (3, 'bois', 2.3),
@@ -504,8 +490,7 @@ INSERT INTO `plafond` (`id`, `label`, `upafond`) VALUES
 -- Table structure for table `roof_type`
 --
 
-DROP TABLE IF EXISTS `roof_type`;
-CREATE TABLE IF NOT EXISTS `roof_type` (
+CREATE TABLE IF NOT EXISTS `sim_roof_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -516,7 +501,7 @@ CREATE TABLE IF NOT EXISTS `roof_type` (
 -- Dumping data for table `roof_type`
 --
 
-INSERT INTO `roof_type` (`id`, `code`, `label`) VALUES
+INSERT INTO `sim_roof_type` (`id`, `code`, `label`) VALUES
 (1, 'roof_terrace', 'Terrasse'),
 (2, 'unoccupied_attics', 'Combles perdus'),
 (3, 'habitable_attics', 'Combles aménagés'),
@@ -528,8 +513,7 @@ INSERT INTO `roof_type` (`id`, `code`, `label`) VALUES
 -- Table structure for table `shape`
 --
 
-DROP TABLE IF EXISTS `shape`;
-CREATE TABLE IF NOT EXISTS `shape` (
+CREATE TABLE IF NOT EXISTS `sim_shape` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -540,7 +524,7 @@ CREATE TABLE IF NOT EXISTS `shape` (
 -- Dumping data for table `shape`
 --
 
-INSERT INTO `shape` (`id`, `code`, `label`) VALUES
+INSERT INTO `sim_shape` (`id`, `code`, `label`) VALUES
 (1, 'compact', 'compacte'),
 (2, 'elongated', 'Allongée'),
 (3, 'complex', 'Développée');
@@ -551,7 +535,6 @@ INSERT INTO `shape` (`id`, `code`, `label`) VALUES
 -- Table structure for table `sim_departement`
 --
 
-DROP TABLE IF EXISTS `sim_departement`;
 CREATE TABLE IF NOT EXISTS `sim_departement` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
@@ -628,8 +611,7 @@ INSERT INTO `sim_departement` (`id`, `code`, `label`, `nref`, `dhref`, `pref`, `
 -- Table structure for table `ufenetres`
 --
 
-DROP TABLE IF EXISTS `ufenetres`;
-CREATE TABLE IF NOT EXISTS `ufenetres` (
+CREATE TABLE IF NOT EXISTS `sim_ufenetres` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_vitrage` int(11) NOT NULL,
   `id_volet` int(11) NOT NULL,
@@ -643,7 +625,7 @@ CREATE TABLE IF NOT EXISTS `ufenetres` (
 -- Dumping data for table `ufenetres`
 --
 
-INSERT INTO `ufenetres` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_airspace`, `ufenetre`) VALUES
+INSERT INTO `sim_ufenetres` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_airspace`, `ufenetre`) VALUES
 (1, 1, 1, 1, NULL, 4.2),
 (2, 1, 1, 2, NULL, 3.9),
 (3, 1, 1, 3, NULL, 4.95),
@@ -765,8 +747,7 @@ INSERT INTO `ufenetres` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_ai
 -- Table structure for table `uveranda`
 --
 
-DROP TABLE IF EXISTS `uveranda`;
-CREATE TABLE IF NOT EXISTS `uveranda` (
+CREATE TABLE IF NOT EXISTS `sim_uveranda` (
   `id` int(11) NOT NULL,
   `id_vitrage` int(11) NOT NULL,
   `id_volet` int(11) NOT NULL,
@@ -779,7 +760,7 @@ CREATE TABLE IF NOT EXISTS `uveranda` (
 -- Dumping data for table `uveranda`
 --
 
-INSERT INTO `uveranda` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_airspace`, `uveranda`) VALUES
+INSERT INTO `sim_uveranda` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_airspace`, `uveranda`) VALUES
 (1, 1, 1, 1, NULL, 4.3),
 (2, 1, 1, 2, NULL, 4),
 (3, 1, 1, 3, NULL, 4.9),
@@ -889,8 +870,7 @@ INSERT INTO `uveranda` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_air
 -- Table structure for table `ventilation`
 --
 
-DROP TABLE IF EXISTS `ventilation`;
-CREATE TABLE IF NOT EXISTS `ventilation` (
+CREATE TABLE IF NOT EXISTS `sim_ventilation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
   `ara` double NOT NULL,
@@ -901,7 +881,7 @@ CREATE TABLE IF NOT EXISTS `ventilation` (
 -- Dumping data for table `ventilation`
 --
 
-INSERT INTO `ventilation` (`id`, `label`, `ara`) VALUES
+INSERT INTO `sim_ventilation` (`id`, `label`, `ara`) VALUES
 (1, 'Naturelle + cheminée sans trappe d’obturation', 0.45),
 (2, 'Naturelle par défauts d’étanchéité', 0.35),
 (3, 'Naturelle par entrée d’air / extraction', 0.3),
@@ -917,8 +897,7 @@ INSERT INTO `ventilation` (`id`, `label`, `ara`) VALUES
 -- Table structure for table `wall_thickness`
 --
 
-DROP TABLE IF EXISTS `wall_thickness`;
-CREATE TABLE IF NOT EXISTS `wall_thickness` (
+CREATE TABLE IF NOT EXISTS `sim_wall_thickness` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_wall` int(11) NOT NULL,
   `thickness` varchar(30) NOT NULL,
@@ -930,7 +909,7 @@ CREATE TABLE IF NOT EXISTS `wall_thickness` (
 -- Dumping data for table `wall_thickness`
 --
 
-INSERT INTO `wall_thickness` (`id`, `id_wall`, `thickness`, `umur`) VALUES
+INSERT INTO `sim_wall_thickness` (`id`, `id_wall`, `thickness`, `umur`) VALUES
 (1, 21, '20 et -', 3.2),
 (2, 21, '25', 2.85),
 (3, 21, '30', 2.65),
@@ -1046,8 +1025,7 @@ INSERT INTO `wall_thickness` (`id`, `id_wall`, `thickness`, `umur`) VALUES
 -- Table structure for table `wall_type`
 --
 
-DROP TABLE IF EXISTS `wall_type`;
-CREATE TABLE IF NOT EXISTS `wall_type` (
+CREATE TABLE IF NOT EXISTS `sim_wall_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
@@ -1059,7 +1037,7 @@ CREATE TABLE IF NOT EXISTS `wall_type` (
 -- Dumping data for table `wall_type`
 --
 
-INSERT INTO `wall_type` (`id`, `label`, `parent_id`, `kpi_m`) VALUES
+INSERT INTO `sim_wall_type` (`id`, `label`, `parent_id`, `kpi_m`) VALUES
 (1, 'Murs en pierre de taille et moellons', NULL, 0.4),
 (2, 'Murs en pisé ou béton de terre stabilisé', NULL, 0.3),
 (3, 'Murs en pans de bois', NULL, 0.3),

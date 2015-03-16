@@ -9,7 +9,7 @@ class Hsp_model extends CI_Model {
     public function getHsps()
     {
 
-            $query = $this->db->get('hsp');
+            $query = $this->db->get('sim_hsp');
             return $query->result_array();
     }
 

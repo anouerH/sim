@@ -9,7 +9,7 @@ class Basementtype_model extends CI_Model {
 	public function getBasementType()
 	{
 		
-		$query = $this->db->get('basement_type');
+		$query = $this->db->get('sim_basement_type');
 		return $query->result_array();
 		
 

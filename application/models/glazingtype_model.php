@@ -8,7 +8,7 @@ class Glazingtype_model extends CI_Model {
 	
 	public function getGlazingTypes()
 	{
-		$query = $this->db->get('glazing_type');
+		$query = $this->db->get('sim_glazing_type');
 		return $query->result_array();
 	}
     
@@ -22,7 +22,7 @@ class Glazingtype_model extends CI_Model {
         if($air_space)
             $Aparams['id_airspace'] = $air_space;
         
-        $query = $this->db->get_where('ufenetres', $Aparams);
+        $query = $this->db->get_where('sim_ufenetres', $Aparams);
         $resutl = $query->result_array() ;
         return $resutl[0]['ufenetre'];
     }
@@ -38,7 +38,7 @@ class Glazingtype_model extends CI_Model {
         if($air_space && $air_space > 0)
             $Aparams['id_airspace'] = $air_space;
         // var_dump($Aparams);
-        $query = $this->db->get_where('uveranda', $Aparams);
+        $query = $this->db->get_where('sim_uveranda', $Aparams);
         $resutl = $query->result_array() ;
         // var_dump($resutl);
         return $resutl[0]['uveranda'];

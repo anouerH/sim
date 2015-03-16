@@ -8,7 +8,7 @@ class Plafond_model extends CI_Model {
 	
 	public function getPlafonds()
 	{
-            $query = $this->db->get('plafond');
+            $query = $this->db->get('sim_plafond');
             //$query = $this->db->get_where('wall_type',array('parent_id'=>null));
             return $query->result_array();
 	}

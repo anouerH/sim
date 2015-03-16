@@ -9,7 +9,7 @@ class Rooftype_model extends CI_Model {
 	public function getRoofTyes()
 	{
 		
-		$query = $this->db->get('roof_type');
+		$query = $this->db->get('sim_roof_type');
 		return $query->result_array();
 		
 

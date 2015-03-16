@@ -9,7 +9,7 @@ class Shape_model extends CI_Model {
 	public function getShapes()
 	{
 		
-		$query = $this->db->get('shape');
+		$query = $this->db->get('sim_shape');
 		return $query->result_array();
 		
 

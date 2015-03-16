@@ -9,21 +9,21 @@ class Iecs_model extends CI_Model {
 	public function getIecs($id_energy = NULL)
 	{
         if(!$id_energy )
-            $query = $this->db->get('ecs');
+            $query = $this->db->get('sim_ecs');
         else 
-            $query = $this->db->get_where('ecs',array('energy'=>$id_energy));
+            $query = $this->db->get_where('sim_ecs',array('energy'=>$id_energy));
         
 		return $query->result_array();
 	}
         
         public function getIecsValue($id, $field){
-            $query = $this->db->get_where('ecs',array('id'=>$id));
+            $query = $this->db->get_where('sim_ecs',array('id'=>$id));
             $resutl = $query->result_array() ;
             return $resutl[0][$field];
         }
         
         public function checkInstall($id){
-            $query = $this->db->get_where('ecs',array('id'=>$id));
+            $query = $this->db->get_where('sim_ecs',array('id'=>$id));
             $resutl = $query->result_array() ;
             if($resutl[0]['new_install'])
                 return true;

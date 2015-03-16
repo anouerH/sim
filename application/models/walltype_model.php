@@ -9,7 +9,7 @@ class Walltype_model extends CI_Model {
 	public function getWallTypes()
 	{
             //$query = $this->db->get('wall_type');
-            $query = $this->db->get_where('wall_type',array('parent_id'=>null));
+            $query = $this->db->get_where('sim_wall_type',array('parent_id'=>null));
             return $query->result_array();
 	}
         
@@ -21,7 +21,7 @@ class Walltype_model extends CI_Model {
                         'id'=>$id, 
             ) ;
         
-            $query = $this->db->get_where('wall_type', $Aparams);
+            $query = $this->db->get_where('sim_wall_type', $Aparams);
             $resutl = $query->result_array() ;
             
             return $resutl[0]['kpi_m'];

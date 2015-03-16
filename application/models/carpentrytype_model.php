@@ -9,7 +9,7 @@ class Carpentrytype_model extends CI_Model {
 	public function getCarpentryTypes()
 	{
 		
-		$query = $this->db->get('carpentry_type');
+		$query = $this->db->get('sim_carpentry_type');
 		return $query->result_array();
 		
 

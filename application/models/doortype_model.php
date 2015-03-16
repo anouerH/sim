@@ -8,7 +8,7 @@ class Doortype_model extends CI_Model {
 	
 	public function getDoorTypes()
 	{
-		$query = $this->db->get('door_type');
+		$query = $this->db->get('sim_door_type');
 		return $query->result_array();
 	}
 

@@ -9,14 +9,14 @@ class Ich_model extends CI_Model {
 	public function getIchs($eneregy = NULL)
 	{
 		if(!$eneregy)
-            $query = $this->db->get('ich');
+            $query = $this->db->get('sim_ich');
         else 
-            $query = $this->db->get_where('ich',array('energy'=>$eneregy));
+            $query = $this->db->get_where('sim_ich',array('energy'=>$eneregy));
 		return $query->result_array();
 	}
     
     public function getRow($ich_id){
-        $query = $this->db->get_where('ich',array('id'=>$ich_id));
+        $query = $this->db->get_where('sim_ich',array('id'=>$ich_id));
         $resutl = $query->result_array() ;
         if($resutl[0]['rr'] == 'Rr1' )
             $resutl[0]['rr'] = 0.9;
