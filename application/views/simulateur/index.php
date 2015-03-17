@@ -220,18 +220,45 @@
 				</div>
 			</div>
                 
-                <div class="form-group full-row" id="wall_thickness_group">
-                    <label for="wall_thickness" class="col-sm-2 control-label">Epaisseur</label>
-                    <div class="col-sm-4">
-                            <select class="form-control" id="wall_thickness" name="wall_thickness">
-                                <option>- Préciser -</option>
-                                <?php foreach ($thickness as $item ) {?>
-                                        <option value="<?php echo $item['umur'] ?>"><?php echo $item['thickness'] ?></option>
-                                <?php } ?>
-                            </select>
+			<div class="form-group full-row" id="wall_thickness_group">
+				<label for="wall_thickness" class="col-sm-2 control-label">Epaisseur</label>
+				<div class="col-sm-4">
+						<select class="form-control" id="wall_thickness" name="wall_thickness">
+							<option>- Préciser -</option>
+							<?php foreach ($thickness as $item ) {?>
+									<option value="<?php echo $item['umur'] ?>"><?php echo $item['thickness'] ?></option>
+							<?php } ?>
+						</select>
+				</div>
+			</div>
+			<div class="row  clear-div">
+                    <div class="form-group" id="isolation_mur_group" >
+                        <label class="col-sm-4 control-label">Isolation du mur</label>
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                              <input type="radio" name="isolation_mur" id="isolation_mur_1" value="1" class="required"> Oui  
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="isolation_mur" id="isolation_mur_0" value="0" checked="checked" class="required"> Non
+                            </label>
+                        </div>
                     </div>
-		</div>
-                
+                    
+            </div>
+            <div class="row  clear-div">
+				<div class="form-group" id="risolant_mur_group" >
+					<label class="col-sm-4 control-label">Risolant</label>
+					<div class="col-sm-4 input-group">
+						<input  class="form-control required number" name="risolant_mur" id="risolant_mur" placeholder="Risolant" value="">
+					</div>
+				</div>
+				<div class="form-group" id="epaisseur_mur_group">
+					<label class="col-sm-4 control-label">Epaisseur</label>
+					<div class="col-sm-4 input-group">
+						<input  class="form-control required number" name="epaisseur_mur" id="epaisseur_mur" placeholder="Epaisseur" value="">
+					</div>
+				</div>
+			</div>
             <legend>Les fenêtres</legend>
                 
             
@@ -496,6 +523,19 @@
                             </label>
                             <label class="radio-inline">
                                 <input type="radio" name="c_insert" id="c_insert" value="0" checked="checked" class="required"> Non
+                            </label>
+                        </div>
+                    </div>
+                </div>
+				<div class="row  clear-div">
+                    <div class="form-group" >
+                        <label class="col-sm-4 control-label">Présence d’un programmateur  </label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                              <input type="radio" name="programmateur" id="programmateur" value="0.97" class="required"> Oui  
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="programmateur" id="programmateur" value="1" checked="checked" class="required"> Non
                             </label>
                         </div>
                     </div>

@@ -544,20 +544,15 @@ class Simulateur extends CI_Controller {
         /*----------------------------------------------------------------*/
         
         $data['ich_id'] =  $ich_id = (isset($_POST['ich'])) ? $_POST['ich'] : 0 ;
+		
         $OIch = new Ich_model();
         list($Rg, $Re, $Rd, $Rr) = $OIch->getRow($ich_id);
         $data['Rg'] = $Rg ;
         $data['Re'] = $Re ;
         $data['Rd'] = $Rd ;
         $data['Rr'] = $Rr ;
-        $Pg = 1;
-        
-        /*
-         * if($programateur)
-         *      $Pg = 0.97
-         */
-        $data['Pg'] = $Pg ;
-            
+        $data['Pg'] = $Pg = (isset($_POST['programmateur'])) ? $_POST['programmateur'] : 1 ;;
+				
         // Calcul $CORCH
         if($Bch < 2000 )
             $Corch = 1.7 - 6 * pow(10, -4) * $Bch;

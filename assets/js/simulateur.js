@@ -1,11 +1,11 @@
 $( document ).ready(function() {
-    var form = $("#example-advanced-form").show();
+    /* var form = $("#example-advanced-form").show();
 
     form.steps({
         headerTag: "h3",
         bodyTag: "fieldset",
         transitionEffect: "slideLeft",
-        /* Labels */
+        // Labels
         labels: {
             cancel: "Annuler",
             current: "Etape courante:",
@@ -62,18 +62,23 @@ $( document ).ready(function() {
         }
     }).validate({
         //errorClass : 'error clearfix',
-        errorPlacement: function errorPlacement(error, element) {element.parent().after(error); /*element.parent().parent().after(error);*/ },
+        errorPlacement: function errorPlacement(error, element) {element.parent().after(error); },
         rules: {
             confirm: {
                 equalTo: "#password-2"
             }
         }
-    });
+    }); */
     
     
     // get wall_thickness
     $("input[name='wall_material']").change(function() {
         var wall = $(this).val() ;
+		$('#isolation_mur_group').hide("slow");
+		$("#isolation_mur_0").prop("checked", true).trigger('change');
+		if(wall>0){
+			$('#isolation_mur_group').show("slow");
+		}
         $.ajax({
             type: "POST",
             url: "index.php/simulateur/getWallThickness",
@@ -89,7 +94,18 @@ $( document ).ready(function() {
         });
     });
     
-    
+    // Show Risolant and Epaisseur if isloation mu is true
+	$("input[name='isolation_mur']").change(function() {
+		var isolation = $(this).val() ;
+		$('#risolant_mur_group').hide("slow");
+		$('#epaisseur_mur_group').hide("slow");
+		$('#risolant_mur').val("");
+		$('#epaisseur_mur').val("");
+		if(isolation > 0){
+			$('#risolant_mur_group').show("slow");
+			$('#epaisseur_mur_group').show("slow");
+		}
+	});
     // get Basement from : Uplancher bas
     $("#CORsol").change(function() {
        
