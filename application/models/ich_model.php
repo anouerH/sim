@@ -26,7 +26,7 @@ class Ich_model extends CI_Model {
             
         }
         //return ($resutl[0]['pref'] * $resutl[0]['pref']) / 100;
-        return array($resutl[0]['rg'], $resutl[0]['re'], $resutl[0]['rd'], $resutl[0]['rr']);
+        return array($resutl[0]['rg'], $resutl[0]['re'], $resutl[0]['rd'], $resutl[0]['rr'], $resutl[0]['chaudiere']);
     }
 
 }

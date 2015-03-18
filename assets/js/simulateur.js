@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    /* var form = $("#example-advanced-form").show();
+    var form = $("#example-advanced-form").show();
 
     form.steps({
         headerTag: "h3",
@@ -68,16 +68,16 @@ $( document ).ready(function() {
                 equalTo: "#password-2"
             }
         }
-    }); */
+    }); 
     
     
     // get wall_thickness
     $("input[name='wall_material']").change(function() {
         var wall = $(this).val() ;
-		$('#isolation_mur_group').hide("slow");
+		$('#isolation_mur_group').fadeOut();
 		$("#isolation_mur_0").prop("checked", true).trigger('change');
 		if(wall>0){
-			$('#isolation_mur_group').show("slow");
+			$('#isolation_mur_group').fadeIn();
 		}
         $.ajax({
             type: "POST",
@@ -86,26 +86,26 @@ $( document ).ready(function() {
         })
         .done(function( html ) {
             if(html === "0")
-                $('#wall_thickness_group').hide("slow");
+                $('#wall_thickness_group').fadeOut();
             else{
                 $( "#wall_thickness" ).html( html );
-                $('#wall_thickness_group').show("slow");
+                $('#wall_thickness_group').fadeIn();
             }
         });
     });
     
     // Show Risolant and Epaisseur if isloation mu is true
-	$("input[name='isolation_mur']").change(function() {
-		var isolation = $(this).val() ;
-		$('#risolant_mur_group').hide("slow");
-		$('#epaisseur_mur_group').hide("slow");
-		$('#risolant_mur').val("");
-		$('#epaisseur_mur').val("");
-		if(isolation > 0){
-			$('#risolant_mur_group').show("slow");
-			$('#epaisseur_mur_group').show("slow");
-		}
-	});
+    $("input[name='isolation_mur']").change(function() {
+            var isolation = $(this).val() ;
+            $('#risolant_mur_group').fadeOut();
+            $('#epaisseur_mur_group').fadeOut();
+            $('#risolant_mur').val("");
+            $('#epaisseur_mur').val("");
+            if(isolation > 0){
+                    $('#risolant_mur_group').fadeIn();
+                    $('#epaisseur_mur_group').fadeIn();
+            }
+    });
     // get Basement from : Uplancher bas
     $("#CORsol").change(function() {
        
@@ -120,13 +120,64 @@ $( document ).ready(function() {
             data: { id_basement: id_basement}
         })
         .done(function( html ) {
-            if(html === "0")
+            if(html === "0"){
                 $('#basement_form_group').fadeOut();
-            else{
+                //$('#isolation_pb_group').fadeOut();
+            }else{
                 $( "#basement_form" ).html( html );
                 $('#basement_form_group').fadeIn();
+                //$('#isolation_pb_group').fadeIn();
             }
         });
+    });
+    
+    $("#basement_form").change(function() {
+        var basement_form = $(this).val();
+        $("#isolation_pb_0").prop("checked", true).trigger('change');
+        $('#isolation_pb_group').fadeOut();
+        if(basement_form > 0){
+            $('#isolation_pb_group').fadeIn();
+        }
+    });
+    
+    // Show Risolant and Epaisseur if isloation Plancher bas is true
+    $("input[name='isolation_pb']").change(function() {
+            var isolation = $(this).val() ;
+            $('#risolant_pb_group').fadeOut();
+            $('#epaisseur_pb_group').fadeOut();
+            $('#risolant_pb').val("");
+            $('#epaisseur_pb').val("");
+            if(isolation > 0){
+                    $('#risolant_pb_group').fadeIn();
+                    $('#epaisseur_pb_group').fadeIn();
+            }
+    });
+    
+    
+    /**
+     * Isolation Uploancher haut
+     */
+    
+    $("#plafond").change(function() {
+        var plafond = $(this).val();
+        $("#isolation_ph_0").prop("checked", true).trigger('change');
+        $('#isolation_ph_group').fadeOut();
+        if(plafond > 0){
+            $('#isolation_ph_group').fadeIn();
+        }
+    });
+    
+    // Show Risolant and Epaisseur if isloation Plancher haut is true
+    $("input[name='isolation_ph']").change(function() {
+            var isolation = $(this).val() ;
+            $('#risolant_ph_group').fadeOut();
+            $('#epaisseur_ph_group').fadeOut();
+            $('#risolant_ph').val("");
+            $('#epaisseur_ph').val("");
+            if(isolation > 0){
+                    $('#risolant_ph_group').fadeIn();
+                    $('#epaisseur_ph_group').fadeIn();
+            }
     });
     
     

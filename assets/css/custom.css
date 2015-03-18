@@ -402,6 +402,8 @@ div.form-group{
 #wall_thickness_group, #basement_form_group, #air_space_group,
 #iecs_group, #ich_group, #ballon_type_group , #veilleuse_group, 
 #accumulation_group, #isolation_mur_group,#risolant_mur_group, #epaisseur_mur_group
+, #isolation_pb_group,#risolant_pb_group, #epaisseur_pb_group
+, #isolation_ph_group,#risolant_ph_group, #epaisseur_ph_group
 {
     display: none;
 }

@@ -129,7 +129,54 @@ class Simulateur extends CI_Controller {
             $data['Umur'] = $Umur = $cYear->getUByConstructionYear($year_of_construction, $criteria);
         }else{
             $Othickness = new Thickness_model();
-            $data['Umur'] = $Umur = $wall_thickness;
+            // $data['Umur'] = $Umur = $wall_thickness;
+            $Umur0 = $wall_thickness;
+            // Si isolé
+            if(isset($_POST['isolation_mur']) && $_POST['isolation_mur']>0){
+                // Risolant est définie
+                if(isset($_POST['risolant_mur']) && $_POST['risolant_mur']>0){
+                    $data['Umur'] = $Umur = (1/( (1/ $Umur0 ) +  $_POST['risolant_mur'] ));
+                }else{
+                    // Si l'epaisseur de l'isolant est connue
+                    if(isset($_POST['epaisseur_mur']) && $_POST['epaisseur_mur']>0){
+                        $data['Umur'] = $Umur =  (1/( (1/$Umur0) + (1/$_POST['epaisseur_mur'] ) ));
+                    }else{
+                        // calcul de l'epaisseur
+                        switch ($year_of_construction){
+                            case  'before_1975' :
+                                $e = 0.98;
+                                break;
+                            case  'between_1975_and_1977' :
+                                $e = 0.98;
+                                break;
+                            case  'between_1978_and_1982' :
+                                $e = 0.98;
+                                break;
+                            case  'between_1978_and_1982' :
+                                $e = 0.98;
+                                break;
+                            case  'between_1983_and_1988' :
+                                $e = 0.98;
+                                break;
+                            case  'between_1989_and_2000' :
+                                $e = 0.56;
+                                break;
+                            case  'after_2000' :
+                                $e = 0.42;
+                                break;
+                            default :
+                                $e = 0;
+
+                        }
+                        
+                        $data['Umur'] = $Umur = (1/( (1/ $Umur0) + ($e/0.04) ));
+                    }
+                }
+            }else{
+                $e = 0 ;
+                $data['Umur'] = $Umur = (1/( (1/ $Umur0) ));
+            }
+            
         }
         
         // Coefficients U des planchers bas
@@ -143,11 +190,222 @@ class Simulateur extends CI_Controller {
             $cYear = new Constructionyear_model();
             $data['Uplancher'] = $Uplancher = $cYear->getUByConstructionYear($year_of_construction, $criteria);
         }else{
-            $data['Uplancher'] = $Uplancher = (isset($_POST['basement_form'])) ? $_POST['basement_form'] : 0;
+            // $data['Uplancher'] = $Uplancher = (isset($_POST['basement_form'])) ? $_POST['basement_form'] : 0;
+            $Uplancher0 = (isset($_POST['basement_form'])) ? $_POST['basement_form'] : 0;
+            
+            // Si isolé
+            if(isset($_POST['isolation_pb']) && $_POST['isolation_pb']>0){
+                // Risolant est définie
+                if(isset($_POST['risolant_pb']) && $_POST['risolant_pb']>0){
+                    $data['Uplancher'] = $Uplancher = ($Uplancher0) ? (1/( (1/ $Uplancher0 ) +  $_POST['risolant_pb'] )) : 0;
+                }else{
+                    // Si l'epaisseur de l'isolant est connue
+                    if(isset($_POST['epaisseur_pb']) && $_POST['epaisseur_pb']>0){
+                        $data['Uplancher'] = $Uplancher = (1/( (1/$Uplancher0) + (1/$_POST['epaisseur_pb'] ) ));
+                    }else{
+                        // calcul de l'epaisseur
+                        switch ($year_of_construction){
+                            case  'before_1975' :
+                                $epb = 0.87;
+                                break;
+                            case  'between_1975_and_1977' :
+                                $epb = 0.87;
+                                break;
+                            case  'between_1978_and_1982' :
+                                $epb = 0.87;
+                                break;
+                            case  'between_1978_and_1982' :
+                                $epb = 0.87;
+                                break;
+                            case  'between_1983_and_1988' :
+                                $epb = 0.87;
+                                break;
+                            case  'between_1989_and_2000' :
+                                $epb = 0.56;
+                                break;
+                            case  'after_2000' :
+                                $epb = 0.42;
+                                break;
+                            default :
+                                $epb = 0;
+
+                        }
+                        
+                        $data['Uplancher'] = $Uplancher = (1/( (1/ $Uplancher0) + ($epb/0.042) ));
+                    }
+                }
+                
+            }else{
+                $epb = 0 ;
+                $data['Uplancher'] = $Uplancher = ($Uplancher0) ? (1/( (1/ $Uplancher0) )) : 1;
+            }
         }
         // Coefficients U des planchers hauts
         if(isset($_POST['plafond']) && !empty($_POST['plafond'])){
-            $data['Uplafond'] = $Uplafond = $_POST['plafond'];
+            // $data['Uplafond'] = $Uplafond = $_POST['plafond'];
+            $Uplafond0 = $_POST['plafond'];
+            
+            // Si isolé
+            if(isset($_POST['isolation_ph']) && $_POST['isolation_ph']>0){
+                // Risolant est définie
+                if(isset($_POST['risolant_ph']) && $_POST['risolant_ph']>0){
+                    $data['Uplafond'] = $Uplafond = (1/( (1/ $Uplafond0) +   $_POST['risolant_ph'] ));
+                }else{
+                    // Si l'epaisseur de l'isolant est connue
+                    if(isset($_POST['epaisseur_ph']) && $_POST['epaisseur_ph']>0){
+                        $data['Uplafond'] = $Uplafond = (1/( (1/ $Uplafond0) + (1/ $_POST['epaisseur_ph'] ) ));
+                    }else{
+                        // calcul de l'epaisseur
+                        switch ($year_of_construction){
+                            case  'before_1975' :
+                                switch ($roof_type){
+                                    case  'roof_terrace' :
+                                        $eph = 1;
+                                        break;
+                                    case  'unoccupied_attics' :
+                                        $eph = 0.43;
+                                        break;
+                                    case  'habitable_attics' :
+                                        $eph = 0.63;
+                                        break;
+                                    case  'terrace_and_attics' :
+                                        $eph = 0.63;
+                                        break;
+                                    
+                                    default :
+                                        $eph = 0;
+                                }
+                                break;
+                            case  'between_1975_and_1977' :
+                                switch ($roof_type){
+                                    case  'roof_terrace' :
+                                        $eph = 1;
+                                        break;
+                                    case  'unoccupied_attics' :
+                                        $eph = 0.43;
+                                        break;
+                                    case  'habitable_attics' :
+                                        $eph = 0.63;
+                                        break;
+                                    case  'terrace_and_attics' :
+                                        $eph = 0.63;
+                                        break;
+                                    
+                                    default :
+                                        $eph = 0;
+                                }
+                                break;
+                            case  'between_1978_and_1982' :
+                                switch ($roof_type){
+                                    case  'roof_terrace' :
+                                        $eph = 1;
+                                        break;
+                                    case  'unoccupied_attics' :
+                                        $eph = 0.43;
+                                        break;
+                                    case  'habitable_attics' :
+                                        $eph = 0.63;
+                                        break;
+                                    case  'terrace_and_attics' :
+                                        $eph = 0.63;
+                                        break;
+                                    
+                                    default :
+                                        $eph = 0;
+                                }
+                                break;
+                            case  'between_1978_and_1982' :
+                                switch ($roof_type){
+                                    case  'roof_terrace' :
+                                        $eph = 1;
+                                        break;
+                                    case  'unoccupied_attics' :
+                                        $eph = 0.43;
+                                        break;
+                                    case  'habitable_attics' :
+                                        $eph = 0.63;
+                                        break;
+                                    case  'terrace_and_attics' :
+                                        $eph = 0.63;
+                                        break;
+                                    
+                                    default :
+                                        $eph = 0;
+                                }
+                                break;
+                            case  'between_1983_and_1988' :
+                                switch ($roof_type){
+                                    case  'roof_terrace' :
+                                        $eph = 1;
+                                        break;
+                                    case  'unoccupied_attics' :
+                                        $eph = 0.43;
+                                        break;
+                                    case  'habitable_attics' :
+                                        $eph = 0.63;
+                                        break;
+                                    case  'terrace_and_attics' :
+                                        $eph = 0.63;
+                                        break;
+                                    
+                                    default :
+                                        $eph = 0;
+                                }
+                                break;
+                            
+                            
+                            
+                            case  'between_1989_and_2000' :
+                                switch ($roof_type){
+                                    case  'roof_terrace' :
+                                        $eph = 0.5;
+                                        break;
+                                    case  'unoccupied_attics' :
+                                        $eph = 0.23;
+                                        break;
+                                    case  'habitable_attics' :
+                                        $eph = 0.38;
+                                        break;
+                                    case  'terrace_and_attics' :
+                                        $eph = 0.38;
+                                        break;
+                                    
+                                    default :
+                                        $eph = 0;
+                                }
+                                break;
+                            case  'after_2000' :
+                                switch ($roof_type){
+                                    case  'roof_terrace' :
+                                        $eph = 0.27;
+                                        break;
+                                    case  'unoccupied_attics' :
+                                        $eph = 0.19;
+                                        break;
+                                    case  'habitable_attics' :
+                                        $eph = 0.27;
+                                        break;
+                                    case  'terrace_and_attics' :
+                                        $eph = 0.27;
+                                        break;
+                                    
+                                    default :
+                                        $eph = 0;
+                                }
+                                break;
+                            default :
+                                $eph = 0;
+
+                        }
+                        
+                        $data['Uplafond'] = $Uplafond = (1/( (1/ $Uplafond0) + ($eph/0.04) ));
+                    }
+                }
+                
+            }else{
+                $eph = 0 ;
+                $data['Uplafond'] = $Uplafond = (1/( (1/ $Uplafond0) ));
+            }
         }else{
             $criteria = "uplancher_combles_".$zone;
             if($roof_type == 'roof_terrace' || $roof_type == 'terrace_and_attics' )
@@ -546,20 +804,26 @@ class Simulateur extends CI_Controller {
         $data['ich_id'] =  $ich_id = (isset($_POST['ich'])) ? $_POST['ich'] : 0 ;
 		
         $OIch = new Ich_model();
-        list($Rg, $Re, $Rd, $Rr) = $OIch->getRow($ich_id);
+        list($Rg, $Re, $Rd, $Rr, $with_chaudiere ) = $OIch->getRow($ich_id);
         $data['Rg'] = $Rg ;
         $data['Re'] = $Re ;
         $data['Rd'] = $Rd ;
         $data['Rr'] = $Rr ;
         $data['Pg'] = $Pg = (isset($_POST['programmateur'])) ? $_POST['programmateur'] : 1 ;;
-				
+	
         // Calcul $CORCH
-        if($Bch < 2000 )
-            $Corch = 1.7 - 6 * pow(10, -4) * $Bch;
-        elseif(2000 < $Bch  && $Bch> 6000)
-            $Corch = 0.75 - 1.25 * pow(10, -4) * $Bch;
-        else 
-            $Corch = 0;
+        $Corch = 0;
+        
+        if($with_chaudiere){
+            
+           if($Bch < 2000 )
+                $Corch = 1.7 - 6 * pow(10, -4) * $Bch;
+            elseif(2000 < $Bch  && $Bch< 6000)
+                $Corch = 0.75 - 1.25 * pow(10, -4) * $Bch;
+            else 
+                $Corch = 0; 
+        }
+        
         $data['Corch'] = $Corch;
         $data['Ich'] = $Ich = $Pg * (  (1 / $Rg * $Re * $Rd * $Rr) + $Corch ) ;
         
