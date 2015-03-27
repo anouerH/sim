@@ -66,10 +66,28 @@ $( document ).ready(function() {
         rules: {
             confirm: {
                 equalTo: "#password-2"
+            },
+            epaisseur_mur:{
+                required: function(element){
+                    return ($("#risolant_mur").val() == '');
+                    
+                }
+            },
+            epaisseur_ph:{
+                required: function(element){
+                    return ($("#risolant_ph").val() == '');
+                    
+                }
+            },
+            epaisseur_pb:{
+                required: function(element){
+                    return ($("#risolant_pb").val() == '');
+                    
+                }
             }
         }
     }); 
-    
+    // $.validator.addMethod('EMur', function(value, element){return value == 'My Name';},'My Name is incorrect');
     
     // get wall_thickness
     $("input[name='wall_material']").change(function() {
@@ -94,11 +112,12 @@ $( document ).ready(function() {
         });
     });
     
-    // Show Risolant and Epaisseur if isloation mu is true
+    // Show Risolant and Epaisseur if isloation mur is true
     $("input[name='isolation_mur']").change(function() {
             var isolation = $(this).val() ;
             $('#risolant_mur_group').fadeOut();
             $('#epaisseur_mur_group').fadeOut();
+            $("#epaisseur_mur").prop('disabled', false);
             $('#risolant_mur').val("");
             $('#epaisseur_mur').val("");
             if(isolation > 0){
@@ -106,6 +125,8 @@ $( document ).ready(function() {
                     $('#epaisseur_mur_group').fadeIn();
             }
     });
+    
+    
     // get Basement from : Uplancher bas
     $("#CORsol").change(function() {
        
@@ -145,6 +166,7 @@ $( document ).ready(function() {
             var isolation = $(this).val() ;
             $('#risolant_pb_group').fadeOut();
             $('#epaisseur_pb_group').fadeOut();
+            $("#epaisseur_pb").prop('disabled', false);
             $('#risolant_pb').val("");
             $('#epaisseur_pb').val("");
             if(isolation > 0){
@@ -174,6 +196,7 @@ $( document ).ready(function() {
             $('#epaisseur_ph_group').fadeOut();
             $('#risolant_ph').val("");
             $('#epaisseur_ph').val("");
+            $("#epaisseur_ph").prop('disabled', false);
             if(isolation > 0){
                     $('#risolant_ph_group').fadeIn();
                     $('#epaisseur_ph_group').fadeIn();
@@ -255,6 +278,35 @@ $( document ).ready(function() {
             }else{
                 $('#accumulation_group').fadeIn();
             }
+        }
+    });
+    
+    
+    $('#risolant_mur').change(function(){
+        if($(this).val().length){
+            $('#epaisseur_mur').val('');
+            $("#epaisseur_mur").prop('disabled', true);
+        }else{
+            $("#epaisseur_mur").prop('disabled', false);
+        }
+    });
+    
+    $('#risolant_ph').change(function(){
+        if($(this).val().length){
+            $('#epaisseur_ph').val('');
+            $("#epaisseur_ph").prop('disabled', true);
+        }else{
+            $("#epaisseur_ph").prop('disabled', false);
+        }
+    });
+    
+    
+    $('#risolant_pb').change(function(){
+        if($(this).val().length){
+            $('#epaisseur_pb').val('');
+            $("#epaisseur_pb").prop('disabled', true);
+        }else{
+            $("#epaisseur_pb").prop('disabled', false);
         }
     });
     

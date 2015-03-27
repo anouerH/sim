@@ -108,13 +108,13 @@
                             <span class="input-group-addon">%</span>
                     </div>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label for="altitude" class="col-sm-4 control-label">Altitude</label>
                     <div class="col-sm-4 input-group">
                       <input type="text" class="form-control required number" id="altitude" name="altitude" placeholder="Altitude">
                         <span class="input-group-addon">m<sup>2</sup></span>
                     </div>
-                </div>
+                </div>-->
                 
                 
                 
@@ -199,7 +199,8 @@
                     <div class="form-group" id="epaisseur_mur_group">
                         <label class="col-sm-4 control-label">Epaisseur</label>
                         <div class="col-sm-4 input-group">
-                                <input  class="form-control required number" name="epaisseur_mur" id="epaisseur_mur" placeholder="Epaisseur" value="">
+                                <input  class="form-control number" name="epaisseur_mur" id="epaisseur_mur" placeholder="Epaisseur" value="">
+                                <span class="input-group-addon">cm</span>
                         </div>
                     </div>
                 </div>
@@ -218,7 +219,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="hsp" class="col-sm-4 control-label ">Hauteur moyenne sous plafond</label>
+                    <label for="hsp" class="col-sm-4 control-label ">Hauteur moyenne sous plafond (m)</label>
                     <div class="col-sm-4">
                         <select class="form-control required" id="hsp" name="hsp">
                             <option value="">- Préciser -</option>
@@ -227,6 +228,7 @@
                                 <option value="<?php echo $item['hsp'] ?>"><?php echo $item['hsp'] ?></option>
                             <?php } ?>
                         </select>
+                        
                     </div>
                 </div>
                 <div class="form-group ">

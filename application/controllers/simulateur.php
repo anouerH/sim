@@ -131,13 +131,18 @@ class Simulateur extends CI_Controller {
             $Othickness = new Thickness_model();
             // $data['Umur'] = $Umur = $wall_thickness;
             $Umur0 = $wall_thickness;
+           
+            $data['isolation_mur'] =  $isolation_mur  = (isset($_POST['isolation_mur'])) ? $_POST['isolation_mur'] : 0 ; 
+            $data['epaisseur_mur'] =  $epaisseur_mur  = (isset($_POST['epaisseur_mur'])) ? $_POST['epaisseur_mur'] : '' ;
             // Si isolé
             if(isset($_POST['isolation_mur']) && $_POST['isolation_mur']>0){
                 // Risolant est définie
+                $data['risolant_mur'] =  $risolant_mur  = (isset($_POST['risolant_mur'])) ? $_POST['risolant_mur'] : '' ;
                 if(isset($_POST['risolant_mur']) && $_POST['risolant_mur']>0){
                     $data['Umur'] = $Umur = (1/( (1/ $Umur0 ) +  $_POST['risolant_mur'] ));
                 }else{
                     // Si l'epaisseur de l'isolant est connue
+                    
                     if(isset($_POST['epaisseur_mur']) && $_POST['epaisseur_mur']>0){
                         $data['Umur'] = $Umur =  (1/( (1/$Umur0) + (1/$_POST['epaisseur_mur'] ) ));
                     }else{
@@ -181,7 +186,9 @@ class Simulateur extends CI_Controller {
         
         // Coefficients U des planchers bas
         $data['plancher_bas'] = $plancher_bas = $_POST['plancher_bas'] ;
-        
+        $data['isolation_pb'] = $isolation_pb = (isset($_POST['isolation_pb'])) ? $_POST['isolation_pb'] : '' ;
+        $data['risolant_ph'] = $risolant_ph = (isset($_POST['risolant_ph'])) ? $_POST['risolant_ph'] : '' ;
+        $data['epaisseur_ph'] = $epaisseur_ph = (isset($_POST['epaisseur_ph'])) ? $_POST['epaisseur_ph'] : '' ;
         if($plancher_bas == 'terre-plein'){
             $data['Uplancher'] = $Uplancher = 0 ;
         }elseif($plancher_bas == '0'){
@@ -241,6 +248,9 @@ class Simulateur extends CI_Controller {
             }
         }
         // Coefficients U des planchers hauts
+        $data['isolation_ph'] =  $isolation_ph  = (isset($_POST['isolation_ph'])) ? $_POST['isolation_ph'] : 0 ; 
+        $data['risolant_ph'] =  $risolant_ph  = (isset($_POST['risolant_ph'])) ? $_POST['risolant_ph'] : '' ;
+        $data['epaisseur_ph'] =  $epaisseur_ph  = (isset($_POST['epaisseur_ph'])) ? $_POST['epaisseur_ph'] : '' ;
         if(isset($_POST['plafond']) && !empty($_POST['plafond'])){
             // $data['Uplafond'] = $Uplafond = $_POST['plafond'];
             $Uplafond0 = $_POST['plafond'];
@@ -426,6 +436,7 @@ class Simulateur extends CI_Controller {
         $data['Uveranda'] = $Uveranda = $Oglazing->getUveranda($glazing_type, $with_volet, $carpentry_type, $air_space);
         
         // Coefficients U des portes :: door_type
+        $data['door_type'] = $door_type = (isset($_POST['door_type'])) ? $_POST['door_type'] : 0 ;
         $data['Uportes'] =  $Uportes  = (isset($_POST['door_type'])) ? $_POST['door_type'] : 0 ;
         
         /****************************************/
@@ -734,16 +745,15 @@ class Simulateur extends CI_Controller {
         $Odept = new Departement_model();
         // get Departement Meteo Data
         $dataMeto = $Odept->getDeptMetoData($departement);
-        
         $data['Dhref'] = $Dhref = $dataMeto['dhref'];
         $data['Nref'] = $Nref = $dataMeto['nref'];
         // Si C4 = NULL ; C2=340 sinon C2=400
-        $data['C4'] = $C4 = (int)$dataMeto['c4'];
-        $data['C3'] = $C3 = (int)$dataMeto['c3'];
+        $data['C4'] = $C4 = $dataMeto['c4'];
+        $data['C3'] = $C3 = $dataMeto['c3'];
         $data['C2'] = $C2 = ($dataMeto['c4']) ? 400 : 340 ;
         // dN = C3 x altitude (m)
-        $data['altitude'] = $altitude = (int) $_POST['altitude'] ;
-        $data['dN'] = $dN = (int)$dataMeto['c3']  * (int) $_POST['altitude'] ;
+        $data['altitude'] = $altitude = (int) $dataMeto["altitude"] ;
+        $data['dN'] = $dN = (int)$dataMeto['c3']  *   $altitude ;
         // Avec = DHcor= Dhref + ((Nref / C2)+5) x dN 
         $data['DHcor'] = $DHcor = (int)$Dhref + (((int)$Nref / (int)$C2) + 5 ) * $dN ;
         $data['CLIMAT'] = $CLIMAT = $DHcor / 1000;
@@ -832,7 +842,8 @@ class Simulateur extends CI_Controller {
         
         // Calcul Calcul des consommations de chauffage : Cch PCI = Cch PCS / α pcs 
         // S’il y a un seul système de chauffage sans système de chauffage solaire :
-        
+        $data['c_solaire'] = $c_solaire = $_POST['c_solaire'];
+        $data['c_insert'] = $c_insert = $_POST['c_insert'];
         if($_POST['c_solaire']){
             // Avec un syteme Solaire : Cch PCS = Bch x (1-Fch) x Ich
             $data['Cch_PCS'] = $Cch_PCS = $Bch * (1-($Fch/100)) * $Ich;
@@ -843,6 +854,8 @@ class Simulateur extends CI_Controller {
         
         // get a_pcsi
         $Oenergy = new Energy_model() ;
+        $data['energy'] = $energy = $_POST['energy'] ;
+        $data['energy_eau'] = $energy_eau = $_POST['energy_eau'] ;
         $data['a_pcsi'] = $a_pcsi = $Oenergy->getAPcsi($_POST['energy']);
         
         $data['Cch_PCI'] = $Cch_PCI = $Cch_PCS / $a_pcsi ;

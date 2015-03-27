@@ -46,11 +46,9 @@
       <strong><samp><samp>Bch = SH x ENV x METEO x INT</samp></samp></strong>
     </div>
     
-    
-    
     <div class="bs-example">
     <table class="table table-striped">
-      <caption>Données du formulaire</caption>
+      <caption>Data Form Step 1 </caption>
       <thead>
         <tr>
           <th>Field</th>
@@ -59,21 +57,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>Sur. fenêtres</td>
-          <td><kbd>Sfenetres = <?php echo $Sfenetres?></kbd></td>
-        </tr>
-        <tr>
-          <td>Sur. fenêtres toit</td>
-          <td><kbd>Sfenetrestoit = <?php echo $Sfenetrestoit?></kbd></td>
-        </tr>
-        <tr>
-          <td>Sur. portes</td>
-          <td><kbd>Sportes = <?php echo $Sportes?></kbd></td>
-        </tr>
-        
-        <tr>
-          <td>type toiture</td>
-          <td><kbd>roof_type = <?php echo $roof_type?></kbd></td>
+          <td>Forme</td>
+          <td><kbd>shape = <?php  echo $shape ?></kbd> </td>
         </tr>
         
         <tr>
@@ -82,30 +67,49 @@
         </tr>
         
         <tr>
+          <td>Departement Code </td>
+          <td><kbd><?php  echo $departement ?></kbd> </td>
+        </tr>
+        <tr>
+          <td>Altitude moyenne</td>
+          <td><kbd><?php  echo $altitude ?> (m)</kbd> </td>
+        </tr>
+        
+        <tr>
+          <td>Année de construction</td>
+          <td><kbd><?php  echo $year_of_construction ?></kbd> </td>
+        </tr>
+        <tr>
+          <td>Surface habitable</td>
+          <td><kbd> <?php echo $sh?> (m2)</kbd></td>
+        </tr>
+        <tr>
+          <td>Pourc. de Sur. habitable climatisée</td>
+          <td><kbd> <?php echo $sh_clim?> (%)</kbd></td>
+        </tr>
+        
+        <tr>
           <td>Nbre de niveau </td>
-          <td><kbd>NIV = <?php echo $NIV?></kbd></td>
+          <td><kbd> <?php echo $NIV?></kbd></td>
         </tr>
         
+        
+   </tbody>
+    </table>
+  </div>      
+   <div class="bs-example">
+    <table class="table table-striped">
+      <caption>Data Form Step 2 </caption>
+      <thead>
         <tr>
-          <td>Combles habités ? </td>
-          <td><kbd>isHabitableAttics = <?php  ($isHabitableAttics) ? print "Oui" : print "Non" ?></kbd> </td>
+          <th>Field</th>
+          <th>Value</th>
         </tr>
-        
-        <tr>
-          <td>Forme</td>
-          <td><kbd>shape = <?php  echo $shape ?></kbd> </td>
-        </tr>
-        
-        <tr>
-          <td>FOR</td>
-          <td><kbd>FOR = <?php  echo $FOR ?></kbd> </td>
-        </tr>
-        
-        <tr>
-          <td>Departement</td>
-          <td><kbd>FOR = <?php  echo $departement ?></kbd> </td>
-        </tr>
-        
+      </thead>
+      <tbody>
+          
+          
+          
         <tr>
           <td>Type de mur</td>
           <td><kbd><?php  echo $wall ?></kbd> </td>
@@ -113,33 +117,214 @@
         
         <tr>
           <td>Epaisseur</td>
-          <td><kbd><?php  echo $wall_thickness ?></kbd> </td>
+          <td><kbd><?php  echo $wall_thickness ?> (cm)</kbd> </td>
         </tr>
-        
+        <tr>
+          <td>Isolation Mur</td>
+          <td><kbd><?php  if((int)$isolation_mur) echo "Oui"; else echo "Non"; ?> </kbd> </td>
+        </tr>
+        <?php
+            if((int)$isolation_mur){
+        ?>
+            <tr>
+                <td>Risolant Mur</td>
+                <td><kbd><?php  echo $risolant_mur ; ?> </kbd> </td>
+            </tr>
+            <tr>
+                <td>Epaisseur Mur</td>
+                <td><kbd><?php  echo $epaisseur_mur ; ?> (cm)</kbd> </td>
+            </tr>
+        <?php
+            }
+        ?>
+        <tr>
+            <td>type toiture</td>
+            <td><kbd> <?php echo $roof_type?></kbd></td>
+        </tr>
         
         <tr>
-          <td>Année de construction</td>
-          <td><kbd><?php  echo $year_of_construction ?></kbd> </td>
+            <td>Hauteur moyenne sous plafond</td>
+            <td><kbd> <?php echo $hsp?> (m)</kbd></td>
         </tr>
-        
+        <tr>
+          <td>Isolation Plafond</td>
+          <td><kbd><?php  if((int)$isolation_ph) echo "Oui"; else echo "Non"; ?> </kbd> </td>
+        </tr>
+        <?php
+            if((int)$isolation_ph){
+        ?>
+            <tr>
+                <td>Risolant Plafond</td>
+                <td><kbd><?php  echo $risolant_ph ; ?> </kbd> </td>
+            </tr>
+            <tr>
+                <td>Epaisseur Plafond</td>
+                <td><kbd><?php  echo $epaisseur_ph ; ?> (cm)</kbd> </td>
+            </tr>
+        <?php
+            }
+        ?>
         <tr>
           <td>Type de plancher</td>
           <td><kbd><?php  echo $plancher_bas ?></kbd> </td>
         </tr>
         
+        <?php
+            if((int)$isolation_pb){
+        ?>
+            <tr>
+                <td>Risolant Plafond</td>
+                <td><kbd><?php  echo $risolant_ph ; ?> </kbd> </td>
+            </tr>
+            <tr>
+                <td>Epaisseur Plafond</td>
+                <td><kbd><?php  echo $epaisseur_ph ; ?> (cm)</kbd> </td>
+            </tr>
+        <?php
+            }
+        ?>
+            
+    </tbody>
+    </table>
+  </div>          
+    <div class="bs-example">
+    <table class="table table-striped">
+      <caption>Data Form Step 3 </caption>
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+          
+          
+        <tr>
+          <td>Sur. fenêtres</td>
+          <td><kbd> <?php echo $Sfenetres?> (m2)</kbd></td>
+        </tr>
+        <tr>
+          <td>Sur. véranda</td>
+          <td><kbd> <?php echo $Sveranda?> (m2)</kbd></td>
+        </tr>
+        
+        
+        <tr>
+          <td>Sur. fenêtres toit</td>
+          <td><kbd> <?php echo $Sfenetrestoit?> (m2)</kbd></td>
+        </tr>
+        <tr>
+          <td>Type de vitrage</td>
+          <td><kbd> <?php echo $glazing_type?></kbd></td>
+        </tr>
+       <tr>
+          <td>Lame d'air</td>
+          <td><kbd> <?php echo $air_space ; ?></kbd></td>
+        </tr>
+        
+        <tr>
+          <td>Présence de volets</td>
+          <td><kbd> <?php if ($with_volet == 2 ) echo 'Oui'; else echo 'Non'; ?></kbd></td>
+        </tr>
+        
+        <tr>
+          <td>Type de menuiserie</td>
+          <td><kbd> <?php echo $carpentry_type; ?></kbd></td>
+        </tr>
+        
+        <tr>
+          <td>Présence d’argon</td>
+          <td><kbd> <?php echo $air_space ; ?></kbd></td>
+        </tr>
+        
+        
+        <tr>
+          <td>Sur. portes</td>
+          <td><kbd> <?php echo $Sportes?> (m2)</kbd></td>
+        </tr>
+        
+        
+       
+        
+        <tr>
+          <td>Combles habités ? </td>
+          <td><kbd>isHabitableAttics = <?php  ($isHabitableAttics) ? print "Oui" : print "Non" ?></kbd> </td>
+        </tr>
+        
+        
+        
+        <tr>
+          <td>FOR</td>
+          <td><kbd>FOR = <?php  echo $FOR ?></kbd> </td>
+        </tr>
+        
+        
+        
+        
       </tbody>
+    </table>
+  </div>
+    <div class="bs-example">
+    <table class="table table-striped">
+      <caption>Data Form Step 4 </caption>
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+          
+            <tr>
+                <td>Energie de chauffage</td>
+                <td><kbd><?php  echo $energy ?></kbd> </td>
+            </tr>
+            <tr>
+                <td>Système de chauffage (Ich)</td>
+                <td><kbd><?php  echo $Ich ?></kbd> </td>
+            </tr>
+            <tr>
+                <td>Installation avec un chauffage solaire ? </td>
+                <td><kbd><?php  echo $c_solaire ?></kbd> </td>
+            </tr>
+            
+            <tr>
+                <td>Installation avec un insert ou poêle à bois ? </td>
+                <td><kbd><?php  echo $c_insert ?></kbd> </td>
+            </tr>
+            
+            <tr>
+                <td>Présence d’un programmateur </td>
+                <td><kbd><?php  if($Pg == 1 ) echo 'non'; else echo 'Oui'; ?></kbd> </td>
+            </tr>
+            
+            <tr>
+                <td>Energie de Chauffe-eau</td>
+                <td><kbd><?php  echo $energy_eau ?></kbd> </td>
+            </tr>
+            <tr>
+                <td>Ecs </td>
+                <td><kbd><?php  echo $Iecs ?></kbd> </td>
+            </tr>
+            <tr>
+                <td>Système de ventilation </td>
+                <td><kbd> aRA= <?php  echo $aRA ?></kbd> </td>
+            </tr>
+            
+        
+          </tbody>
     </table>
   </div>
     <h3>1.1.1. Calcul de ENV</h3>
     <kbd class="bg-primary">ENV = (DPmurs + DPplafond + DPplancher + DPfenêtres + DPportes + DPvéranda + PT) / 2.5 x Sh + aRA</kbd>
-    <!--<br>
+    <br>
     <code>DP murs = b 1 x S murs1 x U murs1 + b 2 x S murs2 x U murs2 + b 3 x S murs3 x U murs3</code><br>
     <code>DP plafond = b’ 1 x S plafond1 x U plafond1 + b’ 2 x S plafond2 x U plafond2 + b’ 3 x S plafondt3 x U plafond3</code><br>
     <code>DP plancher = C orsol1 x S plancher 1 x U plancher 1 + C orsol2 x S plancher 2 x U plancher 2 + C orsol3 x S plancher 3 x U plancher 3</code><br>
     <code>DP fenêtres = S fenêtres1 x U fenêtres1 + S fenêtres2 x U fenêtres2 + S fenêtres3 x U fenêtres3</code><br>
     <code>DP portes = S portes1 x U portes1 + S portes2 x U portes2 + S portes3 x U portes3</code><br>
     <code>DP véranda = S véranda1 x U véranda1 + S véranda2 x U véranda2 + S véranda3 x U véranda3</code><br>    
-    -->
+    
     <h4>Calcul de aRA</h4>
     <samp>selon le type de ventillation :
     </samp><kbd class="bg-primary">aRA = <?php echo $aRA?></kbd>
