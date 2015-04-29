@@ -889,7 +889,7 @@ class Simulateur extends CI_Controller {
         
         $Qecs = 17.7 * $sh ;
         if($sh > 27 )
-            $Qecs = (470.9 * $sh ) - 1075 ;
+            $Qecs = (470.9 * log($sh) ) - 1075 ;
         
         switch ($zone){
             case  'h1' :
