@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 27, 2015 at 04:20 PM
--- Server version: 5.5.41-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.7
+-- Client :  127.0.0.1
+-- Généré le :  Mer 29 Avril 2015 à 12:07
+-- Version du serveur :  5.5.39
+-- Version de PHP :  5.4.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,24 +17,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `simulateur2`
+-- Base de données :  `simulateur_afih`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_air_space`
+-- Structure de la table `sim_air_space`
 --
 
 DROP TABLE IF EXISTS `sim_air_space`;
 CREATE TABLE IF NOT EXISTS `sim_air_space` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(11) NOT NULL,
+  `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `sim_air_space`
+-- Contenu de la table `sim_air_space`
 --
 
 INSERT INTO `sim_air_space` (`id`, `label`) VALUES
@@ -48,20 +47,19 @@ INSERT INTO `sim_air_space` (`id`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_basement_form`
+-- Structure de la table `sim_basement_form`
 --
 
 DROP TABLE IF EXISTS `sim_basement_form`;
 CREATE TABLE IF NOT EXISTS `sim_basement_form` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `plancher` varchar(255) NOT NULL,
   `uplancher` double NOT NULL,
-  `id_palncher_type` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `id_palncher_type` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `sim_basement_form`
+-- Contenu de la table `sim_basement_form`
 --
 
 INSERT INTO `sim_basement_form` (`id`, `plancher`, `uplancher`, `id_palncher_type`) VALUES
@@ -81,20 +79,19 @@ INSERT INTO `sim_basement_form` (`id`, `plancher`, `uplancher`, `id_palncher_typ
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_basement_type`
+-- Structure de la table `sim_basement_type`
 --
 
 DROP TABLE IF EXISTS `sim_basement_type`;
 CREATE TABLE IF NOT EXISTS `sim_basement_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `cor_sol` double NOT NULL,
-  PRIMARY KEY (`id`)
+  `cor_sol` double NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Type de plancher bas' AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `sim_basement_type`
+-- Contenu de la table `sim_basement_type`
 --
 
 INSERT INTO `sim_basement_type` (`id`, `label`, `code`, `cor_sol`) VALUES
@@ -106,19 +103,18 @@ INSERT INTO `sim_basement_type` (`id`, `label`, `code`, `cor_sol`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_carpentry_type`
+-- Structure de la table `sim_carpentry_type`
 --
 
 DROP TABLE IF EXISTS `sim_carpentry_type`;
 CREATE TABLE IF NOT EXISTS `sim_carpentry_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `code` varchar(30) NOT NULL,
-  `label` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  `label` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `sim_carpentry_type`
+-- Contenu de la table `sim_carpentry_type`
 --
 
 INSERT INTO `sim_carpentry_type` (`id`, `code`, `label`) VALUES
@@ -130,12 +126,12 @@ INSERT INTO `sim_carpentry_type` (`id`, `code`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_construction_year`
+-- Structure de la table `sim_construction_year`
 --
 
 DROP TABLE IF EXISTS `sim_construction_year`;
 CREATE TABLE IF NOT EXISTS `sim_construction_year` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `umur_h1_joule` double NOT NULL,
@@ -161,13 +157,11 @@ CREATE TABLE IF NOT EXISTS `sim_construction_year` (
   `uplancher_terrasse_h2_joule` double NOT NULL,
   `uplancher_terrasse_h2` double NOT NULL,
   `uplancher_terrasse_h3_joule` double NOT NULL,
-  `uplancher_terrasse_h3` double NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`)
+  `uplancher_terrasse_h3` double NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `sim_construction_year`
+-- Contenu de la table `sim_construction_year`
 --
 
 INSERT INTO `sim_construction_year` (`id`, `code`, `label`, `umur_h1_joule`, `umur_h1`, `umur_h2_joule`, `umur_h2`, `umur_h3_joule`, `umur_h3`, `uplancher_h1_joule`, `uplancher_h1`, `uplancher_h2_joule`, `uplancher_h2`, `uplancher_h3_joule`, `uplancher_h3`, `uplancher_combles_h1_joule`, `uplancher_combles_h1`, `uplancher_combles_h2_joule`, `uplancher_combles_h2`, `uplancher_combles_h3_joule`, `uplancher_combles_h3`, `uplancher_terrasse_h1_joule`, `uplancher_terrasse_h1`, `uplancher_terrasse_h2_joule`, `uplancher_terrasse_h2`, `uplancher_terrasse_h3_joule`, `uplancher_terrasse_h3`) VALUES
@@ -181,12 +175,12 @@ INSERT INTO `sim_construction_year` (`id`, `code`, `label`, `umur_h1_joule`, `um
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_departement`
+-- Structure de la table `sim_departement`
 --
 
 DROP TABLE IF EXISTS `sim_departement`;
 CREATE TABLE IF NOT EXISTS `sim_departement` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `nref` double NOT NULL,
@@ -202,12 +196,11 @@ CREATE TABLE IF NOT EXISTS `sim_departement` (
   `fch` double NOT NULL,
   `fecs_old` double NOT NULL,
   `fecs_new` double NOT NULL,
-  `altitude` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=45 ;
+  `altitude` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=97 ;
 
 --
--- Dumping data for table `sim_departement`
+-- Contenu de la table `sim_departement`
 --
 
 INSERT INTO `sim_departement` (`id`, `code`, `label`, `nref`, `dhref`, `pref`, `c3`, `c4`, `zone_ete`, `zone_hiver`, `t_ext_base`, `e_`, `c_alt_max`, `fch`, `fecs_old`, `fecs_new`, `altitude`) VALUES
@@ -231,47 +224,98 @@ INSERT INTO `sim_departement` (`id`, `code`, `label`, `nref`, `dhref`, `pref`, `
 (18, '18', 'Cher', 5300, 58000, 79, 1, 1, 'Eb', 2, -7, 419, 2, 25.5, 51.7, 66.2, 700),
 (19, '19', 'Corrèze', 5000, 48000, 85, 1.5, 1, 'Ec', 1, -8, 425, 3, 29.8, 53.9, 69.5, 1100),
 (20, '2A', 'Corse du Sud', 4200, 34000, 126, 1.8, 5, 'Ed', 3, -2, 529, 6, 52, 65.9, 81.8, 2100),
-(21, '2B', 'Haute Corse', 4000, 32000, 126, 1.8, 5, 'Ed', 3, -2, 504, 6, 22.4, 50.8, 65, 2100),
-(22, '21', 'Côte d''Or', 4900, 57000, 73, 1.5, 1, 'Ec', 1, -10, 358, 2, 35, 50.9, 66, 700),
-(23, '22', 'Côtes d''Armor', 5400, 51000, 79, 1, 5, 'Ea', 2, -4, 427, 1, 29.8, 53.9, 69.5, 300),
-(24, '23', 'Creuse', 5200, 56000, 84, 1.5, 1, 'Ec', 1, -8, 437, 3, 37.8, 58.8, 73.5, 1100),
-(25, '24', 'Dordogne', 5000, 48000, 87, 1, 1, 'Ec', 2, -5, 435, 2, 23.8, 50.9, 65.2, 700),
-(26, '25', 'Doubs', 5000, 57000, 71, 1.5, 1, 'Ed', 1, -12, 355, 4, 36.9, 60.4, 75.6, 1500),
-(27, '26', 'Drôme', 4800, 53000, 110, 1.5, 1, 'Ed', 2, -6, 528, 6, 27, 48.6, 62.7, 2100),
-(28, '27', 'Eure', 5500, 58000, 78, 1, 5, 'Ea', 1, -7, 429, 1, 25.1, 50.5, 64.9, 300),
-(29, '28', 'Eure et Loir', 5600, 63000, 78, 1, 1, 'Eb', 1, -7, 437, 1, 36.3, 50.4, 65.5, 300),
-(30, '29', 'Finistère', 5800, 55000, 79, 1, 5, 'Ea', 2, -4, 458, 1, 51, 63.1, 78.8, 300),
-(31, '30', 'Gard', 4000, 36000, 125, 1.8, 5, 'Ed', 3, -5, 500, 4, 33.3, 58.1, 73.7, 1500),
+(21, '2B', 'Haute Corse', 4000, 32000, 126, 1.8, 5, 'Ed', 3, -2, 504, 6, 29.8, 50.8, 65, 2100),
+(22, '21', 'Côte d''Or', 4900, 57000, 73, 1.5, 1, 'Ec', 1, -10, 358, 2, 22.4, 50.8, 65, 700),
+(23, '22', 'Côtes d''Armor', 5400, 51000, 79, 1, 5, 'Ea', 2, -4, 427, 1, 35, 50.9, 66, 300),
+(24, '23', 'Creuse', 5200, 56000, 84, 1.5, 1, 'Ec', 1, -8, 437, 3, 29.8, 53.9, 69.5, 1100),
+(25, '24', 'Dordogne', 5000, 48000, 87, 1, 1, 'Ec', 2, -5, 435, 2, 37.8, 58.8, 73.5, 700),
+(26, '25', 'Doubs', 5000, 57000, 71, 1.5, 1, 'Ed', 1, -12, 355, 4, 23.8, 50.9, 65.2, 1500),
+(27, '26', 'Drôme', 4800, 53000, 110, 1.5, 1, 'Ed', 2, -6, 528, 6, 36.9, 60.4, 75.6, 2100),
+(28, '27', 'Eure', 5500, 58000, 78, 1, 5, 'Ea', 1, -7, 429, 1, 27, 48.6, 62.7, 300),
+(29, '28', 'Eure et Loir', 5600, 63000, 78, 1, 1, 'Eb', 1, -7, 437, 1, 25.1, 50.5, 64.9, 300),
+(30, '29', 'Finistère', 5800, 55000, 79, 1, 5, 'Ea', 2, -4, 458, 1, 36.3, 50.4, 65.5, 300),
+(31, '30', 'Gard', 4000, 36000, 125, 1.8, 5, 'Ed', 3, -5, 500, 4, 51, 63.1, 78.8, 1500),
 (32, '31', 'Haute Garonne', 4500, 44000, 98, 1.5, 1, 'Ec', 2, -5, 441, 6, 33.3, 58.1, 73.7, 2100),
-(33, '32', 'Haute Garonne', 4800, 50000, 92, 1, 1, 'Ec', 2, -5, 442, 1, 37.8, 58.8, 73.5, 300),
-(34, '33', 'Gironde', 4500, 41000, 91, 1, 5, 'Ec', 2, -5, 410, 1, 48.3, 63.4, 79.5, 300),
-(35, '34', 'Hérault', 4100, 38000, 120, 1.8, 5, 'Ed', 3, -5, 492, 3, 32.9, 51.8, 66.9, 1100),
-(36, '35', 'Ile et Vilaine', 4300, 53000, 79, 1, 5, 'Ea', 2, -5, 340, 1, 25.5, 51.7, 66.2, 300),
-(37, '36', 'Indre', 4300, 59000, 84, 1, 1, 'Eb', 2, -7, 361, 2, 26.1, 52, 66.5, 700),
-(38, '37', 'Indre et Loire', 4300, 57000, 85, 1, 1, 'Eb', 2, -7, 366, 1, 26.1, 54.5, 68.9, 300),
-(39, '38', 'Indre et Loire', 4800, 55000, 100, 1.5, 1, 'Ec', 1, -10, 480, 6, 23.8, 50.9, 65.2, 2100),
-(40, '39', 'Jura', 4900, 55000, 74, 1.5, 1, 'Ec', 1, -10, 363, 4, 39.1, 57.1, 72.9, 1500),
-(41, '40', 'Landes', 4400, 42000, 94, 1, 5, 'Ec', 2, -5, 414, 1, 26.1, 52, 66.5, 300),
-(42, '41', 'Loir et Cher', 5400, 59000, 82, 1, 1, 'Eb', 2, -7, 443, 1, 25.2, 53.5, 67.8, 300),
-(43, '42', 'Loire', 4900, 52000, 83, 1.5, 1, 'Ec', 1, -10, 407, 5, 29.1, 53.7, 69.2, 1900),
-(44, '43', 'Haute Loire', 5000, 54000, 92, 1.5, 1, 'Ec', 1, -8, 460, 5, 26.1, 53.4, 68.7, 1900);
+(33, '32', 'Haute Garonne', 4800, 50000, 92, 1, 1, 'Ec', 2, -5, 442, 1, 33.3, 58.1, 73.7, 300),
+(34, '33', 'Gironde', 4500, 41000, 91, 1, 5, 'Ec', 2, -5, 410, 1, 37.8, 58.8, 73.5, 300),
+(35, '34', 'Hérault', 4100, 38000, 120, 1.8, 5, 'Ed', 3, -5, 492, 3, 48.3, 63.4, 79.5, 1100),
+(36, '35', 'Ile et Vilaine', 4300, 53000, 79, 1, 5, 'Ea', 2, -5, 340, 1, 32.9, 51.8, 66.9, 300),
+(37, '36', 'Indre', 4300, 59000, 84, 1, 1, 'Eb', 2, -7, 361, 2, 25.5, 51.7, 66.2, 700),
+(38, '37', 'Indre et Loire', 4300, 57000, 85, 1, 1, 'Eb', 2, -7, 366, 1, 26.1, 52, 66.5, 300),
+(39, '38', 'Indre et Loire', 4800, 55000, 100, 1.5, 1, 'Ec', 1, -10, 480, 6, 26.1, 54.5, 68.9, 2100),
+(40, '39', 'Jura', 4900, 55000, 74, 1.5, 1, 'Ec', 1, -10, 363, 4, 23.8, 50.9, 65.2, 1500),
+(41, '40', 'Landes', 4400, 42000, 94, 1, 5, 'Ec', 2, -5, 414, 1, 39.1, 57.1, 72.9, 300),
+(42, '41', 'Loir et Cher', 5400, 59000, 82, 1, 1, 'Eb', 2, -7, 443, 1, 26.1, 52, 66.5, 300),
+(43, '42', 'Loire', 4900, 52000, 83, 1.5, 1, 'Ec', 1, -10, 407, 5, 25.2, 53.5, 67.8, 1900),
+(44, '43', 'Haute Loire', 5000, 54000, 92, 1.5, 1, 'Ec', 1, -8, 460, 5, 29.2, 53.7, 69.2, 1900),
+(45, '44', 'Loire Atlantique', 4900, 48000, 82, 1, 5, 'EB', 2, -5, 402, 1, 35, 53.4, 68.7, 300),
+(46, '45', 'Loiret', 5400, 61000, 78, 1, 1, 'Eb', 1, -7, 421, 1, 25.1, 50.5, 64.9, 300),
+(47, '46', 'Lot', 4600, 45000, 88, 1.5, 1, 'Ec', 2, -6, 405, 2, 33, 56, 71.1, 700),
+(48, '47', 'Lot et Garonne', 5000, 53000, 87, 1, 1, 'Ec', 2, -5, 435, 1, 33.7, 57.3, 72.5, 300),
+(49, '48', 'Lozère', 4600, 48000, 100, 1.5, 1, 'Ed', 2, -8, 460, 5, 36, 57.1, 73.1, 1900),
+(50, '49', 'Maine et Loire', 5200, 55000, 83, 1, 1, 'Eb', 2, -7, 432, 1, 35, 53.4, 68.7, 300),
+(51, '50', 'Manche', 5700, 56000, 76, 1, 5, 'Ea', 2, -4, 433, 1, 33.4, 50, 65, 300),
+(52, '51', 'Marne', 5600, 65000, 74, 1, 1, 'Eb', 1, -10, 414, 1, 21.5, 49.7, 64.1, 300),
+(53, '52', 'Haute Marne', 5200, 59000, 73, 1.5, 1, 'Eb', 1, -12, 380, 2, 22.4, 50, 64.2, 700),
+(54, '53', 'Mayenne', 5200, 56000, 81, 1, 1, 'Eb', 2, -7, 421, 2, 32.9, 51.8, 66.9, 700),
+(55, '54', 'Meurthe et Moselle', 5800, 71000, 69, 1, 1, 'Eb', 1, -15, 400, 2, 20.8, 48.9, 62.9, 700),
+(56, '55', 'Meuse', 5600, 68000, 71, 1, 1, 'Eb', 1, -12, 398, 2, 21.5, 49.7, 64.1, 700),
+(57, '56', 'Morbihan', 5100, 48000, 79, 1, 5, 'Ea', 2, -4, 403, 1, 32.9, 51.8, 66.9, 300),
+(58, '57', 'Moselle', 5600, 68000, 69, 1, 1, 'Eb', 1, -15, 386, 3, 18.6, 48.8, 62.4, 1100),
+(59, '58', 'Nièvre', 5200, 56000, 76, 1.5, 1, 'Eb', 1, -10, 395, 3, 26, 51, 65.6, 1100),
+(60, '59', 'Nord', 5500, 60000, 69, 1, 5, 'Ea', 1, -9, 380, 1, 22.5, 45.7, 59.1, 300),
+(61, '60', 'Oise', 5700, 65000, 75, 1, 1, 'Ea', 1, -7, 428, 1, 23.4, 48.5, 62.7, 300),
+(62, '61', 'Orne', 5600, 62000, 79, 1, 1, 'Ea', 1, -7, 442, 2, 33.4, 50, 65, 700),
+(63, '62', 'Pas de Calais', 5500, 60000, 69, 1, 5, 'Ea', 1, -9, 380, 1, 22.5, 45.7, 59.1, 300),
+(64, '63', 'Puy de Dôme', 4800, 50000, 83, 1.5, 1, 'Ec', 1, -8, 398, 5, 29.2, 53, 68.2, 1900),
+(65, '64', 'Pyrénées Atlantiques', 5200, 35000, 98, 1.8, 5, 'Ec', 2, -5, 510, 6, 67.7, 58, 73.7, 2100),
+(66, '65', 'Hautes Pyrénées', 5600, 43000, 98, 1.5, 1, 'Ec', 2, -5, 549, 6, 33.3, 58.1, 73.7, 2100),
+(67, '66', 'Pyrénées Orientales', 3700, 30000, 130, 1.8, 5, 'Ed', 3, -5, 481, 6, 48.3, 61.9, 80.6, 2100),
+(68, '67', 'Bas Rhin', 5200, 63000, 66, 1.5, 1, 'Eb', 1, -15, 343, 3, 18.6, 49.1, 62.8, 1100),
+(69, '68', 'Haut Rhin', 5300, 64000, 69, 1.5, 1, 'Eb', 1, -15, 366, 4, 21.4, 50, 64.2, 1500),
+(70, '69', 'Rhône', 4900, 54000, 80, 1.5, 1, 'Ec', 1, -10, 392, 3, 25.2, 53.5, 67.8, 1100),
+(71, '70', 'Haute Saône', 5300, 62000, 71, 1.5, 1, 'Eb', 1, -12, 376, 4, 23.8, 50.9, 65.2, 1500),
+(72, '71', 'Saône et Loire', 5200, 57000, 74, 1.5, 1, 'Ec', 1, -10, 385, 3, 24.4, 52.8, 67, 1100),
+(73, '72', 'Sarthe', 5300, 57000, 82, 1, 1, 'Eb', 2, -7, 435, 1, 27.9, 51.8, 66.5, 300),
+(74, '73', 'Savoie', 4600, 55000, 100, 1.5, 1, 'Ec', 1, -10, 460, 6, 29.7, 54.5, 68.9, 2100),
+(75, '74', 'Haute Savoie', 4900, 58000, 80, 1.5, 1, 'Ec', 1, -10, 392, 6, 26, 51.2, 65.3, 2100),
+(76, '75', 'Paris', 5100, 55000, 66, 1, 1, 'Eb', 1, -5, 337, 1, 24, 49.5, 63.9, 300),
+(77, '76', 'Seine Maritime', 5500, 58000, 76, 1, 5, 'Ea', 1, -7, 418, 1, 27, 48.6, 62.7, 300),
+(78, '77', 'Seine et Marne', 5500, 62000, 72, 1, 1, 'Eb', 1, -7, 396, 1, 24, 49.5, 63.9, 300),
+(79, '78', 'Yvelines', 5800, 66000, 72, 1, 1, 'Eb', 1, -7, 418, 1, 24, 49.5, 63.9, 300),
+(80, '79', 'Deux Sèvres', 5300, 56000, 85, 1, 1, 'Eb', 2, -7, 451, 1, 44, 58.7, 74.3, 300),
+(81, '80', 'Somme', 5800, 64000, 73, 1, 5, 'Ea', 1, -9, 423, 1, 23, 48.5, 62.7, 300),
+(82, '81', 'Tarn', 4400, 45000, 100, 1.5, 1, 'Ec', 2, -5, 440, 4, 33.3, 58.1, 73.7, 1500),
+(83, '82', 'Tarn et Garonne', 4800, 51000, 90, 1, 1, 'Ec', 2, -5, 432, 2, 33.3, 58.1, 73.7, 700),
+(84, '83', 'Var', 3900, 31000, 132, 1.8, 5, 'Ed', 3, -5, 515, 5, 68.4, 67.2, 83.4, 1900),
+(85, '84', 'Vaucluse', 4600, 44000, 126, 1.5, 1, 'Ed', 2, -6, 580, 5, 42.4, 63, 78.9, 1900),
+(86, '85', 'Vendée', 5200, 50000, 85, 1, 5, 'Eb', 2, -5, 442, 1, 35, 53.4, 68.7, 300),
+(87, '86', 'Vienne', 5300, 56000, 86, 1, 1, 'Eb', 2, -7, 456, 1, 29.5, 54.7, 69.9, 300),
+(88, '87', 'Haute Vienne', 5200, 54000, 86, 1.5, 1, 'Ec', 1, -8, 447, 2, 29.8, 53.9, 69.5, 700),
+(89, '88', 'Vosges', 5300, 62000, 71, 1.5, 1, 'Eb', 1, -15, 376, 4, 22.4, 50, 64.2, 1500),
+(90, '89', 'Yonne', 5400, 62000, 76, 1, 1, 'Eb', 1, -10, 410, 2, 24.3, 50.3, 64.6, 700),
+(91, '90', 'Territoire de Belfort', 5300, 63000, 70, 1.5, 1, 'Eb', 1, -15, 371, 4, 21.4, 50, 64.2, 1500),
+(92, '91', 'Essonne', 5500, 61000, 72, 1, 1, 'Eb', 1, -7, 396, 1, 24, 49.5, 63.9, 300),
+(93, '92', 'Hauts de Seine', 5300, 58000, 66, 1, 1, 'Eb', 1, -7, 350, 1, 24, 49.5, 63.9, 300),
+(94, '93', 'Seine Saint Denis', 5300, 58000, 66, 1, 1, 'Eb', 1, -7, 350, 1, 24, 49.5, 63.9, 300),
+(95, '94', 'Val de Marne', 5300, 58000, 66, 1, 1, 'Eb', 1, -7, 350, 1, 24, 49.5, 63.9, 300),
+(96, '95', 'Val d''Oise', 5500, 61000, 72, 1, 1, 'Eb', 1, -7, 396, 1, 24, 49.5, 63.9, 300);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_door_type`
+-- Structure de la table `sim_door_type`
 --
 
 DROP TABLE IF EXISTS `sim_door_type`;
 CREATE TABLE IF NOT EXISTS `sim_door_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `label` varchar(255) NOT NULL,
-  `u` float NOT NULL,
-  PRIMARY KEY (`id`)
+  `u` float NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `sim_door_type`
+-- Contenu de la table `sim_door_type`
 --
 
 INSERT INTO `sim_door_type` (`id`, `label`, `u`) VALUES
@@ -290,12 +334,12 @@ INSERT INTO `sim_door_type` (`id`, `label`, `u`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_ecs`
+-- Structure de la table `sim_ecs`
 --
 
 DROP TABLE IF EXISTS `sim_ecs`;
 CREATE TABLE IF NOT EXISTS `sim_ecs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `iecs_bv` double DEFAULT NULL,
   `iecs_bh` double DEFAULT NULL,
@@ -304,12 +348,11 @@ CREATE TABLE IF NOT EXISTS `sim_ecs` (
   `iecs_inst` double DEFAULT NULL,
   `iecs_acc` double DEFAULT NULL,
   `energy` int(11) NOT NULL,
-  `new_install` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  `new_install` tinyint(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
 
 --
--- Dumping data for table `sim_ecs`
+-- Contenu de la table `sim_ecs`
 --
 
 INSERT INTO `sim_ecs` (`id`, `label`, `iecs_bv`, `iecs_bh`, `iecs_av`, `iecs_sv`, `iecs_inst`, `iecs_acc`, `energy`, `new_install`) VALUES
@@ -347,19 +390,18 @@ INSERT INTO `sim_ecs` (`id`, `label`, `iecs_bv`, `iecs_bh`, `iecs_av`, `iecs_sv`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_energy`
+-- Structure de la table `sim_energy`
 --
 
 DROP TABLE IF EXISTS `sim_energy`;
 CREATE TABLE IF NOT EXISTS `sim_energy` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `label` varchar(30) NOT NULL,
-  `a_pcsi` float NOT NULL,
-  PRIMARY KEY (`id`)
+  `a_pcsi` float NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `sim_energy`
+-- Contenu de la table `sim_energy`
 --
 
 INSERT INTO `sim_energy` (`id`, `label`, `a_pcsi`) VALUES
@@ -375,19 +417,18 @@ INSERT INTO `sim_energy` (`id`, `label`, `a_pcsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_glazing_type`
+-- Structure de la table `sim_glazing_type`
 --
 
 DROP TABLE IF EXISTS `sim_glazing_type`;
 CREATE TABLE IF NOT EXISTS `sim_glazing_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `code` varchar(30) NOT NULL,
-  `label` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  `label` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `sim_glazing_type`
+-- Contenu de la table `sim_glazing_type`
 --
 
 INSERT INTO `sim_glazing_type` (`id`, `code`, `label`) VALUES
@@ -400,18 +441,17 @@ INSERT INTO `sim_glazing_type` (`id`, `code`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_hsp`
+-- Structure de la table `sim_hsp`
 --
 
 DROP TABLE IF EXISTS `sim_hsp`;
 CREATE TABLE IF NOT EXISTS `sim_hsp` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `hsp` double NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(11) NOT NULL,
+  `hsp` double NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
--- Dumping data for table `sim_hsp`
+-- Contenu de la table `sim_hsp`
 --
 
 INSERT INTO `sim_hsp` (`id`, `hsp`) VALUES
@@ -432,24 +472,23 @@ INSERT INTO `sim_hsp` (`id`, `hsp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_ich`
+-- Structure de la table `sim_ich`
 --
 
 DROP TABLE IF EXISTS `sim_ich`;
 CREATE TABLE IF NOT EXISTS `sim_ich` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `label` varchar(255) NOT NULL,
   `rd` float NOT NULL,
   `re` float NOT NULL,
   `rg` float NOT NULL,
   `rr` varchar(30) NOT NULL,
   `energy` int(11) NOT NULL,
-  `chaudiere` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  `chaudiere` tinyint(1) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
--- Dumping data for table `sim_ich`
+-- Contenu de la table `sim_ich`
 --
 
 INSERT INTO `sim_ich` (`id`, `label`, `rd`, `re`, `rg`, `rr`, `energy`, `chaudiere`) VALUES
@@ -494,23 +533,22 @@ INSERT INTO `sim_ich` (`id`, `label`, `rd`, `re`, `rg`, `rr`, `energy`, `chaudie
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_mitoyennete`
+-- Structure de la table `sim_mitoyennete`
 --
 
 DROP TABLE IF EXISTS `sim_mitoyennete`;
 CREATE TABLE IF NOT EXISTS `sim_mitoyennete` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `mit` float NOT NULL,
   `mit2a` float NOT NULL,
   `mit2b` float NOT NULL,
-  `mit2c` float NOT NULL,
-  PRIMARY KEY (`id`)
+  `mit2c` float NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `sim_mitoyennete`
+-- Contenu de la table `sim_mitoyennete`
 --
 
 INSERT INTO `sim_mitoyennete` (`id`, `code`, `label`, `mit`, `mit2a`, `mit2b`, `mit2c`) VALUES
@@ -524,21 +562,19 @@ INSERT INTO `sim_mitoyennete` (`id`, `code`, `label`, `mit`, `mit2a`, `mit2b`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_news`
+-- Structure de la table `sim_news`
 --
 
 DROP TABLE IF EXISTS `sim_news`;
 CREATE TABLE IF NOT EXISTS `sim_news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `title` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `text` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `slug` (`slug`)
+  `text` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `sim_news`
+-- Contenu de la table `sim_news`
 --
 
 INSERT INTO `sim_news` (`id`, `title`, `slug`, `text`) VALUES
@@ -549,19 +585,18 @@ INSERT INTO `sim_news` (`id`, `title`, `slug`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_plafond`
+-- Structure de la table `sim_plafond`
 --
 
 DROP TABLE IF EXISTS `sim_plafond`;
 CREATE TABLE IF NOT EXISTS `sim_plafond` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `upafond` double NOT NULL,
-  PRIMARY KEY (`id`)
+  `upafond` double NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `sim_plafond`
+-- Contenu de la table `sim_plafond`
 --
 
 INSERT INTO `sim_plafond` (`id`, `label`, `upafond`) VALUES
@@ -580,19 +615,18 @@ INSERT INTO `sim_plafond` (`id`, `label`, `upafond`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_roof_type`
+-- Structure de la table `sim_roof_type`
 --
 
 DROP TABLE IF EXISTS `sim_roof_type`;
 CREATE TABLE IF NOT EXISTS `sim_roof_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `sim_roof_type`
+-- Contenu de la table `sim_roof_type`
 --
 
 INSERT INTO `sim_roof_type` (`id`, `code`, `label`) VALUES
@@ -604,19 +638,18 @@ INSERT INTO `sim_roof_type` (`id`, `code`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_shape`
+-- Structure de la table `sim_shape`
 --
 
 DROP TABLE IF EXISTS `sim_shape`;
 CREATE TABLE IF NOT EXISTS `sim_shape` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `code` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `sim_shape`
+-- Contenu de la table `sim_shape`
 --
 
 INSERT INTO `sim_shape` (`id`, `code`, `label`) VALUES
@@ -627,22 +660,21 @@ INSERT INTO `sim_shape` (`id`, `code`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_ufenetres`
+-- Structure de la table `sim_ufenetres`
 --
 
 DROP TABLE IF EXISTS `sim_ufenetres`;
 CREATE TABLE IF NOT EXISTS `sim_ufenetres` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `id_vitrage` int(11) NOT NULL,
   `id_volet` int(11) NOT NULL,
   `id_menuiserie` int(11) NOT NULL,
   `id_airspace` int(11) DEFAULT NULL,
-  `ufenetre` double NOT NULL,
-  PRIMARY KEY (`id`)
+  `ufenetre` double NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=115 ;
 
 --
--- Dumping data for table `sim_ufenetres`
+-- Contenu de la table `sim_ufenetres`
 --
 
 INSERT INTO `sim_ufenetres` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_airspace`, `ufenetre`) VALUES
@@ -764,7 +796,7 @@ INSERT INTO `sim_ufenetres` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_uveranda`
+-- Structure de la table `sim_uveranda`
 --
 
 DROP TABLE IF EXISTS `sim_uveranda`;
@@ -778,7 +810,7 @@ CREATE TABLE IF NOT EXISTS `sim_uveranda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `sim_uveranda`
+-- Contenu de la table `sim_uveranda`
 --
 
 INSERT INTO `sim_uveranda` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id_airspace`, `uveranda`) VALUES
@@ -888,19 +920,18 @@ INSERT INTO `sim_uveranda` (`id`, `id_vitrage`, `id_volet`, `id_menuiserie`, `id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_ventilation`
+-- Structure de la table `sim_ventilation`
 --
 
 DROP TABLE IF EXISTS `sim_ventilation`;
 CREATE TABLE IF NOT EXISTS `sim_ventilation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `label` varchar(255) NOT NULL,
-  `ara` double NOT NULL,
-  PRIMARY KEY (`id`)
+  `ara` double NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `sim_ventilation`
+-- Contenu de la table `sim_ventilation`
 --
 
 INSERT INTO `sim_ventilation` (`id`, `label`, `ara`) VALUES
@@ -916,20 +947,19 @@ INSERT INTO `sim_ventilation` (`id`, `label`, `ara`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_wall_thickness`
+-- Structure de la table `sim_wall_thickness`
 --
 
 DROP TABLE IF EXISTS `sim_wall_thickness`;
 CREATE TABLE IF NOT EXISTS `sim_wall_thickness` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `id_wall` int(11) NOT NULL,
   `thickness` varchar(30) NOT NULL,
-  `umur` double NOT NULL,
-  PRIMARY KEY (`id`)
+  `umur` double NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
 
 --
--- Dumping data for table `sim_wall_thickness`
+-- Contenu de la table `sim_wall_thickness`
 --
 
 INSERT INTO `sim_wall_thickness` (`id`, `id_wall`, `thickness`, `umur`) VALUES
@@ -1045,20 +1075,19 @@ INSERT INTO `sim_wall_thickness` (`id`, `id_wall`, `thickness`, `umur`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sim_wall_type`
+-- Structure de la table `sim_wall_type`
 --
 
 DROP TABLE IF EXISTS `sim_wall_type`;
 CREATE TABLE IF NOT EXISTS `sim_wall_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `label` varchar(255) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `kpi_m` double NOT NULL,
-  PRIMARY KEY (`id`)
+  `kpi_m` double NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
--- Dumping data for table `sim_wall_type`
+-- Contenu de la table `sim_wall_type`
 --
 
 INSERT INTO `sim_wall_type` (`id`, `label`, `parent_id`, `kpi_m`) VALUES
@@ -1078,6 +1107,245 @@ INSERT INTO `sim_wall_type` (`id`, `label`, `parent_id`, `kpi_m`) VALUES
 (21, 'Murs constitués d’un seul\r\nmatériaux', 1, 0.1),
 (22, 'Murs avec remplissage\r\ntout venant', 1, 0.2);
 
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `sim_air_space`
+--
+ALTER TABLE `sim_air_space`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_basement_form`
+--
+ALTER TABLE `sim_basement_form`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_basement_type`
+--
+ALTER TABLE `sim_basement_type`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_carpentry_type`
+--
+ALTER TABLE `sim_carpentry_type`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_construction_year`
+--
+ALTER TABLE `sim_construction_year`
+ ADD PRIMARY KEY (`id`), ADD KEY `id` (`id`);
+
+--
+-- Index pour la table `sim_departement`
+--
+ALTER TABLE `sim_departement`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_door_type`
+--
+ALTER TABLE `sim_door_type`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_ecs`
+--
+ALTER TABLE `sim_ecs`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_energy`
+--
+ALTER TABLE `sim_energy`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_glazing_type`
+--
+ALTER TABLE `sim_glazing_type`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_hsp`
+--
+ALTER TABLE `sim_hsp`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_ich`
+--
+ALTER TABLE `sim_ich`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_mitoyennete`
+--
+ALTER TABLE `sim_mitoyennete`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_news`
+--
+ALTER TABLE `sim_news`
+ ADD PRIMARY KEY (`id`), ADD KEY `slug` (`slug`);
+
+--
+-- Index pour la table `sim_plafond`
+--
+ALTER TABLE `sim_plafond`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_roof_type`
+--
+ALTER TABLE `sim_roof_type`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_shape`
+--
+ALTER TABLE `sim_shape`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_ufenetres`
+--
+ALTER TABLE `sim_ufenetres`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_ventilation`
+--
+ALTER TABLE `sim_ventilation`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_wall_thickness`
+--
+ALTER TABLE `sim_wall_thickness`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sim_wall_type`
+--
+ALTER TABLE `sim_wall_type`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `sim_air_space`
+--
+ALTER TABLE `sim_air_space`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `sim_basement_form`
+--
+ALTER TABLE `sim_basement_form`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT pour la table `sim_basement_type`
+--
+ALTER TABLE `sim_basement_type`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `sim_carpentry_type`
+--
+ALTER TABLE `sim_carpentry_type`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `sim_construction_year`
+--
+ALTER TABLE `sim_construction_year`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `sim_departement`
+--
+ALTER TABLE `sim_departement`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=97;
+--
+-- AUTO_INCREMENT pour la table `sim_door_type`
+--
+ALTER TABLE `sim_door_type`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT pour la table `sim_ecs`
+--
+ALTER TABLE `sim_ecs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT pour la table `sim_energy`
+--
+ALTER TABLE `sim_energy`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT pour la table `sim_glazing_type`
+--
+ALTER TABLE `sim_glazing_type`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT pour la table `sim_hsp`
+--
+ALTER TABLE `sim_hsp`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT pour la table `sim_ich`
+--
+ALTER TABLE `sim_ich`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
+--
+-- AUTO_INCREMENT pour la table `sim_mitoyennete`
+--
+ALTER TABLE `sim_mitoyennete`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `sim_news`
+--
+ALTER TABLE `sim_news`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `sim_plafond`
+--
+ALTER TABLE `sim_plafond`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT pour la table `sim_roof_type`
+--
+ALTER TABLE `sim_roof_type`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `sim_shape`
+--
+ALTER TABLE `sim_shape`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `sim_ufenetres`
+--
+ALTER TABLE `sim_ufenetres`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=115;
+--
+-- AUTO_INCREMENT pour la table `sim_ventilation`
+--
+ALTER TABLE `sim_ventilation`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT pour la table `sim_wall_thickness`
+--
+ALTER TABLE `sim_wall_thickness`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=110;
+--
+-- AUTO_INCREMENT pour la table `sim_wall_type`
+--
+ALTER TABLE `sim_wall_type`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
