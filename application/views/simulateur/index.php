@@ -196,6 +196,8 @@
                                 <input  class="form-control number" name="risolant_mur" id="risolant_mur" placeholder="Risolant" value="">
                         </div>
                     </div>
+                </div>
+                <div class="row  clear-div">
                     <div class="form-group" id="epaisseur_mur_group">
                         <label class="col-sm-4 control-label">Epaisseur</label>
                         <div class="col-sm-4 input-group">
@@ -203,8 +205,13 @@
                                 <span class="input-group-addon">cm</span>
                         </div>
                     </div>
+                    <div class="form-group" id="lambda_mur_group">
+                        <label class="col-sm-4 control-label">Lambda</label>
+                        <div class="col-sm-4 input-group">
+                                <input  class="form-control number" name="lambda_mur" id="lambda_mur"  value="0.04">
+                        </div>
+                    </div>
                 </div>
-                
                 <legend>Plancher haut</legend>
                 <div class="form-group">
                     <label for="roof_type" class="col-sm-4 control-label">Type de toiture</label>
@@ -263,10 +270,18 @@
                                 <input  class="form-control number" name="risolant_ph" id="risolant_ph" placeholder="Risolant" value="">
                         </div>
                     </div>
+                </div>
+                <div class="row  clear-div">
                     <div class="form-group" id="epaisseur_ph_group">
                         <label class="col-sm-4 control-label">Epaisseur</label>
                         <div class="col-sm-4 input-group">
                                 <input  class="form-control number" name="epaisseur_ph" id="epaisseur_ph" placeholder="Epaisseur" value="">
+                        </div>
+                    </div>
+                    <div class="form-group" id="lambda_ph_group">
+                        <label class="col-sm-4 control-label">Lambda</label>
+                        <div class="col-sm-4 input-group">
+                                <input  class="form-control number" name="lambda_ph" id="lambda_ph" value="0.04">
                         </div>
                     </div>
                 </div>
@@ -320,10 +335,19 @@
                                 <input  class="form-control number" name="risolant_pb" id="risolant_pb" placeholder="Risolant" value="">
                         </div>
                     </div>
+                </div>
+                <div class="row  clear-div">
                     <div class="form-group" id="epaisseur_pb_group">
                         <label class="col-sm-4 control-label">Epaisseur</label>
                         <div class="col-sm-4 input-group">
                                 <input  class="form-control number" name="epaisseur_pb" id="epaisseur_pb" placeholder="Epaisseur" value="">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="lambda_pb_group">
+                        <label class="col-sm-4 control-label">Lambda</label>
+                        <div class="col-sm-4 input-group">
+                                <input  class="form-control number" name="lambda_pb" id="lambda_pb" value="0.042">
                         </div>
                     </div>
                 </div>

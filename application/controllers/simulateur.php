@@ -143,8 +143,12 @@ class Simulateur extends CI_Controller {
                 }else{
                     // Si l'epaisseur de l'isolant est connue
                     
+                    $lambda_mur = 0.04;
+                    if(isset($_POST['lambda_mur']))
+                        $lambda_mur = $_POST['lambda_mur'];
+                    
                     if(isset($_POST['epaisseur_mur']) && $_POST['epaisseur_mur']>0){
-                        $data['Umur'] = $Umur =  (1/( (1/$Umur0) + (1/$_POST['epaisseur_mur'] ) ));
+                        $data['Umur'] = $Umur =  (1/( (1/$Umur0) + (1/($_POST['epaisseur_mur'] /$lambda_mur ) ) ));
                     }else{
                         // calcul de l'epaisseur
                         switch ($year_of_construction){
@@ -174,7 +178,7 @@ class Simulateur extends CI_Controller {
 
                         }
                         
-                        $data['Umur'] = $Umur = (1/( (1/ $Umur0) + ($e/0.04) ));
+                        $data['Umur'] = $Umur = (1/( (1/ $Umur0) + ($e/$lambda_mur) ));
                     }
                 }
             }else{
@@ -206,10 +210,17 @@ class Simulateur extends CI_Controller {
                 if(isset($_POST['risolant_pb']) && $_POST['risolant_pb']>0){
                     $data['Uplancher'] = $Uplancher = ($Uplancher0) ? (1/( (1/ $Uplancher0 ) +  $_POST['risolant_pb'] )) : 0;
                 }else{
+                    
+                    $lambda_pb = 0.042;
+                        if(isset($_POST['lambda_pb']))
+                            $lambda_pb = $_POST['lambda_pb'];
+                        
                     // Si l'epaisseur de l'isolant est connue
                     if(isset($_POST['epaisseur_pb']) && $_POST['epaisseur_pb']>0){
-                        $data['Uplancher'] = $Uplancher = (1/( (1/$Uplancher0) + (1/$_POST['epaisseur_pb'] ) ));
+                        $data['Uplancher'] = $Uplancher = (1/( (1/$Uplancher0) + (1/($_POST['epaisseur_pb'] / $lambda_pb )) ));
                     }else{
+                        
+                        
                         // calcul de l'epaisseur
                         switch ($year_of_construction){
                             case  'before_1975' :
@@ -238,7 +249,7 @@ class Simulateur extends CI_Controller {
 
                         }
                         
-                        $data['Uplancher'] = $Uplancher = (1/( (1/ $Uplancher0) + ($epb/0.042) ));
+                        $data['Uplancher'] = $Uplancher = (1/( (1/ $Uplancher0) + ($epb/$lambda_pb) ));
                     }
                 }
                 
@@ -261,9 +272,14 @@ class Simulateur extends CI_Controller {
                 if(isset($_POST['risolant_ph']) && $_POST['risolant_ph']>0){
                     $data['Uplafond'] = $Uplafond = (1/( (1/ $Uplafond0) +   $_POST['risolant_ph'] ));
                 }else{
+                    
+                    $lambda_ph = 0.042;
+                        if(isset($_POST['lambda_pb']))
+                            $lambda_pb = $_POST['lambda_pb'];
+                        
                     // Si l'epaisseur de l'isolant est connue
                     if(isset($_POST['epaisseur_ph']) && $_POST['epaisseur_ph']>0){
-                        $data['Uplafond'] = $Uplafond = (1/( (1/ $Uplafond0) + (1/ $_POST['epaisseur_ph'] ) ));
+                        $data['Uplafond'] = $Uplafond = (1/( (1/ $Uplafond0) + (1/ ($_POST['epaisseur_ph'] / $lambda_ph ) ) ));
                     }else{
                         // calcul de l'epaisseur
                         switch ($year_of_construction){

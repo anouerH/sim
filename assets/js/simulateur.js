@@ -117,12 +117,14 @@ $( document ).ready(function() {
             var isolation = $(this).val() ;
             $('#risolant_mur_group').fadeOut();
             $('#epaisseur_mur_group').fadeOut();
+            $('#lambda_mur_group').fadeOut();
             $("#epaisseur_mur").prop('disabled', false);
             $('#risolant_mur').val("");
             $('#epaisseur_mur').val("");
             if(isolation > 0){
                     $('#risolant_mur_group').fadeIn();
                     $('#epaisseur_mur_group').fadeIn();
+                    $('#lambda_mur_group').fadeIn();
             }
     });
     
@@ -166,12 +168,15 @@ $( document ).ready(function() {
             var isolation = $(this).val() ;
             $('#risolant_pb_group').fadeOut();
             $('#epaisseur_pb_group').fadeOut();
+            $('#lambda_pb_group').fadeOut();
             $("#epaisseur_pb").prop('disabled', false);
             $('#risolant_pb').val("");
             $('#epaisseur_pb').val("");
             if(isolation > 0){
                     $('#risolant_pb_group').fadeIn();
                     $('#epaisseur_pb_group').fadeIn();
+                    $('#lambda_pb_group').fadeIn();
+                    
             }
     });
     
@@ -194,12 +199,14 @@ $( document ).ready(function() {
             var isolation = $(this).val() ;
             $('#risolant_ph_group').fadeOut();
             $('#epaisseur_ph_group').fadeOut();
+            $('#lambda_ph_group').fadeOut();
             $('#risolant_ph').val("");
             $('#epaisseur_ph').val("");
             $("#epaisseur_ph").prop('disabled', false);
             if(isolation > 0){
                     $('#risolant_ph_group').fadeIn();
                     $('#epaisseur_ph_group').fadeIn();
+                    $('#lambda_ph_group').fadeIn();
             }
     });
     
@@ -286,8 +293,10 @@ $( document ).ready(function() {
         if($(this).val().length){
             $('#epaisseur_mur').val('');
             $("#epaisseur_mur").prop('disabled', true);
+            $("#lambda_mur").prop('disabled', true);
         }else{
             $("#epaisseur_mur").prop('disabled', false);
+            $("#lambda_mur").prop('disabled', false);
         }
     });
     
@@ -295,8 +304,10 @@ $( document ).ready(function() {
         if($(this).val().length){
             $('#epaisseur_ph').val('');
             $("#epaisseur_ph").prop('disabled', true);
+            $("#lambda_ph").prop('disabled', true);
         }else{
             $("#epaisseur_ph").prop('disabled', false);
+            $("#lambda_ph").prop('disabled', false);
         }
     });
     
@@ -305,8 +316,10 @@ $( document ).ready(function() {
         if($(this).val().length){
             $('#epaisseur_pb').val('');
             $("#epaisseur_pb").prop('disabled', true);
+            $("#lambda_pb").prop('disabled', true);
         }else{
             $("#epaisseur_pb").prop('disabled', false);
+            $("#lambda_pb").prop('disabled', false);
         }
     });
     
